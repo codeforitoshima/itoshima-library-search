@@ -32,8 +32,8 @@ export function SearchBar({
       </Form>
       <div aria-live="polite" aria-atomic="true">
         {loading && query && (
-          <p className="search-meta">
-            {`${(page - 1) * 10 + 1}〜${page * 10}件目を読み込み中…`}
+          <p className="search-meta loading-meta">
+            <span className="spinner" /> {`${(page - 1) * 10 + 1}〜${page * 10}件目を読み込み中…`}
           </p>
         )}
         {!loading && total !== null && (

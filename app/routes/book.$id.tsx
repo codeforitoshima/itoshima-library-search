@@ -144,7 +144,7 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
                   <span className="avail-badge">予約: {detail.reservations}</span>
                 </div>
               ) : (
-                <p className="detail-loading">所蔵情報を読み込み中…</p>
+                <p className="detail-loading"><span className="spinner" /> 所蔵情報を読み込み中…</p>
               )}
             </div>
             <LibraryLink bookId={detail.bookId} className="detail-library-link" />
