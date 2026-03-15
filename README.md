@@ -1,0 +1,36 @@
+# Itoshima Library Search
+
+Modern search frontend for the Itoshima municipal library (糸島市立図書館).
+
+## Setup
+
+```bash
+npm install
+```
+
+## Development
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173)
+
+## Tests
+
+```bash
+npm test
+```
+
+## Build & Production
+
+```bash
+npm run build
+npm start
+```
+
+## How it works
+
+The app proxies search requests to the library's WebOPAC system server-side
+(via React Router loaders), parses the HTML responses with cheerio, and renders
+results as a modern React UI. URLs are shareable — e.g. `/?q=宮沢賢治&page=2`.

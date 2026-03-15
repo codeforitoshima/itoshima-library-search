@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+html,
+body {
+  @apply bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100;
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
+
+/* Layout */
+.app-container {
+  @apply max-w-3xl mx-auto px-4 py-8;
+}
+
+.app-header h1 {
+  @apply text-2xl font-bold mb-6;
+}
+
+.app-header a {
+  @apply text-gray-900 dark:text-gray-100 no-underline;
+}
+
+/* Search */
+.search-bar {
+  @apply mb-8;
+}
+
+.search-form {
+  @apply flex gap-2;
+}
+
+.search-input {
+  @apply flex-1 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg
+         bg-white dark:bg-gray-900
+         text-gray-900 dark:text-gray-100
+         placeholder-gray-400 dark:placeholder-gray-500
+         focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.search-button {
+  @apply px-6 py-2 bg-blue-600 text-white rounded-lg
+         hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed
+         transition-colors;
+}
+
+.search-meta {
+  @apply mt-2 text-sm text-gray-500 dark:text-gray-400;
+}
+
+/* Results Grid */
+.results-grid {
+  @apply flex flex-col gap-4;
+}
+
+/* Book Card */
+.book-card {
+  @apply flex gap-4 p-4 border border-gray-200 dark:border-gray-800 rounded-lg
+         bg-white dark:bg-gray-900;
+}
+
+.book-cover {
+  @apply flex-shrink-0 w-16;
+}
+
+.book-cover img {
+  @apply w-full rounded shadow-sm;
+}
+
+.book-info {
+  @apply flex-1 min-w-0;
+}
+
+.book-title {
+  @apply text-base font-semibold leading-snug mb-1;
+}
+
+.book-subtitle {
+  @apply font-normal text-gray-500 dark:text-gray-400;
+}
+
+.book-author {
+  @apply text-sm text-gray-600 dark:text-gray-300 mb-1;
+}
+
+.book-meta {
+  @apply flex flex-wrap gap-x-3 text-xs text-gray-500 dark:text-gray-400 mb-2;
+}
+
+.book-availability {
+  @apply inline-block text-xs font-medium px-2 py-0.5 rounded;
+}
+
+.book-availability.available {
+  @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200;
+}
+
+.book-availability.lent {
+  @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200;
+}
+
+/* Pagination */
+.pagination {
+  @apply flex items-center justify-center gap-1 mt-8;
+}
+
+.page-link {
+  @apply px-3 py-1 text-sm rounded border border-gray-300 dark:border-gray-700
+         text-gray-700 dark:text-gray-300
+         hover:bg-gray-100 dark:hover:bg-gray-800
+         no-underline transition-colors;
+}
+
+.page-link.current {
+  @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700;
+}
+
+.page-ellipsis {
+  @apply px-2 text-gray-400;
+}

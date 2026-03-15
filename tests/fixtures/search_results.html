@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<!-- webopac/rwd/pages/search/SearchList.vm -->
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="" />
+<meta name="keywords" content="">
+<link rel="stylesheet" href="../webopac/rwd/css/accessible.css?v=1.6.0" type="text/css" />
+<link rel="stylesheet" href="../webopac/rwd/css/import.css?v=1.6.0" type="text/css" media="tv,screen,print" />
+<link rel="stylesheet" href="../webopac/rwd/css/custom.css?v=1.6.0" type="text/css" media="tv,screen,print" />
+<link rel="stylesheet" href="../webopac/rwd/css/font-awesome.min.css?v=1.6.0" type="text/css" media="all" />
+<link rel="shortcut icon" href="rwd/images/favicon_licsre.ico" type="image/png">
+<link rel="apple-touch-icon" href="rwd/images/favicon_licsre.ico" type="image/png">
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../webopac/rwd/js/html5shiv.js?v=1.6.0"></script>
+<script type="text/javascript" src="../webopac/rwd/js/respond.src.js?v=1.6.0"></script>
+<![endif]-->
+<script type="text/javascript" src="../webopac/rwd/js/jquery-3.5.1.min.js?v=1.6.0"></script>
+<script type="text/javascript" src="../webopac/rwd/js/jquery-migrate-3.3.2.min.js"></script>
+
+<style type="text/css">
+		@media screen and (max-width:779px) {
+						header h1, header div.siteLogo a{
+			color: #0b62c1!important;
+		}
+
+		header div.siteLogo a {
+			color: #0b62c1!important;
+		}
+
+		header div.siteLogo a:hover {
+			color: #0b62c1!important;
+		}
+	}
+</style>
+
+
+
+
+
+
+
+
+
+						
+
+
+
+
+
+
+<title>検索結果一覧 | 糸島市立図書館</title>
+
+<script type="text/javascript" src="rwd/js/bookcover.js?v=1.6.0"></script>
+
+<script type="text/javascript" src="rwd/js/jquery.highlight-3.js"></script>
+<style type="text/css">
+.highlight {
+	background-color: #FFFF00;
+}
+
+.hyoka:not(:has(.test > td)) {
+	display: none;
+}
+</style>
+
+<script type="text/javascript" src="rwd/js/intersection-observer.js?v=1.6.0"></script>
+<script type="text/javascript">
+<!--
+function mode_change(mode) {
+	document.searchlist.mode.value = mode;
+	$.cookie("webopac_select_searchlist", mode, { expires: 365 });
+	document.searchlist.submit();
+}
+//var disabled_flg = false;
+function move_page(page) {
+//	if (disabled_flg == false) {
+//		disabled_flg = true;
+		document.searchlist.page.value = page;
+		document.searchlist.submit();
+//	}
+}
+function change_count(count) {
+//	if (disabled_flg == false) {
+//		disabled_flg = true;
+		document.searchlist.count.value = count;
+		document.searchlist.page.value = 1;
+		document.searchlist.submit();
+//	}
+}
+function list_author(authid) {
+//	if (disabled_flg == false) {
+//		disabled_flg = true;
+		document.searchlist.authorid.value = authid;
+		document.searchlist.page.value = "";
+		document.searchlist.allcount.value = "";
+		document.searchlist.keyword.value = "";
+		document.searchlist.keyflg.value = "";
+		document.searchlist.title.value = "";
+		document.searchlist.titflg.value = "";
+		document.searchlist.author.value = "*****";
+		document.searchlist.autflg.value = "";
+		document.searchlist.publish.value = "";
+		document.searchlist.pubflg.value = "";
+		document.searchlist.publishid.value = "";
+		document.searchlist.isbn.value = "";
+		document.searchlist.publiy1.value = "";
+		document.searchlist.publiy3.value = "";
+		document.searchlist.bunrui.value = "";
+		document.searchlist.bunruicode.value = "";
+		document.searchlist.zastilcod.value = "";
+		document.searchlist.gcode.value = "";
+		document.searchlist.gtype.value = "";
+		document.searchlist.listtype.value = "1";
+		document.searchlist.prize.value = "";
+		document.searchlist.przflg.value = "";
+						document.searchlist.histnum.value = 2;
+		document.searchlist.series.value = "";
+		document.searchlist.submit();
+//	}
+}
+function change_sort() {
+	document.searchlist.page.value = 1;
+	document.searchlist.orderflg.value = document.searchlist.orderflgdispchange.value;
+	document.searchlist.order.value = document.searchlist.orderdispchange.value;
+	document.searchlist.submit();
+}
+function action_detail(biblioid) {
+//	if (disabled_flg == false) {
+//		disabled_flg = true;
+		document.searchdetail.biblioid.value = biblioid;
+		document.searchdetail.submit();
+//	}
+}
+
+
+
+
+jQuery(document).ready(function(){
+
+	// GoogleBooks連携によるサムネイル画像取得
+	// 電子図書館サムネイル連携により修正
+	var bookImgTags = jQuery("img.bcover_s[name='noDlibContents']", '#sheet');
+	getBookCoverGoogleData(bookImgTags, "rwd/images/loading-jc.gif", "rwd/images/book_noimg.png", "http://books.google.com/books?jscmd=viewapi&bibkeys={0}", "https://books.google.com/books?jscmd=viewapi&bibkeys= {0}", "list");
+
+});
+
+function action_detail_list() {
+
+	var i = 0;
+	var nIdx = 0;
+	var bError = false;
+	var aTitleCd = new Array();
+	var aChkList = document.getElementsByName("addcartdoc");
+
+		if(aChkList != "undefined") {
+		for(i=0; i<aChkList.length; i++) {
+			if(aChkList[i].checked == true) {
+				aTitleCd[nIdx] = aChkList[i].value;
+				nIdx++;
+			}
+		}
+	}
+
+		if(aTitleCd.length <= 0) {
+		alert("資料が選択されていません。");
+		return;
+	}
+
+		for(i=0; i<aTitleCd.length; i++) {
+		var element = document.createElement("input");
+		element.type= "hidden";
+		element.name= "tilcodList";
+		element.value= aTitleCd[i];
+		document.addcart.appendChild(element);
+	}
+
+	document.addcart.submit();
+}
+
+
+function highlight() {
+		var keyword = "\u5BAE\u6CA2\u8CE2\u6CBB";
+	if(keyword != "") {
+						keyword = replaceAll(keyword, " ", "　");
+				var keywordArray = keyword.split("　");
+		for(var i = 0; i < keywordArray.length; i++) {
+			keyA = keywordArray[i];
+			if(keyA == "") {
+				continue;
+			}
+			jQuery('#highlight_keyword').highlight(keyA);
+		}
+	}
+		var title = "";
+	if(title != "") {
+						title = replaceAll(title, " ", "　");
+				var titleArray = title.split("　");
+		for(var i = 0; i < titleArray.length; i++) {
+			titA = titleArray[i];
+			if(titA == "") {
+				continue;
+			}
+			jQuery('#highlight_keyword').highlight(titA);
+		}
+	}
+		var author = "";
+	if(author != "") {
+						author = replaceAll(author, " ", "　");
+				var authorArray = author.split("　");
+		for(var i = 0; i < authorArray.length; i++) {
+			autA = authorArray[i];
+			if(autA == "") {
+				continue;
+			}
+			jQuery('#highlight_keyword').highlight(autA);
+		}
+	}
+		var publish = "";
+	if(publish != "") {
+						publish = replaceAll(publish, " ", "　");
+				var publishArray = publish.split("　");
+		for(var i = 0; i < publishArray.length; i++) {
+			pubA = publishArray[i];
+			if(pubA == "") {
+				continue;
+			}
+			jQuery('#highlight_keyword').highlight(pubA);
+		}
+	}
+		var prize = "";
+	if(prize != "") {
+						prize = replaceAll(prize, " ", "　");
+				var prizeArray = prize.split("　");
+		for(var i = 0; i < prizeArray.length; i++) {
+			przA = prizeArray[i];
+			if(przA == "") {
+				continue;
+			}
+			jQuery('#highlight_keyword').highlight(przA);
+		}
+	}
+};
+function replaceAll(expression, org, dest){
+	return expression.split(org).join(dest);
+}
+
+function countdispchangeOnChange() {
+	var num = document.getElementById("countdispchange").selectedIndex;
+	change_count(document.getElementById("countdispchange").options[num].value);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+	var lazyImages = [].slice.call(document.querySelectorAll("img.archive-lazy"));
+	if ("IntersectionObserver" in window) {
+		let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+			entries.forEach(function(entry) {
+				if (entry.isIntersecting) {
+					let lazyImage = entry.target;
+					lazyImage.src = lazyImage.dataset.src;
+					if (typeof lazyImage.dataset.srcset === "undefined") {
+					}else{
+						lazyImage.srcset = lazyImage.dataset.srcset;
+					}
+					lazyImage.classList.remove("archive-lazy");
+					lazyImageObserver.unobserve(lazyImage);
+				}
+			});
+		});
+		lazyImages.forEach(function(lazyImage) {
+			//キャッシュ対策
+			lazyImage.dataset.src = lazyImage.dataset.src + "?" + new Date().getTime();
+			lazyImageObserver.observe(lazyImage);
+		});
+	} else {
+	}
+});
+//-->
+</script>
+</head>
+<body onload="highlight();">
+		
+
+<script type="text/javascript">
+<!--
+
+jQuery(document).ready(function(){
+		var disp = $.cookie("webopac_disp_bookcover");
+	if (disp == undefined || disp == 1){
+		$('#dispOn').css('cssText', 'display: inline-block !important');
+		$('#dispOn').show;
+	}
+	else{
+		$('#dispOff').css('cssText', 'display: inline-block !important');
+		$('#dispOff').show;
+	}
+});
+
+function Disp_OnOff(val) {
+	if (val == 0){
+		$('#dispOff').css('cssText', 'display: inline-block !important');
+		$('#dispOff').show;
+		$('#dispOn').css('cssText', 'display: none');
+		$('#dispOn').hide;
+	}
+	else{
+		$('#dispOn').css('cssText', 'display: inline-block !important');
+		$('#dispOn').show;
+		$('#dispOff').css('cssText', 'display: none');
+		$('#dispOff').hide;
+	}
+
+		$.cookie("webopac_disp_bookcover", val, { expires: 365 });
+
+	if (window.document.Slist !== undefined){
+				var disp_sheet = "2";
+		if (disp_sheet !== "" && disp_sheet != "0"){
+						window.document.searchlist.page.value = "1";
+			window.document.searchlist.submit();
+		}
+	}
+	else if (window.document.detail !== undefined){
+				var disp_detail = "2";
+		if (disp_detail !== "" && disp_detail != "0"){
+						window.document.searchdetail.submit();
+		}
+	}
+	else if (window.document.bookshelf !== undefined){
+				var disp_favo = "2";
+		if (disp_favo !== "" && disp_favo != "0"){
+						window.document.shelflist.submit();
+		}
+	}
+	else if (window.document.favorite !== undefined){
+				var disp_mybook = "2";
+		if (disp_mybook !== "" && disp_mybook != "0"){
+						window.document.favoritelist.page.value = "";
+			window.document.favoritelist.submit();
+		}
+	}
+}
+
+//-->
+</script>
+<div id="allContainer">
+	<a name="top" class="skip">ページの先頭です</a>
+	<a href="#pageContent" class="skip">本文へジャンプします</a>
+	<div id="headerContainer" class="clearfix">
+		<header>
+			<div id="headerBlock" class="clearfix">
+
+																<div id="headerBlockL">
+					<div class="siteLogo"><a href="https://itoshima.libweb.jp/index.html" target="_top">糸島市立図書館</a></div>
+					<div class="headerNav">
+						<button class="jsHamburger"> <i class="fa fa-bars"></i> </button>
+						<nav class="main-nav">
+							<ul>
+																																								<li class="primary-nav-item nav_icn">
+									<a href="">資料を探す</a>
+									<ul class="submenu">
+																																																		<li class="secondary-nav-item"><a href="../webopac/index.do?target=adult">かんたん検索</a></li>
+																																																												<li class="secondary-nav-item"><a href="../webopac/selectsearch.do?searchkbn=2&histnum=1">詳しく探す</a></li>
+																			</ul>
+								</li>
+																																																<li class="primary-nav-item nav_icn"><a href="">一覧から探す</a>
+									<ul class="submenu">
+																																																																										<li class="secondary-nav-item"><a href="../webopac/searchgenre.do?type=1&histnum=1&menukbn=1">新着資料から探す</a></li>
+																																																																																				<li class="secondary-nav-item"><a href="../webopac/searchgenre.do?type=2&histnum=1&menukbn=1">貸出ベストから探す</a></li>
+																																																																																				<li class="secondary-nav-item"><a href="../webopac/searchgenre.do?type=4&histnum=1&menukbn=1">予約ベストから探す</a></li>
+																																																																																				<li class="secondary-nav-item"><a href="../webopac/searchgenre.do?type=9&histnum=1&menukbn=1">予約ランキングから探す</a></li>
+																																																																																				<li class="secondary-nav-item"><a href="../webopac/searchzastitle.do?titlekey=a&count=10&histnum=1&menukbn=1">雑誌タイトルから探す</a></li>
+																																																																																				<li class="secondary-nav-item"><a href="../webopac/searchgenre.do?type=0&histnum=1&menukbn=1">雑誌ジャンルから探す</a></li>
+																																																																																																																																																<li class="secondary-nav-item"><a href="../webopac/searchbunya.do?type=7&count=-1&histnum=1&menukbn=1">図書館おすすめ</a></li>
+																																							</ul>
+								</li>
+																																																																								<li class="primary-nav-item nav_icn"><a href="">利用照会</a>
+									<ul class="submenu">
+																																																												<li class="secondary-nav-item"><a href="../webopac/pwdregist.do">新規パスワード登録</a></li>
+																																																																						<li class="secondary-nav-item"><a href="../webopac/usermenu.do">利用照会</a></li>
+																																																												<li class="secondary-nav-item">
+																						<a href="../webopac/rsvcart.do">予約カート</a>
+																					</li>
+																			</ul>
+								</li>
+																																															</ul>
+						</nav>
+					</div><!-- #headerNav -->
+				</div><!-- #headerBlockL -->
+																<div id="headerBlockR" class="clearfix">
+					<div class="changeBlock">
+										<ul id="font_size" class="clearfix">
+							<li id="ft_btn00">文字サイズの変更</li>
+							<li id="ft_btn01"><button id="font_size_s" class="change_btn">中</button></li>
+							<li id="ft_btn02"><button id="font_size_b" class="change_btn">大</button></li>
+					</ul>
+										<ul id="headerLink" class="clearfix">
+						<li><a href="https://itoshima.libweb.jp/index.html" target="_top">ＨＯＭＥ</a></li>
+																				<li><a href="index.do?target=child" target="_self">こどもようへ</a></li>
+																									</ul>
+					</div><!-- #changeBlock -->
+					<div id="utilityBox" class="clearfix">
+						<ul>
+															<li class="utilityDispOn" id="dispOn" style="display: none; " ><a href="javascript:Disp_OnOff(0);">&#30011;&#20687;&#34920;&#31034;ON</a></li>
+								<li class="utilityDispOff" id="dispOff" style="display: none;" ><a href="javascript:Disp_OnOff(1);">&#30011;&#20687;&#34920;&#31034;OFF</a></li>
+																																								<li class="utilityGuest">こんにちはゲストさん</li>
+																											<li class="utilityLogin"><a href="login.do">ログイン</a></li>
+																																													<li class="utilityReservation"><a href="../webopac/rsvcart.do">
+								予約カート
+															</a></li>
+							
+
+
+						</ul>
+					</div><!-- #utilityBox -->
+				</div><!-- #headerBlockR -->
+			</div><!-- #headerBlock -->
+		</header>
+	</div><!-- #headerContainer -->
+						<div id="topicpathContainer">
+		<ol id="topicpath">
+						<li><a href="../webopac/index.do?target=adult" target="_self">メインメニュー</a></li>
+												<li>一覧</li>
+									</ol>
+	</div><!-- #topicpathContainer -->
+	<noscript><div id="subHeader"><div class="jsDisabledMsg">当サイトではより良い環境でご覧いただくためにJavaScriptを用いています。JavaScriptをオンにしていただくことで、快適な閲覧が可能になります。</div></div></noscript>
+
+	<div id="contentsContainer" class="">
+		<p class="skip"><a name="pageContent" id="pageContent">ここから本文です。</a></p>
+		<main role="main">
+			<div class="contentsWrap clearfix noSide">
+
+																
+																<div id="main">
+					<form name="searchdetail" action="searchdetail.do" method="post">
+						<input type="hidden" name="biblioid" value="">
+						<input type="hidden" name="count" value="999">
+						<input type="hidden" name="screen" value="142">
+						<input type="hidden" name="histnum" value="2">
+						<input type="hidden" name="listtype" value="0">
+						<input type="submit" style="display:none">
+					</form>
+					<form name="addcart" action="rsvsetcartadd.do" method="post">
+						<input type="hidden" name="listtype" value="0">
+						<input type="submit" style="display:none">
+					</form>
+					<form name="searchlist" action="searchlist.do" method="post">
+						<input type="hidden" name="page" value="">
+						<input type="hidden" name="count" value="10">
+						<input type="hidden" name="allcount" value="">
+						<input type="hidden" name="keyword" id="keyword" value="&#23470;&#27810;&#36066;&#27835;">
+						<input type="hidden" name="keyflg" value="and">
+						<input type="hidden" name="title" value="">
+						<input type="hidden" name="titflg" value="">
+						<input type="hidden" name="author" value="">
+						<input type="hidden" name="autflg" value="and">
+						<input type="hidden" name="authorid" value="">
+						<input type="hidden" name="publish" value="">
+						<input type="hidden" name="pubflg" value="">
+						<input type="hidden" name="publishid" value="">
+						<input type="hidden" name="isbn" value="">
+						<input type="hidden" name="publiy1" value="">
+						<input type="hidden" name="publiy2" value="">
+						<input type="hidden" name="publiy3" value="">
+						<input type="hidden" name="publiy4" value="">
+						<input type="hidden" name="bunrui" value="">
+						<input type="hidden" name="bunruicode" value="">
+						<input type="hidden" name="recommend" value="">
+						<input type="hidden" name="syubetu" value="">
+						<input type="hidden" name="prize" value="">
+						<input type="hidden" name="przflg" value="">
+						<input type="hidden" name="nasflg" value="">
+						<input type="hidden" name="seiky1" value="">
+																		<input type="hidden" name="kanflg" value="">
+						<input type="hidden" name="media" value="">
+						<input type="hidden" name="order" value="">
+						<input type="hidden" name="man" value="">
+						<input type="hidden" name="zastilcod" value="">
+						<input type="hidden" name="gcode" value="">
+						<input type="hidden" name="gtype" value="">
+						<input type="hidden" name="searching" value="0">
+						<input type="hidden" name="menukbn" value="0">
+						<input type="hidden" name="subkbn" value="0">
+						<input type="hidden" name="histname" value="">
+						<input type="hidden" name="histnum" value="1">
+						<input type="hidden" name="listtype" value="0">
+						<input type="hidden" name="orderflg" value="asc">
+						<input type="hidden" name="kenmei" value="">
+						<input type="hidden" name="kenmeiid" value="">
+						<input type="hidden" name="kenflg" value="">
+						<input type="hidden" name="bkskbn" value="">
+						<input type="hidden" name="btskbn" value="">
+						<input type="hidden" name="mode" value="">
+						<input type="hidden" name="qf" id="qf" value="">
+						<input type="hidden" name="fq" id="fq" value="">
+						<input type="hidden" name="kanFlg" value="1">
+						<input type="hidden" name="kan2Flg" value="1">
+						<input type="hidden" name="bkskbnCheckFlg" value="1">
+						<input type="hidden" name="btskbnCheckFlg" value="1">
+						<input type="hidden" name="series" id="series" value="">
+						<input type="hidden" name="selectPubyearcode" value="">
+						<input type="hidden" name="selectAcceptcode" value="">
+						<input type="hidden" name="selectSumgrpcode" value="">
+						<input type="submit" style="display:none">
+																																																						<h1 class="pageTtl searchResult">検索結果一覧</h1>
+						<p>検索結果のタイトルがリンクされていれば、さらに詳細を見ることができます。<br>検索結果の著者がリンクされていれば、その著者の他の資料の一覧を表示できます。</p>
+						<div class="displayCondition">
+																												検索結果【471】　　　　　　　(1/48ページ)
+																												<fieldset class="displayResultOrder">
+								<legend> <span class="skip"> 表示順 </span> </legend>
+																	<label for="orderdispchange">表示順：</label>
+									<label>
+										<select class="orderdispchange" name="orderdispchange">
+																																																											<option value=""  selected >なし</option>
+																									<option value="title" >タイトル順</option>
+																																					<option value="author" >著者名順</option>
+																																					<option value="publisher" >出版者順</option>
+																																					<option value="publish" >出版年順</option>
+																																					<option value="bunrui" >分類順</option>
+																																	</select>
+									</label>
+									<label for="orderflgdispchange" class="skip">ソート：</label>
+									<label>
+										<select id="orderflgdispchange" name="orderflgdispchange">
+																																																											<option value="asc"  selected >昇順</option>
+												<option value="desc" >降順</option>
+																					</select>
+									</label>
+									<button type="button" name="btnDispChange" class="changeBtn" onClick="change_sort();">並べ替え</button>
+															</fieldset>
+																												<fieldset class="displayResult">
+								<legend> <span class="skip"> 表示件数 </span> </legend>
+								<legend>
+									<label for="countdispchange">表示数の切替</label>
+									<label>
+										<select class="countdispchange" name="countdispchange"  id="countdispchange" onChange="countdispchangeOnChange()">
+											<option value="10"  selected >10件</option>
+											<option value="25" >25件</option>
+											<option value="50" >50件</option>
+											<option value="100"  >100件</option>
+										</select>
+									</label>
+								</legend>
+							</fieldset>
+																													<div class="pagerBox">
+		<ul class="pagination" role="menubar" aria-label="Pagination">
+																																																								<li class="current"><a href="">1</a></li>
+															<li class="disp"><a href="javascript:move_page(2)">2</a></li>
+															<li class="disp"><a href="javascript:move_page(3)">3</a></li>
+															<li><a href="javascript:move_page(4)">4</a></li>
+															<li><a href="javascript:move_page(5)">5</a></li>
+															<li><a href="javascript:move_page(6)">6</a></li>
+																			<li><a href="javascript:move_page(1 + 1);">次のページ</a></li>
+												<li><a href="javascript:move_page(48);">最後のページ</a></li>
+				</ul>
+	</div><!-- #pagerBox -->
+														<div class="viweChange clearfix">
+																																								<div class="bookcard_operation">
+									<button type="button" class="formBtn cartBtn" onClick="javascript:action_detail_list();">カートに入れる</button>
+								</div>
+																																																<ul>
+									<li>表示モード</li>
+									<li class="viweCard_on"><a href="#">カードモード</a></li>
+									<li class="viweSimple"><a href="javascript:mode_change(1);">シンプルモード</a></li>
+								</ul>
+															</div><!-- #viweChange clearfix -->
+													</div><!-- #displayCondition -->
+																								<div class="searchListContainer" id="highlight_keyword">
+							<fieldset class="bookcardResult"  id="sheet">
+								<legend> <span class="skip"> 検索結果一覧 </span> </legend>
+								<div class="bookcard_wrapper2 clearfix">
+																		<div class="bookcard_temp">
+										<div class="bookcard_item">
+											<div class="bookcard_item_head ">
+																																																												<div class="bookcard_check">
+													<input type="checkbox" id="addcartdoc162873" name="addcartdoc" value="162873" >
+														<label for="addcartdoc162873" class="checkStyle " aria-label="book add"></label>
+													</input>
+												</div>
+																																																																								<div id="bookcard_item_162873" class="bookcard_item_wrapper clearfix">
+																																																				<a href="javascript:action_detail('162873');">
+													<div class="bookcard_image">
+
+																																																																																																									<img src="rwd/images/loading-jc.gif" id="img_9784772009478" name="noDlibContents" alt="" class="bcover_s" >
+																																																																																					
+													</div><!-- #bookcard_image -->
+																																																																																																								<h3>&#24859;&#12392;&#23567;&#12373;&#12394;&#12356;&#12398;&#12385;&#12398;&#12488;&#12521;&#12452;&#12450;&#12531;&#12464;&#12523;</h3>
+																																																																	<h4>&#23470;&#27810;&#36066;&#27835;&#12539;&#20013;&#26449;&#21746;&#12539;&#39640;&#26408;&#20161;&#19977;&#37070;&#12288;</h4>
+																																																																	</a>
+													<ul id="title_info_162873">
+																																																																						<li>著者：
+																															<a href="javascript:list_author('70259');">&#25998;&#34276;&#12288;&#25991;&#19968;&#65295;&#33879;</a>
+																																																																																									</li>
+																																																																																				<li>出版者：&#26481;&#20140;&#65306;&#22269;&#25991;&#31038;</li>
+																																																																																				<li>出版年：2007.07</li>
+																																																																																																																																																																																																																																																																				<li>資料種別：&#19968;&#33324;&#22259;&#26360;</li>
+																																																																																																																																																															</ul>
+																																																																																																																																																																								</div><!-- #bookcard_item_wrapper clearfix -->
+											</div><!-- #bookcard_item_head -->
+										</div><!-- #bookcard_item -->
+									</div><!-- #bookcard_temp -->
+																		<div class="bookcard_temp">
+										<div class="bookcard_item">
+											<div class="bookcard_item_head ">
+																																																												<div class="bookcard_check">
+													<input type="checkbox" id="addcartdoc95135" name="addcartdoc" value="95135" >
+														<label for="addcartdoc95135" class="checkStyle " aria-label="book add"></label>
+													</input>
+												</div>
+																																																																								<div id="bookcard_item_95135" class="bookcard_item_wrapper clearfix">
+																																																				<a href="javascript:action_detail('95135');">
+													<div class="bookcard_image">
+
+																																																																																																									<img src="rwd/images/loading-jc.gif" id="img_4106035014" name="noDlibContents" alt="" class="bcover_s" >
+																																																																																					
+													</div><!-- #bookcard_image -->
+																																																																																																								<h3>&#12450;&#12452;&#12531;&#12471;&#12517;&#12479;&#12452;&#12531;&#12392;&#37504;&#27827;&#37444;&#36947;&#12398;&#22812;</h3>
+																																																																	<h4>&#26032;&#28526;&#36984;&#26360;&#12288;</h4>
+																																																																	</a>
+													<ul id="title_info_95135">
+																																																																						<li>著者：
+																															<a href="javascript:list_author('70259');">&#25998;&#34276;&#12288;&#25991;&#19968;&#65295;&#33879;</a>
+																																																																																									</li>
+																																																																																				<li>出版者：&#26481;&#20140;&#65306;&#26032;&#28526;&#31038;</li>
+																																																																																				<li>出版年：2001.05</li>
+																																																																																																																																																																																																																																																																				<li>資料種別：&#19968;&#33324;&#22259;&#26360;</li>
+																																																																																																																																																															</ul>
+																																																																																																																																																																								</div><!-- #bookcard_item_wrapper clearfix -->
+											</div><!-- #bookcard_item_head -->
+										</div><!-- #bookcard_item -->
+									</div><!-- #bookcard_temp -->
+																		<div class="bookcard_temp">
+										<div class="bookcard_item">
+											<div class="bookcard_item_head ">
+																																																												<div class="bookcard_check">
+													<input type="checkbox" id="addcartdoc10241967" name="addcartdoc" value="10241967" >
+														<label for="addcartdoc10241967" class="checkStyle " aria-label="book add"></label>
+													</input>
+												</div>
+																																																																								<div id="bookcard_item_10241967" class="bookcard_item_wrapper clearfix">
+																																																				<a href="javascript:action_detail('10241967');">
+													<div class="bookcard_image">
+
+																																																																																																									<img src="rwd/images/loading-jc.gif" id="img_9784101801827" name="noDlibContents" alt="" class="bcover_s" >
+																																																																																					
+													</div><!-- #bookcard_image -->
+																																																																																																								<h3>&#38738;&#12494;&#26524;&#12486;</h3>
+																																																																	<h4>&#33457;&#24059;&#36786;&#33464;&#39640;&#26657;&#22320;&#23398;&#37096;&#12398;&#22799;&#12288;</h4>
+																																																																	</a>
+													<ul id="title_info_10241967">
+																																																																						<li>著者：
+																															<a href="javascript:list_author('194043');">&#20234;&#19982;&#21407;&#12288;&#26032;&#65295;&#33879;</a>
+																																																																																									</li>
+																																																																																				<li>出版者：&#26481;&#20140;&#65306;&#26032;&#28526;&#31038;</li>
+																																																																																				<li>出版年：2020.02</li>
+																																																																																																																																																																																																																																																																				<li>資料種別：&#19968;&#33324;&#22259;&#26360;</li>
+																																																																																																																																																															</ul>
+																																																																																																																																																																								</div><!-- #bookcard_item_wrapper clearfix -->
+											</div><!-- #bookcard_item_head -->
+										</div><!-- #bookcard_item -->
+									</div><!-- #bookcard_temp -->
+																		<div class="bookcard_temp">
+										<div class="bookcard_item">
+											<div class="bookcard_item_head ">
+																																																												<div class="bookcard_check">
+													<input type="checkbox" id="addcartdoc114779" name="addcartdoc" value="114779" >
+														<label for="addcartdoc114779" class="checkStyle " aria-label="book add"></label>
+													</input>
+												</div>
+																																																																								<div id="bookcard_item_114779" class="bookcard_item_wrapper clearfix">
+																																																				<a href="javascript:action_detail('114779');">
+													<div class="bookcard_image">
+
+																																																																																																									<img src="rwd/images/loading-jc.gif" id="img_488008347X" name="noDlibContents" alt="" class="bcover_s" >
+																																																																																					
+													</div><!-- #bookcard_image -->
+																																																																																																								<h3>&#12354;&#12383;&#12414;&#12398;&#24213;&#12398;&#12373;&#12403;&#12375;&#12356;&#27468;</h3>
+																																																																	<h4></h4>
+																																																																	</a>
+													<ul id="title_info_114779">
+																																																																						<li>著者：
+																															<a href="javascript:list_author('2093');">&#23470;&#27810;&#12288;&#36066;&#27835;&#65295;&#33879;</a>
+																																																																																									</li>
+																																																																																				<li>出版者：&#37772;&#20489;&#65306;&#28207;&#12398;&#20154;</li>
+																																																																																				<li>出版年：2005.12</li>
+																																																																																																																																																																																																																																																																				<li>資料種別：&#19968;&#33324;&#22259;&#26360;</li>
+																																																																																																																																																															</ul>
+																																																																																																								<div class="bookcard_situation"><span class="tolend">貸出中</span></div>
+																																																																</div><!-- #bookcard_item_wrapper clearfix -->
+											</div><!-- #bookcard_item_head -->
+										</div><!-- #bookcard_item -->
+									</div><!-- #bookcard_temp -->
+																		<div class="bookcard_temp">
+										<div class="bookcard_item">
+											<div class="bookcard_item_head ">
+																																																												<div class="bookcard_check">
+													<input type="checkbox" id="addcartdoc10012559" name="addcartdoc" value="10012559" >
+														<label for="addcartdoc10012559" class="checkStyle " aria-label="book add"></label>
+													</input>
+												</div>
+																																																																								<div id="bookcard_item_10012559" class="bookcard_item_wrapper clearfix">
+																																																				<a href="javascript:action_detail('10012559');">
+													<div class="bookcard_image">
+
+																																																																																																									<img src="rwd/images/loading-jc.gif" id="img_4265040748" name="noDlibContents" alt="" class="bcover_s" >
+																																																																																					
+													</div><!-- #bookcard_image -->
+																																																																																																								<h3>&#12354;&#12394;&#12383;&#12395;&#12362;&#12367;&#12427;&#19990;&#30028;&#12398;&#21517;&#35433;&#12288;4</h3>
+																																																																	<h4>&#33258;&#28982;&#12398;&#12358;&#12383;&#12288;</h4>
+																																																																	</a>
+													<ul id="title_info_10012559">
+																																																																						<li>著者：
+																															<a href="javascript:list_author('4551');">&#24029;&#23822;&#12288;&#27915;&#65295;&#32232;</a>
+																																																																																									</li>
+																																																																																				<li>出版者：&#26481;&#20140;&#65306;&#23721;&#23822;&#26360;&#24215;</li>
+																																																																																				<li>出版年：1997.04</li>
+																																																																																																																																																																																																																																																																				<li>資料種別：&#20816;&#31461;&#22259;&#26360;</li>
+																																																																																																																																																															</ul>
+																																																																																																																																																																								</div><!-- #bookcard_item_wrapper clearfix -->
+											</div><!-- #bookcard_item_head -->
+										</div><!-- #bookcard_item -->
+									</div><!-- #bookcard_temp -->
+																		<div class="bookcard_temp">
+										<div class="bookcard_item">
+											<div class="bookcard_item_head ">
+																																																												<div class="bookcard_check">
+													<input type="checkbox" id="addcartdoc10016974" name="addcartdoc" value="10016974" >
+														<label for="addcartdoc10016974" class="checkStyle " aria-label="book add"></label>
+													</input>
+												</div>
+																																																																								<div id="bookcard_item_10016974" class="bookcard_item_wrapper clearfix">
+																																																				<a href="javascript:action_detail('10016974');">
+													<div class="bookcard_image">
+
+																																																																																																									<img src="rwd/images/loading-jc.gif" id="img_4480812466" name="noDlibContents" alt="" class="bcover_s" >
+																																																																																					
+													</div><!-- #bookcard_image -->
+																																																																																																								<h3>&#20804;&#12398;&#12488;&#12521;&#12531;&#12463;</h3>
+																																																																	<h4></h4>
+																																																																	</a>
+													<ul id="title_info_10016974">
+																																																																						<li>著者：
+																															<a href="javascript:list_author('10131391');">&#23470;&#27810;&#12288;&#28165;&#20845;&#65295;&#33879;</a>
+																																																																																									</li>
+																																																																																				<li>出版者：&#26481;&#20140;&#65306;&#31569;&#25705;&#26360;&#25151;</li>
+																																																																																				<li>出版年：1987.09</li>
+																																																																																																																																																																																																																																																																				<li>資料種別：&#19968;&#33324;&#22259;&#26360;</li>
+																																																																																																																																																															</ul>
+																																																																																																																																																																								</div><!-- #bookcard_item_wrapper clearfix -->
+											</div><!-- #bookcard_item_head -->
+										</div><!-- #bookcard_item -->
+									</div><!-- #bookcard_temp -->
+																		<div class="bookcard_temp">
+										<div class="bookcard_item">
+											<div class="bookcard_item_head ">
+																																																												<div class="bookcard_check">
+													<input type="checkbox" id="addcartdoc10240394" name="addcartdoc" value="10240394" >
+														<label for="addcartdoc10240394" class="checkStyle " aria-label="book add"></label>
+													</input>
+												</div>
+																																																																								<div id="bookcard_item_10240394" class="bookcard_item_wrapper clearfix">
+																																																				<a href="javascript:action_detail('10240394');">
+													<div class="bookcard_image">
+
+																																																																																																									<img src="rwd/images/loading-jc.gif" id="img_448002574X" name="noDlibContents" alt="" class="bcover_s" >
+																																																																																					
+													</div><!-- #bookcard_image -->
+																																																																																																								<h3>&#20804;&#12398;&#12488;&#12521;&#12531;&#12463;</h3>
+																																																																	<h4>&#12385;&#12367;&#12414;&#25991;&#24235;&#12288;</h4>
+																																																																	</a>
+													<ul id="title_info_10240394">
+																																																																						<li>著者：
+																															<a href="javascript:list_author('10131391');">&#23470;&#27810;&#12288;&#28165;&#20845;&#65295;&#33879;</a>
+																																																																																									</li>
+																																																																																				<li>出版者：&#26481;&#20140;&#65306;&#31569;&#25705;&#26360;&#25151;</li>
+																																																																																				<li>出版年：1991.12</li>
+																																																																																																																																																																																																																																																																				<li>資料種別：&#19968;&#33324;&#22259;&#26360;</li>
+																																																																																																																																																															</ul>
+																																																																																																																																																																								</div><!-- #bookcard_item_wrapper clearfix -->
+											</div><!-- #bookcard_item_head -->
+										</div><!-- #bookcard_item -->
+									</div><!-- #bookcard_temp -->
+																		<div class="bookcard_temp">
+										<div class="bookcard_item">
+											<div class="bookcard_item_head ">
+																																																												<div class="bookcard_check">
+													<input type="checkbox" id="addcartdoc32792" name="addcartdoc" value="32792" >
+														<label for="addcartdoc32792" class="checkStyle " aria-label="book add"></label>
+													</input>
+												</div>
+																																																																								<div id="bookcard_item_32792" class="bookcard_item_wrapper clearfix">
+																																																				<a href="javascript:action_detail('32792');">
+													<div class="bookcard_image">
+
+																																																																																																									<img src="rwd/images/loading-jc.gif" id="img_4480803610" name="noDlibContents" alt="" class="bcover_s" >
+																																																																																					
+													</div><!-- #bookcard_image -->
+																																																																																																								<h3>&#12354;&#12414;&#12398;&#24029;</h3>
+																																																																	<h4>&#23470;&#27810;&#36066;&#27835;&#31461;&#35617;&#38598;&#12288;</h4>
+																																																																	</a>
+													<ul id="title_info_32792">
+																																																																						<li>著者：
+																															<a href="javascript:list_author('2093');">&#23470;&#27810;&#12288;&#36066;&#27835;&#65295;&#33879;</a>
+																																																																																									</li>
+																																																																																				<li>出版者：&#26481;&#20140;&#65306;&#31569;&#25705;&#26360;&#25151;</li>
+																																																																																				<li>出版年：2001.07</li>
+																																																																																																																																																																																																																																																																				<li>資料種別：&#19968;&#33324;&#22259;&#26360;</li>
+																																																																																																																																																															</ul>
+																																																																																																																																																																								</div><!-- #bookcard_item_wrapper clearfix -->
+											</div><!-- #bookcard_item_head -->
+										</div><!-- #bookcard_item -->
+									</div><!-- #bookcard_temp -->
+																		<div class="bookcard_temp">
+										<div class="bookcard_item">
+											<div class="bookcard_item_head ">
+																																																												<div class="bookcard_check">
+													<input type="checkbox" id="addcartdoc10062305" name="addcartdoc" value="10062305" >
+														<label for="addcartdoc10062305" class="checkStyle " aria-label="book add"></label>
+													</input>
+												</div>
+																																																																								<div id="bookcard_item_10062305" class="bookcard_item_wrapper clearfix">
+																																																				<a href="javascript:action_detail('10062305');">
+													<div class="bookcard_image">
+
+																																																																																																									<img src="rwd/images/loading-jc.gif" id="img_9784756242631" name="noDlibContents" alt="" class="bcover_s" >
+																																																																																					
+													</div><!-- #bookcard_image -->
+																																																																																																								<h3>&#38632;&#12491;&#12514;&#12510;&#12465;&#12474;</h3>
+																																																																	<h4>&#23470;&#27810;&#36066;&#27835;&#12398;&#35433;&#12392;&#12371;&#12392;&#12400;&#12288;</h4>
+																																																																	</a>
+													<ul id="title_info_10062305">
+																																																																						<li>著者：
+																															<a href="javascript:list_author('2093');">&#23470;&#27810;&#12288;&#36066;&#27835;&#65295;&#25991;</a>
+																																																																																									</li>
+																																																																																				<li>出版者：&#26481;&#20140;&#65306;&#12497;&#12452;&#12452;&#12531;&#12479;&#12540;&#12490;&#12471;&#12519;&#12490;&#12523;</li>
+																																																																																				<li>出版年：2012.07</li>
+																																																																																																																																																																																																																																																																				<li>資料種別：&#19968;&#33324;&#22259;&#26360;</li>
+																																																																																																																																																															</ul>
+																																																																																																																																																																								</div><!-- #bookcard_item_wrapper clearfix -->
+											</div><!-- #bookcard_item_head -->
+										</div><!-- #bookcard_item -->
+									</div><!-- #bookcard_temp -->
+																		<div class="bookcard_temp">
+										<div class="bookcard_item">
+											<div class="bookcard_item_head ">
+																																																												<div class="bookcard_check">
+													<input type="checkbox" id="addcartdoc10164346" name="addcartdoc" value="10164346" >
+														<label for="addcartdoc10164346" class="checkStyle " aria-label="book add"></label>
+													</input>
+												</div>
+																																																																								<div id="bookcard_item_10164346" class="bookcard_item_wrapper clearfix">
+																																																				<a href="javascript:action_detail('10164346');">
+													<div class="bookcard_image">
+
+																																																																																																									<img src="rwd/images/loading-jc.gif" id="img_9784905530268" name="noDlibContents" alt="" class="bcover_s" >
+																																																																																					
+													</div><!-- #bookcard_image -->
+																																																																																																								<h3>&#38632;&#12491;&#12514;&#12510;&#12465;&#12474;</h3>
+																																																																	<h4>Rain Won't&#12288;</h4>
+																																																																	</a>
+													<ul id="title_info_10164346">
+																																																																						<li>著者：
+																															<a href="javascript:list_author('2093');">&#23470;&#27810;&#12288;&#36066;&#27835;&#65295;&#25991;</a>
+																																																																																									</li>
+																																																																																				<li>出版者：&#22269;&#31435;&#65306;&#20170;&#20154;&#33294;</li>
+																																																																																				<li>出版年：2013.11</li>
+																																																																																																																																																																																																																																																																				<li>資料種別：&#19968;&#33324;&#22259;&#26360;</li>
+																																																																																																																																																															</ul>
+																																																																																																																																																																								</div><!-- #bookcard_item_wrapper clearfix -->
+											</div><!-- #bookcard_item_head -->
+										</div><!-- #bookcard_item -->
+									</div><!-- #bookcard_temp -->
+																	</div><!-- #bookcard_wrapper2 clearfix -->
+							</fieldset>
+						</div><!-- #searchListContainer -->
+						<div class="displayCondition">
+														<div class="viweChange clearfix">
+																																								<div class="bookcard_operation">
+									<button type="button" class="formBtn cartBtn" onClick="javascript:action_detail_list();">カートに入れる</button>
+								</div>
+																								<ul>
+									<li>表示モード</li>
+									<li class="viweCard_on"><a href="#">カードモード</a></li>
+									<li class="viweSimple"><a href="javascript:mode_change(1);">シンプルモード</a></li>
+								</ul>
+															</div><!-- #viweChange clearfix -->
+																																				<div class="pagerBox">
+		<ul class="pagination" role="menubar" aria-label="Pagination">
+																																																								<li class="current"><a href="">1</a></li>
+															<li class="disp"><a href="javascript:move_page(2)">2</a></li>
+															<li class="disp"><a href="javascript:move_page(3)">3</a></li>
+															<li><a href="javascript:move_page(4)">4</a></li>
+															<li><a href="javascript:move_page(5)">5</a></li>
+															<li><a href="javascript:move_page(6)">6</a></li>
+																			<li><a href="javascript:move_page(1 + 1);">次のページ</a></li>
+												<li><a href="javascript:move_page(48);">最後のページ</a></li>
+				</ul>
+	</div><!-- #pagerBox -->
+						</div><!-- #displayCondition -->
+					</form>
+					<form name="Slist">
+					</form>
+																																													<div class="googleLogoImage">
+													<a href=https://www.google.co.jp/ target="_blank" rel="noopener noreferrer">
+								<img src="https://books.google.com/googlebooks/images/poweredby.png" alt="google link" />
+							</a>
+											</div>
+									</div><!-- #main -->
+			</div><!-- #contentsWrap clearfix -->
+		</main>
+	</div><!-- #contentsContainer -->
+	<div id="pageTopBtn"><a href="#headerContainer">ＴＯＰ</a></div>
+	<div id="footerContainer">
+		<footer>
+			<div class="footerBlock clearfix">
+				<div id="footerContainerL">
+					<ul>
+																									<li><a href="sitemap.do">サイトマップ</a></li>
+											</ul>
+				</div><!-- #footerContainerL -->
+				<div id="footerContainerR">
+					<p id="copyright" lang="en"><small>Copyright (c) Itoshima City Library All Rights Reserved.</small></p>
+				</div><!-- #footerContainerR -->
+			</div><!-- #footerBlock clearfix -->
+		</footer>
+	</div><!-- #footerContainer -->
+</div><!-- #allContainer -->
+
+<script type="text/javascript" src="../webopac/rwd/js/jquery.cookie-1.4.1.js?v=1.6.0"></script>
+<script type="text/javascript" src="../webopac/rwd/js/common.js?v=1.6.0"></script> 
+<script type="text/javascript" src="../webopac/rwd/js/megaMenu.js?v=1.6.0"></script>
+
+<script type="text/javascript">
+<!--
+//-->
+</script>
+
+</body>
+</html>
