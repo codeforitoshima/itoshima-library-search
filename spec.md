@@ -82,3 +82,4 @@ type Holding = {
 
 - 2026-03-15: Initial implementation — search, pagination, availability badges
 - 2026-03-15: Add book cover thumbnails (client-side Google Books API), detail pages with holdings
+- 2026-03-15: Add unofficial branding, disclaimer footer, OG meta tags, robots.txt, PWA manifest, favicon, MIT license

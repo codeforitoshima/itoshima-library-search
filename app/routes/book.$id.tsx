@@ -6,13 +6,19 @@ import { fetchBookDetail } from "~/lib/library.server";
 import { parseBookDetail } from "~/lib/parser.server";
 import type { BookDetail } from "~/lib/parser.server";
 import { LibraryLink } from "~/components/LibraryLink";
+import { Footer } from "~/components/Footer";
 
 export function meta({ data: loaderData }: Route.MetaArgs) {
   const detail = loaderData as BookDetail | undefined;
   const title = detail?.title ?? "書籍詳細";
   return [
-    { title: `${title} | 糸島市立図書館` },
+    { title: `${title} | 糸島図書館 非公式検索` },
     { name: "description", content: detail?.description?.slice(0, 160) ?? "" },
+    { property: "og:title", content: title },
+    { property: "og:description", content: detail?.description?.slice(0, 160) ?? "" },
+    { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "糸島図書館 非公式検索" },
+    { name: "robots", content: "noindex" },
   ];
 }
 
@@ -149,6 +155,7 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
           </section>
         )}
       </article>
+      <Footer />
     </main>
   );
 }

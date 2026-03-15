@@ -5,11 +5,16 @@ import { parseSearchResults } from "~/lib/parser.server";
 import { SearchBar } from "~/components/SearchBar";
 import { ResultsGrid } from "~/components/ResultsGrid";
 import { Pagination } from "~/components/Pagination";
+import { Footer } from "~/components/Footer";
 
 export function meta() {
   return [
-    { title: "糸島市立図書館 検索" },
-    { name: "description", content: "糸島市立図書館の蔵書検索" },
+    { title: "糸島図書館 非公式検索" },
+    { name: "description", content: "糸島市立図書館の蔵書を検索できる非公式ツール" },
+    { property: "og:title", content: "糸島図書館 非公式検索" },
+    { property: "og:description", content: "糸島市立図書館の蔵書を検索できる非公式ツール" },
+    { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "糸島図書館 非公式検索" },
   ];
 }
 
@@ -39,7 +44,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     <main className="app-container">
       <header className="app-header">
         <h1>
-          <a href="/">糸島市立図書館 検索</a>
+          <a href="/">糸島図書館 非公式検索</a>
         </h1>
       </header>
       <SearchBar query={query} total={total} />
@@ -47,6 +52,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       {books.length > 0 && (
         <Pagination query={query} page={page} totalPages={totalPages} />
       )}
+      <Footer />
     </main>
   );
 }

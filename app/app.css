@@ -233,3 +233,14 @@ body {
 .status-lent {
   @apply text-red-700 dark:text-red-300 font-medium;
 }
+
+/* Footer */
+.app-footer {
+  @apply mt-12 pt-6 border-t border-gray-200 dark:border-gray-800
+         text-xs text-gray-400 dark:text-gray-500 text-center space-y-1;
+}
+
+.app-footer a {
+  @apply text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300
+         underline transition-colors;
+}
