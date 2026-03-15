@@ -6,6 +6,7 @@ import { fetchBookDetail } from "~/lib/library.server";
 import { parseBookDetail } from "~/lib/parser.server";
 import type { BookDetail, Holding } from "~/lib/parser.server";
 import { getCachedBook } from "~/lib/book-cache";
+import { useBookCover } from "~/hooks/useBookCover";
 import { LibraryLink } from "~/components/LibraryLink";
 import { Footer } from "~/components/Footer";
 import { ThemeToggle } from "~/components/ThemeToggle";
@@ -73,29 +74,6 @@ export async function clientLoader({
   return serverLoader();
 }
 
-function useBookCover(isbn: string) {
-  const [coverUrl, setCoverUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!isbn) return;
-    let cancelled = false;
-    fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&fields=items/volumeInfo/imageLinks`
-    )
-      .then((r) => r.json())
-      .then((d) => {
-        if (cancelled) return;
-        const thumb = d?.items?.[0]?.volumeInfo?.imageLinks?.thumbnail;
-        if (thumb) setCoverUrl(thumb.replace("http://", "https://"));
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, [isbn]);
-
-  return coverUrl;
-}
 
 function useFullDetail(loaderData: DetailData) {
   const [detail, setDetail] = useState(loaderData);
