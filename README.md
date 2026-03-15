@@ -7,13 +7,13 @@ The official library site is [lib-itoshima.jp](https://www.lib-itoshima.jp/WebOp
 ## Setup
 
 ```bash
-npm install
+pnpm install
 ```
 
 ## Development
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173)
@@ -21,14 +21,14 @@ Open [http://localhost:5173](http://localhost:5173)
 ## Tests
 
 ```bash
-npm test
+pnpm test
 ```
 
 ## Build & Production
 
 ```bash
-npm run build
-npm start
+pnpm build
+pnpm start
 ```
 
 ## How it works
