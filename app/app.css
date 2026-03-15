@@ -1,16 +1,26 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-warm-50: #faf5ee;
+  --color-warm-100: #f5ede0;
+  --color-warm-200: #e8dbc8;
+  --color-sand-300: #d4ad50;
+  --color-sand-400: #c09040;
+  --color-sand-500: #9a6830;
+  --color-sand-600: #865228;
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100;
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+  @apply bg-warm-50 dark:bg-slate-950 text-stone-900 dark:text-slate-100;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 /* Layout */
@@ -18,12 +28,24 @@ body {
   @apply max-w-3xl mx-auto px-4 py-8;
 }
 
+.app-header {
+  @apply flex items-center justify-between mb-6;
+}
+
 .app-header h1 {
-  @apply text-2xl font-bold mb-6;
+  @apply text-2xl font-bold;
 }
 
 .app-header a {
-  @apply text-gray-900 dark:text-gray-100 no-underline;
+  @apply text-stone-900 dark:text-slate-100 no-underline;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  @apply p-2 rounded-lg bg-warm-100 dark:bg-slate-800
+         text-stone-600 dark:text-slate-400
+         hover:bg-warm-200 dark:hover:bg-slate-700
+         transition-colors cursor-pointer border-none;
 }
 
 /* Search */
@@ -36,21 +58,22 @@ body {
 }
 
 .search-input {
-  @apply flex-1 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg
-         bg-white dark:bg-gray-900
-         text-gray-900 dark:text-gray-100
-         placeholder-gray-400 dark:placeholder-gray-500
-         focus:outline-none focus:ring-2 focus:ring-blue-500;
+  @apply flex-1 px-4 py-2 border border-warm-200 dark:border-slate-700 rounded-lg
+         bg-white dark:bg-slate-900
+         text-stone-900 dark:text-slate-100
+         placeholder-stone-400 dark:placeholder-slate-500
+         focus:outline-none focus:ring-2 focus:ring-amber-600 dark:focus:ring-sand-400;
 }
 
 .search-button {
-  @apply px-6 py-2 bg-blue-600 text-white rounded-lg
-         hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed
+  @apply px-6 py-2 bg-amber-800 dark:bg-sand-500 text-white rounded-lg
+         hover:bg-amber-900 dark:hover:bg-sand-600
+         disabled:opacity-50 disabled:cursor-not-allowed
          transition-colors;
 }
 
 .search-meta {
-  @apply mt-2 text-sm text-gray-500 dark:text-gray-400;
+  @apply mt-2 text-sm text-stone-500 dark:text-slate-400;
 }
 
 /* Results Grid */
@@ -60,8 +83,8 @@ body {
 
 /* Book Card */
 .book-card {
-  @apply flex gap-4 p-4 border border-gray-200 dark:border-gray-800 rounded-lg
-         bg-white dark:bg-gray-900;
+  @apply flex gap-4 p-4 border border-warm-200 dark:border-slate-800 rounded-lg
+         bg-white dark:bg-slate-900;
 }
 
 .book-cover {
@@ -81,15 +104,15 @@ body {
 }
 
 .book-subtitle {
-  @apply font-normal text-gray-500 dark:text-gray-400;
+  @apply font-normal text-stone-500 dark:text-slate-400;
 }
 
 .book-author {
-  @apply text-sm text-gray-600 dark:text-gray-300 mb-1;
+  @apply text-sm text-stone-600 dark:text-slate-300 mb-1;
 }
 
 .book-meta {
-  @apply flex flex-wrap gap-x-3 text-xs text-gray-500 dark:text-gray-400 mb-2;
+  @apply flex flex-wrap gap-x-3 text-xs text-stone-500 dark:text-slate-400 mb-2;
 }
 
 .book-availability {
@@ -110,7 +133,7 @@ body {
 
 /* Library Link */
 .library-link {
-  @apply text-xs text-blue-600 dark:text-blue-400 hover:underline cursor-pointer
+  @apply text-xs text-amber-800 dark:text-sand-300 hover:underline cursor-pointer
          bg-transparent border-none p-0;
 }
 
@@ -124,23 +147,25 @@ body {
 }
 
 .page-link {
-  @apply px-3 py-1 text-sm rounded border border-gray-300 dark:border-gray-700
-         text-gray-700 dark:text-gray-300
-         hover:bg-gray-100 dark:hover:bg-gray-800
+  @apply px-3 py-1 text-sm rounded border border-warm-200 dark:border-slate-700
+         text-stone-700 dark:text-slate-300
+         hover:bg-warm-100 dark:hover:bg-slate-800
          no-underline transition-colors;
 }
 
 .page-link.current {
-  @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700;
+  @apply bg-amber-800 dark:bg-sand-500 text-white border-amber-800 dark:border-sand-500
+         hover:bg-amber-900 dark:hover:bg-sand-600;
 }
 
 .page-ellipsis {
-  @apply px-2 text-gray-400;
+  @apply px-2 text-stone-400 dark:text-slate-400;
 }
 
 /* Book Card links */
 .book-title a {
-  @apply text-gray-900 dark:text-gray-100 no-underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors;
+  @apply text-stone-900 dark:text-slate-100 no-underline
+         hover:text-amber-800 dark:hover:text-sand-300 transition-colors;
 }
 
 /* Detail Page */
@@ -169,15 +194,15 @@ body {
 }
 
 .detail-subtitle {
-  @apply text-gray-500 dark:text-gray-400 mb-2;
+  @apply text-stone-500 dark:text-slate-400 mb-2;
 }
 
 .detail-author {
-  @apply text-sm text-gray-600 dark:text-gray-300 mb-2;
+  @apply text-sm text-stone-600 dark:text-slate-300 mb-2;
 }
 
 .detail-meta {
-  @apply flex flex-wrap gap-x-3 text-xs text-gray-500 dark:text-gray-400 mb-3;
+  @apply flex flex-wrap gap-x-3 text-xs text-stone-500 dark:text-slate-400 mb-3;
 }
 
 .detail-availability {
@@ -186,7 +211,7 @@ body {
 
 .avail-badge {
   @apply inline-block text-xs font-medium px-2 py-0.5 rounded
-         bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300;
+         bg-warm-100 text-stone-700 dark:bg-slate-800 dark:text-slate-300;
 }
 
 .avail-badge.available {
@@ -198,11 +223,11 @@ body {
 }
 
 .detail-section {
-  @apply border-t border-gray-200 dark:border-gray-800 pt-4;
+  @apply border-t border-warm-200 dark:border-slate-800 pt-4;
 }
 
 .detail-section h3 {
-  @apply text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide;
+  @apply text-sm font-semibold text-stone-500 dark:text-slate-400 mb-2 uppercase tracking-wide;
 }
 
 .detail-section p {
@@ -210,7 +235,7 @@ body {
 }
 
 .detail-other-info {
-  @apply text-xs text-gray-500 dark:text-gray-400;
+  @apply text-xs text-stone-500 dark:text-slate-400;
 }
 
 /* Holdings Table */
@@ -219,11 +244,12 @@ body {
 }
 
 .holdings-table th {
-  @apply text-left text-xs font-medium text-gray-500 dark:text-gray-400 pb-2 border-b border-gray-200 dark:border-gray-800;
+  @apply text-left text-xs font-medium text-stone-500 dark:text-slate-400 pb-2
+         border-b border-warm-200 dark:border-slate-800;
 }
 
 .holdings-table td {
-  @apply py-2 border-b border-gray-100 dark:border-gray-800;
+  @apply py-2 border-b border-warm-100 dark:border-slate-800;
 }
 
 .status-available {
@@ -236,11 +262,11 @@ body {
 
 /* Footer */
 .app-footer {
-  @apply mt-12 pt-6 border-t border-gray-200 dark:border-gray-800
-         text-xs text-gray-400 dark:text-gray-500 text-center space-y-1;
+  @apply mt-12 pt-6 border-t border-warm-200 dark:border-slate-800
+         text-xs text-stone-400 dark:text-slate-500 text-center space-y-1;
 }
 
 .app-footer a {
-  @apply text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300
+  @apply text-stone-500 dark:text-slate-400 hover:text-stone-700 dark:hover:text-slate-300
          underline transition-colors;
 }

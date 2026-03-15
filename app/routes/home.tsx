@@ -6,6 +6,7 @@ import { SearchBar } from "~/components/SearchBar";
 import { ResultsGrid } from "~/components/ResultsGrid";
 import { Pagination } from "~/components/Pagination";
 import { Footer } from "~/components/Footer";
+import { ThemeToggle } from "~/components/ThemeToggle";
 
 export function meta() {
   return [
@@ -46,6 +47,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         <h1>
           <a href="/">糸島図書館 非公式検索</a>
         </h1>
+        <ThemeToggle />
       </header>
       <SearchBar query={query} total={total} />
       <ResultsGrid books={books} />

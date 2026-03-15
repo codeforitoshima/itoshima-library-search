@@ -7,6 +7,7 @@ import { parseBookDetail } from "~/lib/parser.server";
 import type { BookDetail } from "~/lib/parser.server";
 import { LibraryLink } from "~/components/LibraryLink";
 import { Footer } from "~/components/Footer";
+import { ThemeToggle } from "~/components/ThemeToggle";
 
 export function meta({ data: loaderData }: Route.MetaArgs) {
   const detail = loaderData as BookDetail | undefined;
@@ -70,8 +71,9 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
     <main className="app-container">
       <header className="app-header">
         <h1>
-          <Link to="/">糸島市立図書館 検索</Link>
+          <Link to="/">糸島図書館 非公式検索</Link>
         </h1>
+        <ThemeToggle />
       </header>
 
       <article className="detail-page">
