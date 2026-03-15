@@ -154,7 +154,7 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
               {detail.year && <span>{detail.year}</span>}
               {detail.isbn && <span>ISBN: {detail.isbn}</span>}
             </div>
-            {!detail.partial && (
+            {!detail.partial ? (
               <div className="detail-availability">
                 <span className="avail-badge available">
                   貸出可能: {detail.availableCopies}
@@ -164,10 +164,18 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
                 </span>
                 <span className="avail-badge">予約: {detail.reservations}</span>
               </div>
+            ) : (
+              <p className="detail-loading">所蔵情報を読み込み中…</p>
             )}
             <LibraryLink bookId={detail.bookId} className="detail-library-link" />
           </div>
         </div>
+
+        {detail.partial && (
+          <section className="detail-section">
+            <div className="detail-loading-skeleton" />
+          </section>
+        )}
 
         {detail.description && (
           <section className="detail-section">
