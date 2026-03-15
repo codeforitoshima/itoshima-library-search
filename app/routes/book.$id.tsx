@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import type { Route } from "./+types/book.$id";
 import { fetchBookDetail } from "~/lib/library.server";
 import { parseBookDetail } from "~/lib/parser.server";
-import type { BookDetail } from "~/lib/parser.server";
+import type { BookDetail, Holding } from "~/lib/parser.server";
+import { getCachedBook } from "~/lib/book-cache";
 import { LibraryLink } from "~/components/LibraryLink";
 import { Footer } from "~/components/Footer";
 import { ThemeToggle } from "~/components/ThemeToggle";
@@ -36,7 +37,40 @@ export async function loader({ params }: Route.LoaderArgs) {
     throw new Response("Book not found", { status: 404 });
   }
 
-  return data({ ...detail, bookId });
+  return data({ ...detail, bookId, partial: false });
+}
+
+let pendingDetail: Promise<DetailData> | null = null;
+
+type DetailData = BookDetail & { bookId: string; partial: boolean };
+
+export async function clientLoader({
+  serverLoader,
+  params,
+}: Route.ClientLoaderArgs) {
+  const cached = getCachedBook(params.id!);
+  if (cached) {
+    pendingDetail = serverLoader() as Promise<DetailData>;
+    return {
+      bookId: cached.id,
+      title: cached.title,
+      subtitle: cached.subtitle,
+      author: cached.author,
+      authorId: cached.authorId,
+      publisher: cached.publisher,
+      year: cached.year,
+      isbn: cached.isbn,
+      description: "",
+      otherInfo: "",
+      reservations: 0,
+      availableCopies: 0,
+      lentCopies: 0,
+      holdings: [] as Holding[],
+      partial: true,
+    };
+  }
+  pendingDetail = null;
+  return serverLoader();
 }
 
 function useBookCover(isbn: string) {
@@ -63,8 +97,32 @@ function useBookCover(isbn: string) {
   return coverUrl;
 }
 
+function useFullDetail(loaderData: DetailData) {
+  const [detail, setDetail] = useState(loaderData);
+
+  useEffect(() => {
+    setDetail(loaderData);
+  }, [loaderData]);
+
+  useEffect(() => {
+    if (!pendingDetail) return;
+    let cancelled = false;
+    pendingDetail.then((fullData) => {
+      if (!cancelled) {
+        setDetail(fullData);
+        pendingDetail = null;
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [loaderData]);
+
+  return detail;
+}
+
 export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
-  const detail = loaderData;
+  const detail = useFullDetail(loaderData as unknown as DetailData);
   const coverUrl = useBookCover(detail.isbn);
 
   return (
@@ -96,15 +154,17 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
               {detail.year && <span>{detail.year}</span>}
               {detail.isbn && <span>ISBN: {detail.isbn}</span>}
             </div>
-            <div className="detail-availability">
-              <span className="avail-badge available">
-                貸出可能: {detail.availableCopies}
-              </span>
-              <span className="avail-badge lent">
-                貸出中: {detail.lentCopies}
-              </span>
-              <span className="avail-badge">予約: {detail.reservations}</span>
-            </div>
+            {!detail.partial && (
+              <div className="detail-availability">
+                <span className="avail-badge available">
+                  貸出可能: {detail.availableCopies}
+                </span>
+                <span className="avail-badge lent">
+                  貸出中: {detail.lentCopies}
+                </span>
+                <span className="avail-badge">予約: {detail.reservations}</span>
+              </div>
+            )}
             <LibraryLink bookId={detail.bookId} className="detail-library-link" />
           </div>
         </div>
