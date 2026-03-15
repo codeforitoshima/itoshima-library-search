@@ -1,30 +1,49 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import type { Book } from "~/lib/parser.server";
 
-const GOOGLE_BOOKS_COVER_URL =
-  "https://books.google.com/books/content?printsec=frontcover&img=1&zoom=1&source=gbs_api";
+function useBookCover(isbn: string) {
+  const [coverUrl, setCoverUrl] = useState<string | null>(null);
 
-function coverUrl(isbn: string): string {
-  return `${GOOGLE_BOOKS_COVER_URL}&isbn=${isbn}`;
+  useEffect(() => {
+    if (!isbn) return;
+
+    let cancelled = false;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&fields=items/volumeInfo/imageLinks`;
+
+    fetch(url)
+      .then((r) => r.json())
+      .then((data) => {
+        if (cancelled) return;
+        const thumbnail =
+          data?.items?.[0]?.volumeInfo?.imageLinks?.thumbnail ?? null;
+        if (thumbnail) {
+          setCoverUrl(thumbnail.replace("http://", "https://"));
+        }
+      })
+      .catch(() => {});
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isbn]);
+
+  return coverUrl;
 }
 
 export function BookCard({ book }: { book: Book }) {
+  const coverUrl = useBookCover(book.isbn);
+
   return (
     <article className="book-card">
-      {book.isbn && (
-        <div className="book-cover">
-          <img
-            src={coverUrl(book.isbn)}
-            alt=""
-            loading="lazy"
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.display = "none";
-            }}
-          />
-        </div>
-      )}
+      <div className="book-cover">
+        {coverUrl && <img src={coverUrl} alt="" loading="lazy" />}
+      </div>
       <div className="book-info">
         <h3 className="book-title">
-          {book.title}
+          <Link to={`/book/${book.id}`} prefetch="intent">
+            {book.title}
+          </Link>
           {book.subtitle && (
             <span className="book-subtitle"> — {book.subtitle}</span>
           )}

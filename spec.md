@@ -20,10 +20,22 @@ the existing OPAC and presents results without full-page reloads.
 
 Key params: `keyword`, `page`, `count`
 
+### Library API — Detail
+
+`POST https://www.lib-itoshima.jp/WebOpac/webopac/searchdetail.do`
+
+Requires a `JSESSIONID` session cookie (established via a prior `searchlist.do` call).
+Key params: `biblioid`, `count=999`, `screen=142`, `histnum=2`, `listtype=0`
+
 ### App Routes
 
 - `GET /` — search page
 - `GET /?q=KEYWORD&page=N` — search results (SSR)
+- `GET /book/:id` — book detail page (SSR)
+
+### External APIs (client-side)
+
+- Google Books Volumes API — lazy cover thumbnail resolution per ISBN
 
 ## Data Model
 
@@ -40,8 +52,33 @@ type Book = {
   isbn: string;
   available: boolean;
 }
+
+type BookDetail = {
+  title: string;
+  subtitle: string;
+  author: string;
+  authorId: string;
+  publisher: string;
+  year: string;
+  description: string;
+  otherInfo: string;
+  isbn: string;
+  reservations: number;
+  availableCopies: number;
+  lentCopies: number;
+  holdings: Holding[];
+}
+
+type Holding = {
+  library: string;
+  type: string;
+  location: string;
+  status: string;
+  materialNo: string;
+}
 ```
 
 ## Changelog
 
 - 2026-03-15: Initial implementation — search, pagination, availability badges
+- 2026-03-15: Add book cover thumbnails (client-side Google Books API), detail pages with holdings
