@@ -1,4 +1,5 @@
 export const PAGE_SIZE = 10;
+export const BLOCK_SIZE = 3;
 
 export type SearchFilters = {
   keyword: string;
@@ -30,6 +31,21 @@ export const MATERIAL_TYPES = [
   { value: "23:", label: "雑誌" },
   { value: "34:", label: "映像・音楽" },
 ] as const;
+
+function parseList(value: string | null): string[] {
+  return value ? value.split(",").filter(Boolean) : [];
+}
+
+export function filtersFromSearchParams(params: URLSearchParams): SearchFilters {
+  return {
+    keyword: params.get("q") ?? "",
+    author: params.get("author") ?? "",
+    yearFrom: params.get("yearFrom") ?? "",
+    yearTo: params.get("yearTo") ?? "",
+    branches: parseList(params.get("branch")),
+    materialTypes: parseList(params.get("type")),
+  };
+}
 
 export function filtersToSearchParams(filters: SearchFilters): string {
   const params = new URLSearchParams();
