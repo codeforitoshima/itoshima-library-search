@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import type { Route } from "./+types/home";
 import { fetchSearchResults } from "~/lib/library.server";
 import { parseSearchResults, type Book } from "~/lib/parser.server";
-import { PAGE_SIZE, type SearchFilters, filtersToSearchParams } from "~/lib/constants";
+import { BLOCK_SIZE, PAGE_SIZE, type SearchFilters, filtersFromSearchParams, filtersToSearchParams } from "~/lib/constants";
+import { sliceBlock } from "~/lib/pagination";
 import { getCachedSearchPage, cacheSearchPage } from "~/lib/book-cache";
 import { SearchBar } from "~/components/SearchBar";
 import { ResultsGrid } from "~/components/ResultsGrid";
@@ -22,50 +23,21 @@ export function meta() {
   ];
 }
 
-function parseList(value: string | null): string[] {
-  return value ? value.split(",").filter(Boolean) : [];
-}
-
-function filtersFromUrl(url: URL): SearchFilters {
-  return {
-    keyword: url.searchParams.get("q") ?? "",
-    author: url.searchParams.get("author") ?? "",
-    yearFrom: url.searchParams.get("yearFrom") ?? "",
-    yearTo: url.searchParams.get("yearTo") ?? "",
-    branches: parseList(url.searchParams.get("branch")),
-    materialTypes: parseList(url.searchParams.get("type")),
-  };
-}
 
 function cacheKey(filters: SearchFilters, page: number): string {
   return `${filters.keyword}|${filters.author}|${filters.yearFrom}|${filters.yearTo}|${filters.branches.join(",")}|${filters.materialTypes.join(",")}:${page}`;
 }
 
-function sliceBlock(allBooks: Book[], blockFirstPage: number, totalPages: number): { page: number; books: Book[] }[] {
-  const pages: { page: number; books: Book[] }[] = [];
-  for (let i = 0; i * PAGE_SIZE < allBooks.length; i++) {
-    const p = blockFirstPage + i;
-    if (p > totalPages) break;
-    const books = allBooks.slice(i * PAGE_SIZE, (i + 1) * PAGE_SIZE);
-    if (books.length > 0) {
-      pages.push({ page: p, books });
-    }
-  }
-  return pages;
-}
 
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
-  const filters = filtersFromUrl(url);
+  const filters = filtersFromSearchParams(url.searchParams);
   const page = Math.max(1, parseInt(url.searchParams.get("page") ?? "1", 10));
 
   if (!filters.keyword && !filters.author) {
     return data({ filters, page: 1, total: null, totalPages: 1, books: [], adjacentPages: [] });
   }
 
-  // Fetch in aligned 3-page blocks (30 results).
-  // Block 1 = pages 1-3, block 2 = pages 4-6, etc.
-  const BLOCK_SIZE = 3;
   const fetchCount = PAGE_SIZE * BLOCK_SIZE;
   const apiPage = Math.ceil(page / BLOCK_SIZE);
   const blockFirstPage = (apiPage - 1) * BLOCK_SIZE + 1;
@@ -126,7 +98,7 @@ export async function clientLoader({
   request,
 }: Route.ClientLoaderArgs) {
   const url = new URL(request.url);
-  const filters = filtersFromUrl(url);
+  const filters = filtersFromSearchParams(url.searchParams);
   const page = Math.max(1, parseInt(url.searchParams.get("page") ?? "1", 10));
 
   if (!filters.keyword && !filters.author) {
@@ -202,8 +174,6 @@ function usePrefetchNextBlock(filters: SearchFilters, page: number, totalPages: 
     }
     if (!targetPage) return;
 
-    // Mark the block as in-flight
-    const BLOCK_SIZE = 3;
     const blockFirst = (Math.ceil(targetPage / BLOCK_SIZE) - 1) * BLOCK_SIZE + 1;
     const blockKeys: string[] = [];
     for (let i = 0; i < BLOCK_SIZE; i++) {
