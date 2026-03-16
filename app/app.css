@@ -58,7 +58,58 @@ html.dark {
 }
 
 .search-form {
+  @apply flex flex-col gap-2;
+}
+
+.search-row {
   @apply flex gap-2;
+}
+
+.advanced-toggle {
+  @apply text-sm text-stone-500 dark:text-slate-400 hover:text-amber-800 dark:hover:text-sand-400
+         transition-colors cursor-pointer self-start;
+}
+
+.advanced-filters {
+  @apply flex flex-col gap-3 p-4 border border-warm-200 dark:border-slate-700 rounded-lg
+         bg-warm-50 dark:bg-slate-800/50;
+}
+
+.filter-row {
+  @apply flex items-center gap-3;
+}
+
+.filter-label {
+  @apply text-sm font-medium text-stone-600 dark:text-slate-300 w-16 shrink-0;
+}
+
+.filter-input {
+  @apply px-3 py-1.5 border border-warm-200 dark:border-slate-700 rounded
+         bg-white dark:bg-slate-900
+         text-stone-900 dark:text-slate-100
+         placeholder-stone-400 dark:placeholder-slate-500
+         focus:outline-none focus:ring-2 focus:ring-amber-600 dark:focus:ring-sand-400
+         text-sm;
+}
+
+.filter-select {
+  @apply px-3 py-1.5 border border-warm-200 dark:border-slate-700 rounded
+         bg-white dark:bg-slate-900
+         text-stone-900 dark:text-slate-100
+         focus:outline-none focus:ring-2 focus:ring-amber-600 dark:focus:ring-sand-400
+         text-sm;
+}
+
+.year-range {
+  @apply flex items-center gap-2;
+}
+
+.year-input {
+  @apply w-24;
+}
+
+.year-separator {
+  @apply text-stone-400 dark:text-slate-500;
 }
 
 .search-input {
