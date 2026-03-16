@@ -47,6 +47,11 @@ export function filtersFromSearchParams(params: URLSearchParams): SearchFilters 
   };
 }
 
+export function safePage(value: string | null): number {
+  const n = parseInt(value ?? "1", 10);
+  return Number.isNaN(n) || n < 1 ? 1 : n;
+}
+
 export function filtersToSearchParams(filters: SearchFilters): string {
   const params = new URLSearchParams();
   if (filters.keyword) params.set("q", filters.keyword);

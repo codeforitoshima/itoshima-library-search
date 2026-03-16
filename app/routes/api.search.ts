@@ -1,13 +1,13 @@
 import type { Route } from "./+types/api.search";
 import { fetchSearchResults } from "~/lib/library.server";
 import { parseSearchResults } from "~/lib/parser.server";
-import { BLOCK_SIZE, PAGE_SIZE, filtersFromSearchParams } from "~/lib/constants";
+import { BLOCK_SIZE, PAGE_SIZE, filtersFromSearchParams, safePage } from "~/lib/constants";
 import { sliceBlock } from "~/lib/pagination";
 
 export async function loader({ request }: Route.LoaderArgs) {
   const params = new URL(request.url).searchParams;
   const filters = filtersFromSearchParams(params);
-  const page = Math.max(1, parseInt(params.get("page") ?? "1", 10));
+  const page = safePage(params.get("page"));
 
   if (!filters.keyword && !filters.author) {
     return Response.json({ filters, total: 0, totalPages: 1, pages: [] });
