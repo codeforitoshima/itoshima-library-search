@@ -16,7 +16,7 @@ export function Pagination({
 
   function pageUrl(p: number): string {
     const base = filtersToSearchParams(filters);
-    return `/?${base}&page=${p}`;
+    return base ? `/?${base}&page=${p}` : `/?page=${p}`;
   }
 
   return (

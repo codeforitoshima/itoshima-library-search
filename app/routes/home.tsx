@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { Route } from "./+types/home";
 import { fetchSearchResults } from "~/lib/library.server";
 import { parseSearchResults, type Book } from "~/lib/parser.server";
-import { BLOCK_SIZE, PAGE_SIZE, type SearchFilters, filtersFromSearchParams, filtersToSearchParams } from "~/lib/constants";
+import { BLOCK_SIZE, PAGE_SIZE, type SearchFilters, filtersFromSearchParams, filtersToSearchParams, safePage } from "~/lib/constants";
 import { sliceBlock } from "~/lib/pagination";
 import { getCachedSearchPage, cacheSearchPage } from "~/lib/book-cache";
 import { SearchBar } from "~/components/SearchBar";
@@ -32,7 +32,7 @@ function cacheKey(filters: SearchFilters, page: number): string {
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
   const filters = filtersFromSearchParams(url.searchParams);
-  const page = Math.max(1, parseInt(url.searchParams.get("page") ?? "1", 10));
+  const page = safePage(url.searchParams.get("page"));
 
   if (!filters.keyword && !filters.author) {
     return data({ filters, page: 1, total: null, totalPages: 1, books: [], adjacentPages: [] });
@@ -99,7 +99,7 @@ export async function clientLoader({
 }: Route.ClientLoaderArgs) {
   const url = new URL(request.url);
   const filters = filtersFromSearchParams(url.searchParams);
-  const page = Math.max(1, parseInt(url.searchParams.get("page") ?? "1", 10));
+  const page = safePage(url.searchParams.get("page"));
 
   if (!filters.keyword && !filters.author) {
     pendingResults = null;

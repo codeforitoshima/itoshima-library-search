@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { sliceBlock } from "../app/lib/pagination";
-import { filtersFromSearchParams } from "../app/lib/constants";
+import { filtersFromSearchParams, safePage } from "../app/lib/constants";
 import type { Book } from "../app/lib/parser.server";
 
 function makeBook(i: number): Book {
@@ -105,5 +105,31 @@ describe("filtersFromSearchParams", () => {
     const filters = filtersFromSearchParams(params);
 
     expect(filters.branches).toEqual(["10", "30"]);
+  });
+});
+
+describe("safePage", () => {
+  it("returns 1 for null", () => {
+    expect(safePage(null)).toBe(1);
+  });
+
+  it("returns 1 for empty string", () => {
+    expect(safePage("")).toBe(1);
+  });
+
+  it("returns 1 for non-numeric string", () => {
+    expect(safePage("abc")).toBe(1);
+  });
+
+  it("returns 1 for zero", () => {
+    expect(safePage("0")).toBe(1);
+  });
+
+  it("returns 1 for negative numbers", () => {
+    expect(safePage("-3")).toBe(1);
+  });
+
+  it("parses valid page numbers", () => {
+    expect(safePage("5")).toBe(5);
   });
 });
