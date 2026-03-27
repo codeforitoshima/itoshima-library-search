@@ -52,10 +52,11 @@ export function SearchBar({
     setCheckedTypes([]);
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
     const form = formRef.current;
     if (!form) return;
+    (document.activeElement as HTMLElement)?.blur();
     const data = new FormData(form);
     const params = new URLSearchParams();
     for (const [key, value] of data.entries()) {
@@ -77,6 +78,7 @@ export function SearchBar({
               onChange={(e) => setKeyword(e.target.value)}
               placeholder="本を検索… (例: 宮沢賢治)"
               aria-label="検索キーワード"
+              enterKeyHint="search"
               className="search-input"
               autoFocus={!filters.keyword}
             />
@@ -147,6 +149,7 @@ export function SearchBar({
                   onChange={(e) => setYearFrom(e.target.value)}
                   placeholder="開始年"
                   inputMode="numeric"
+                  enterKeyHint="done"
                   className="filter-input year-input"
                   aria-label="出版年（開始）"
                 />
@@ -159,6 +162,7 @@ export function SearchBar({
                   onChange={(e) => setYearTo(e.target.value)}
                   placeholder="終了年"
                   inputMode="numeric"
+                  enterKeyHint="done"
                   className="filter-input year-input"
                   aria-label="出版年（終了）"
                 />
