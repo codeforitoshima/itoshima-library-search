@@ -13,6 +13,7 @@ import { Footer } from "~/components/Footer";
 import { ThemeToggle } from "~/components/ThemeToggle";
 import { BookIcon } from "~/components/BookIcon";
 import { HoldingsSection } from "~/components/HoldingsSection";
+import { ShareButton } from "~/components/ShareButton";
 
 export function meta({ data: loaderData }: Route.MetaArgs) {
   const detail = loaderData as BookDetail | undefined;
@@ -165,7 +166,10 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
                 <p className="detail-loading"><span className="spinner" /> 所蔵情報を読み込み中…</p>
               )}
             </div>
-            <LibraryLink bookId={detail.bookId} className="detail-library-link" />
+            <div className="detail-actions">
+              <LibraryLink bookId={detail.bookId} className="detail-library-link" />
+              <ShareButton title={detail.title} />
+            </div>
           </div>
         </div>
 
