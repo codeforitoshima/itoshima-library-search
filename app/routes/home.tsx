@@ -12,6 +12,7 @@ import { Pagination } from "~/components/Pagination";
 import { Footer } from "~/components/Footer";
 import { ThemeToggle } from "~/components/ThemeToggle";
 import { BookIcon } from "~/components/BookIcon";
+import { ShareButton } from "~/components/ShareButton";
 
 export function meta() {
   return [
@@ -239,6 +240,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       <SearchBar filters={filters} total={total} page={page} loading={loading} />
       {!loading && (
         <>
+          {books.length > 0 && (filters.keyword || filters.author) && (
+            <div className="search-share">
+              <ShareButton title={filters.keyword || filters.author} />
+            </div>
+          )}
           <ResultsGrid books={books} />
           {books.length > 0 && (
             <Pagination filters={filters} page={page} totalPages={totalPages} />

@@ -18,8 +18,11 @@ pnpm dev
 
 [http://localhost:5173](http://localhost:5173) を開いてください。
 
-モバイル端末など、同じ Wi-Fi 上の別デバイスからアクセスしたい場合は `vite.config.ts` の
-`server: { host: true }` のコメントを外してから起動すると、ローカルネットワークの IP アドレスでもアクセスできます。
+同じ Wi-Fi 上のモバイル端末からもローカル IP アドレスでアクセスできます（`server.host: true` が有効）。
+
+HTTPS が必要な場合（iOS の Web Share API など）は `vite-plugin-mkcert` が自動でローカル証明書を生成します。
+初回起動時にパスワードを求められます。iPhone からアクセスする場合は `~/.vite-plugin-mkcert/cert.pem`
+を AirDrop で転送し、iOS の「設定 → 一般 → VPN とデバイス管理」からインストール・信頼設定を行ってください。
 
 ## テスト
 

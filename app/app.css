@@ -164,6 +164,10 @@ html.dark {
   @apply mt-2 text-sm text-stone-500 dark:text-slate-400;
 }
 
+.search-share {
+  @apply flex justify-end mb-3;
+}
+
 /* Results Grid */
 .results-grid {
   @apply flex flex-col gap-4;
@@ -232,14 +236,27 @@ html.dark {
   @apply flex items-center gap-3 flex-wrap;
 }
 
+/* Share Button */
+.share-button {
+  @apply inline-flex items-center gap-1.5 text-xs whitespace-nowrap
+         text-amber-800 dark:text-sand-300
+         bg-transparent border-none p-0 cursor-pointer
+         hover:text-amber-900 dark:hover:text-sand-400
+         transition-colors;
+}
+
 /* Library Link */
 .library-link {
-  @apply text-xs text-amber-800 dark:text-sand-300 hover:underline cursor-pointer
+  @apply text-xs whitespace-nowrap text-amber-800 dark:text-sand-300 hover:underline cursor-pointer
          bg-transparent border-none p-0;
 }
 
 .detail-library-link {
-  @apply mt-3;
+  @apply w-fit;
+}
+
+.detail-actions {
+  @apply mt-3 flex flex-wrap items-center gap-x-4 gap-y-2;
 }
 
 /* Pagination */
