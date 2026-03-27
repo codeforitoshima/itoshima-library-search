@@ -18,6 +18,9 @@ pnpm dev
 
 [http://localhost:5173](http://localhost:5173) を開いてください。
 
+モバイル端末など、同じ Wi-Fi 上の別デバイスからアクセスしたい場合は `vite.config.ts` の
+`server: { host: true }` のコメントを外してから起動すると、ローカルネットワークの IP アドレスでもアクセスできます。
+
 ## テスト
 
 ```bash

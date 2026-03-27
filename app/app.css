@@ -94,6 +94,7 @@ html.dark {
          placeholder-stone-400 dark:placeholder-slate-500
          focus:outline-none focus:ring-2 focus:ring-amber-600 dark:focus:ring-sand-400
          text-sm;
+  font-size: max(16px, 1em); /* iOS Safari の自動ズームを防ぐ */
 }
 
 .checkbox-group {
@@ -149,6 +150,7 @@ html.dark {
          text-stone-900 dark:text-slate-100
          placeholder-stone-400 dark:placeholder-slate-500
          focus:outline-none focus:ring-2 focus:ring-amber-600 dark:focus:ring-sand-400;
+  font-size: max(16px, 1em); /* iOS Safari の自動ズームを防ぐ */
 }
 
 .search-button {

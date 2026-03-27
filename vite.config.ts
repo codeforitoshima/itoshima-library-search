@@ -5,4 +5,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
+  // ローカルネットワーク上の他デバイス（スマホなど）からアクセスする場合はコメントを外す:
+  server: { host: true },
 });
