@@ -502,6 +502,7 @@ html.dark {
   @apply w-20 h-auto rounded shrink-0;
 }
 
-.github-link {
+.github-link,
+.email-link {
   @apply inline-flex items-center gap-1.5;
 }
