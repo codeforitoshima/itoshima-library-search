@@ -11,6 +11,16 @@ the existing OPAC and presents results without full-page reloads.
 - Server-side loader proxies requests to `searchlist.do` on lib-itoshima.jp
 - HTML responses parsed with **cheerio** into typed JSON
 - Tailwind CSS for styling
+- New routes must be registered in `app/routes.ts` in addition to creating the route file
+- `vite.config.ts` includes a `forward-host-header` plugin that works around a React Router v7 CSRF check: in development with HTTPS (mkcert), the browser uses HTTP/2 where the `host` header is replaced by `:authority`. React Router needs `x-forwarded-host` or `host` to validate actions; the plugin injects `x-forwarded-host` into the raw request before React Router processes it. This only runs in the dev server (`configureServer`), not in production.
+
+## Contact Form
+
+- Route: `POST /contact` handled by a React Router `action` in `app/routes/contact.tsx`
+- Email sent via **Nodemailer** using Gmail SMTP (`smtp.gmail.com:587`, STARTTLS)
+- Credentials in env vars: `SMTP_USER`, `SMTP_PASS` (Google Workspace App Password)
+- Server-side protections: honeypot field (`website`), rate limiting (1 per IP per 5 min), email regex, message max 2000 chars
+- Client-side: controlled form with per-field validation on blur, submit disabled until all fields valid, character counter on textarea
 
 ## Endpoints
 
@@ -32,6 +42,9 @@ Key params: `biblioid`, `count=999`, `screen=142`, `histnum=2`, `listtype=0`
 - `GET /` — search page
 - `GET /?q=KEYWORD&page=N` — search results (SSR)
 - `GET /book/:id` — book detail page (SSR)
+- `GET /about` — about page
+- `GET /contact` — contact form (SSR)
+- `POST /contact` — contact form submission (sends email via Nodemailer + Gmail SMTP)
 - `GET /api/floormap?biblioid=X&lcdcd=Y&doclno=Z&displcs=W` — floor map data (JSON)
 
 ### Library API — Floor Map
@@ -103,3 +116,5 @@ type Holding = {
 - 2026-03-17: Add inline floor map on detail page showing book shelf location
 - 2026-03-17: Add test coverage for fetch functions (HTTP mock) and React components (jsdom + testing-library)
 - 2026-03-27: Add ShareButton component — Web Share API on iOS/Android, clipboard fallback on other browsers; added to book detail and search results pages
+- 2026-04-04: Add ObfuscatedEmailLink component — builds mailto: and display text at runtime via JS, no static HTML exposure; added to About page
+- 2026-04-04: Add contact form at /contact — Nodemailer + Gmail SMTP (App Password), fields: name, reply-to email, message; linked from footer and About page
