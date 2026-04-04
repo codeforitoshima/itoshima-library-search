@@ -502,6 +502,12 @@ html.dark {
   @apply w-20 h-auto rounded shrink-0;
 }
 
-.github-link {
+.github-link,
+.email-link {
   @apply inline-flex items-center gap-1.5;
+}
+
+.email-link {
+  @apply bg-transparent border-0 p-0 cursor-pointer text-inherit text-sm;
+  font-family: inherit;
 }

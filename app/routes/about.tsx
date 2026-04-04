@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { Footer } from "~/components/Footer";
 import { ThemeToggle } from "~/components/ThemeToggle";
 import { BookIcon } from "~/components/BookIcon";
+import { ObfuscatedEmailLink } from "~/components/ObfuscatedEmailLink";
 
 export function meta() {
   return [
@@ -79,6 +80,9 @@ export default function About() {
                 </svg>
                 codeforitoshima/itoshima-library-search
               </a>
+            </p>
+            <p>
+              <ObfuscatedEmailLink user="ale" domain="alecrem.com" className="email-link" />
             </p>
           </div>
           <img src="/code-for-itoshima.png" alt="Code for Itoshima" className="about-cfi-logo" />
