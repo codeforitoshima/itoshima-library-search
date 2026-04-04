@@ -506,3 +506,8 @@ html.dark {
 .email-link {
   @apply inline-flex items-center gap-1.5;
 }
+
+.email-link {
+  @apply bg-transparent border-0 p-0 cursor-pointer text-inherit text-sm;
+  font-family: inherit;
+}
