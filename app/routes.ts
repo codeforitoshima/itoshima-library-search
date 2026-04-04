@@ -4,6 +4,7 @@ export default [
   index("routes/home.tsx"),
   route("book/:id", "routes/book.$id.tsx"),
   route("about", "routes/about.tsx"),
+  route("contact", "routes/contact.tsx"),
   route("api/search", "routes/api.search.ts"),
   route("api/floormap", "routes/api.floormap.ts"),
 ] satisfies RouteConfig;
