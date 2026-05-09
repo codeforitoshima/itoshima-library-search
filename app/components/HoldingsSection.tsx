@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { Holding } from "~/lib/parser.server";
 import { FloorMap } from "./FloorMap";
+import { translateLibrary } from "~/utils/translateLibrary";
 
 export function HoldingsSection({ holdings, bookId }: { holdings: Holding[]; bookId: string }) {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ export function HoldingsSection({ holdings, bookId }: { holdings: Holding[]; boo
             return (
               <Fragment key={key}>
                 <tr>
-                  <td>{h.library}</td>
+                  <td>{translateLibrary(h.library, t)}</td>
                   <td>{h.type}</td>
                   <td>{h.location}</td>
                   <td

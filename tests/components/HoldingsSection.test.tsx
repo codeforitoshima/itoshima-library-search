@@ -34,7 +34,7 @@ describe("HoldingsSection", () => {
   it("renders all holdings", () => {
     render(withI18n(<HoldingsSection holdings={holdings} bookId="16" />));
 
-    expect(screen.getByText("本館")).toBeInTheDocument();
+    expect(screen.getByText("本館（前原）")).toBeInTheDocument();
     expect(screen.getByText("二丈館")).toBeInTheDocument();
     expect(screen.getByText("貸出中")).toBeInTheDocument();
     expect(screen.getByText("利用可能")).toBeInTheDocument();
