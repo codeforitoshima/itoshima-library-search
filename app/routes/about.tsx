@@ -48,7 +48,7 @@ export default function About() {
                     href="https://itoshima.libweb.jp/"
                     target="_blank"
                     rel="noopener noreferrer"
-                  />
+                  >図書館の公式サイト</a>
                 ),
               }}
             />

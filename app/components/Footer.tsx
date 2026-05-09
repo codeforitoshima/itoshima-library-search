@@ -15,7 +15,7 @@ export function Footer({ lang }: { lang: string }) {
                 href="https://itoshima.libweb.jp/"
                 target="_blank"
                 rel="noopener noreferrer"
-              />
+              >糸島市立図書館の公式サイト</a>
             ),
           }}
         />
