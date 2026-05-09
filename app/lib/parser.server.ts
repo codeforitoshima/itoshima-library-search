@@ -5,7 +5,7 @@ export type Book = {
   id: string;
   title: string;
   subtitle: string;
-  author: string;
+  authors: string[];
   authorId: string;
   publisher: string;
   year: string;
@@ -59,10 +59,10 @@ export function parseSearchResults(html: string): SearchResults {
     const authorLi = $lis
       .filter((_i, li) => $(li).text().startsWith("著者："))
       .first();
-    const authorLink = authorLi.find("a").first();
-    const author = authorLink.text().trim();
-    const authorHref = authorLink.attr("href") ?? "";
-    const authorIdMatch = authorHref.match(/list_author\('(\d+)'\)/);
+    const authorLinks = authorLi.find("a");
+    const authors = authorLinks.map((_i, a) => $(a).text().trim()).get().filter(Boolean);
+    const firstHref = authorLinks.first().attr("href") ?? "";
+    const authorIdMatch = firstHref.match(/list_author\('(\d+)'\)/);
     const authorId = authorIdMatch ? authorIdMatch[1] : "";
 
     const publisher = extractLabelText($lis, "出版者：");
@@ -79,7 +79,7 @@ export function parseSearchResults(html: string): SearchResults {
       id,
       title,
       subtitle,
-      author,
+      authors,
       authorId,
       publisher,
       year,
@@ -108,7 +108,7 @@ export type Holding = {
 export type BookDetail = {
   title: string;
   subtitle: string;
-  author: string;
+  authors: string[];
   authorId: string;
   publisher: string;
   year: string;
@@ -134,10 +134,10 @@ export function parseBookDetail(html: string): BookDetail {
   };
 
   const authorTd = $table.find("th").filter((_i, el) => $(el).text().trim() === "著者").next("td");
-  const authorLink = authorTd.find("a").first();
-  const author = authorLink.text().trim();
-  const authorHref = authorLink.attr("href") ?? "";
-  const authorIdMatch = authorHref.match(/list_author\('(\d+)'\)/);
+  const authorLinks = authorTd.find("a");
+  const authors = authorLinks.map((_i, a) => $(a).text().trim()).get().filter(Boolean);
+  const firstHref = authorLinks.first().attr("href") ?? "";
+  const authorIdMatch = firstHref.match(/list_author\('(\d+)'\)/);
   const authorId = authorIdMatch ? authorIdMatch[1] : "";
 
   const publisher = getField("出版者");
@@ -188,7 +188,7 @@ export function parseBookDetail(html: string): BookDetail {
   return {
     title,
     subtitle,
-    author,
+    authors,
     authorId,
     publisher,
     year,
