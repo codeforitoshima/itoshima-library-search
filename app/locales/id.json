@@ -1,0 +1,168 @@
+{
+  "header": { "title": "Pencarian Perpustakaan Itoshima" },
+  "search": {
+    "placeholder": "Cari buku… (mis. 宮沢賢治)",
+    "label": "Kata kunci pencarian",
+    "clearKeyword": "Hapus kata kunci",
+    "loading": "Mencari…",
+    "button": "Cari",
+    "advancedOpen": "Pencarian lanjutan ▲",
+    "advancedClose": "Pencarian lanjutan ▼",
+    "author": "Penulis",
+    "clearAuthor": "Hapus penulis",
+    "branch": "Cabang",
+    "yearRange": "Tahun terbit",
+    "yearFrom": "Dari",
+    "yearFromLabel": "Tahun terbit (dari)",
+    "yearTo": "Sampai",
+    "yearToLabel": "Tahun terbit (sampai)",
+    "materialType": "Jenis materi",
+    "reset": "Reset filter",
+    "hint": "Masukkan kata kunci atau penulis",
+    "loadingResults": "Memuat hasil {{from}}–{{to}}…",
+    "resultsCount": "Menampilkan {{from}}–{{to}} dari {{total}} hasil",
+    "noResults": "Tidak ada hasil yang ditemukan"
+  },
+  "branch": {
+    "main": "Perpustakaan Utama (Maebaru)",
+    "nijo": "Cabang Nijo",
+    "shima": "Cabang Shima"
+  },
+  "materialType": {
+    "general": "Buku umum",
+    "children": "Buku anak",
+    "magazine": "Majalah",
+    "av": "Audio/Visual"
+  },
+  "book": {
+    "available": "Tersedia",
+    "checkedOut": "Dipinjam",
+    "availableCount": "Tersedia: {{count}}",
+    "checkedOutCount": "Dipinjam: {{count}}",
+    "reservations": "Reservasi: {{count}}",
+    "loadingHoldings": "Memuat informasi koleksi…",
+    "description": "Deskripsi",
+    "other": "Lainnya",
+    "iconAlt": "Ikon buku",
+    "detail": "Detail buku",
+    "authorFormat": "{{name}} ({{role}})",
+    "authorRoles": {
+      "著": "penulis",
+      "編": "editor",
+      "訳": "penerjemah",
+      "絵": "ilustrasi",
+      "監修": "pengawas",
+      "編著": "penulis/editor",
+      "編訳": "editor/penerjemah",
+      "述": "narator",
+      "文絵": "teks & ilustrasi",
+      "出演": "pemain",
+      "写真": "fotografi",
+      "写真文": "fotografi & teks",
+      "監督": "sutradara",
+      "原作": "penulis asli",
+      "編集": "editor",
+      "脚本": "skenario"
+    }
+  },
+  "holdings": {
+    "title": "Informasi koleksi",
+    "branch": "Cabang",
+    "type": "Jenis",
+    "location": "Lokasi",
+    "status": "Status",
+    "map": "Peta"
+  },
+  "pagination": {
+    "prev": "← Sebelumnya",
+    "next": "Berikutnya →",
+    "ariaLabel": "Navigasi halaman"
+  },
+  "floorMap": {
+    "loading": "Memuat peta…",
+    "alt": "Denah lantai {{floor}} {{location}}"
+  },
+  "libraryLink": {
+    "official": "Reservasi di situs resmi perpustakaan ↗"
+  },
+  "share": {
+    "share": "Bagikan",
+    "copyUrl": "Salin URL",
+    "copied": "Disalin!"
+  },
+  "theme": {
+    "toLight": "Beralih ke mode terang",
+    "toDark": "Beralih ke mode gelap"
+  },
+  "nav": {
+    "about": "Tentang",
+    "contact": "Hubungi"
+  },
+  "footer": {
+    "disclaimer": "Ini bukan <lnk>situs web resmi</lnk> Perpustakaan Kota Itoshima."
+  },
+  "about": {
+    "title": "Tentang",
+    "metaDesc": "Tentang alat pencarian tidak resmi Perpustakaan Kota Itoshima oleh Code for Itoshima",
+    "intro": "Situs web resmi Perpustakaan Kota Itoshima kurang nyaman di smartphone, sehingga kami membuat alat pencarian yang lebih mudah digunakan.",
+    "features": "Keunggulan situs ini",
+    "feature1": "Hasil pencarian dan detail buku ditampilkan dengan cepat tanpa memuat ulang seluruh halaman",
+    "feature2": "Denah lantai menampilkan lokasi buku tanpa popup",
+    "feature3": "URL hasil pencarian dan halaman buku dapat dibagikan",
+    "opensource": "Sumber terbuka",
+    "noCookies": "Tanpa cookie · Tanpa pelacakan",
+    "noPersonalData": "Tidak mengumpulkan data pribadi",
+    "noAds": "Tanpa iklan",
+    "free": "Gratis",
+    "nonprofit": "Nirlaba",
+    "officialDisclaimer": "Situs ini bukan situs web resmi Perpustakaan Kota Itoshima. Data koleksi diambil dari <lnk>situs web resmi perpustakaan</lnk>.",
+    "cfiTitle": "Code for Itoshima",
+    "cfiDesc": "Kami adalah relawan yang membuat kehidupan warga Itoshima sedikit lebih nyaman. Bergabunglah dengan kami untuk membantu, belajar, atau berbagi ide proyek dan kebutuhan Anda.",
+    "cfiLogoAlt": "Code for Itoshima"
+  },
+  "contact": {
+    "title": "Hubungi",
+    "metaDesc": "Formulir kontak untuk Code for Itoshima",
+    "name": "Nama",
+    "email": "Alamat email",
+    "message": "Pesan",
+    "submit": "Kirim",
+    "submitting": "Mengirim…",
+    "success": "Pesan Anda telah dikirim. Terima kasih!",
+    "errorRateLimit": "Terlalu banyak pengiriman. Coba lagi nanti.",
+    "errorRequired": "Harap isi semua kolom.",
+    "errorEmail": "Harap masukkan alamat email yang valid.",
+    "errorLength": "Pesan tidak boleh lebih dari 2000 karakter.",
+    "errorServer": "Gagal mengirim. Coba lagi nanti.",
+    "validationName": "Harap masukkan nama Anda.",
+    "validationEmail": "Harap masukkan email Anda.",
+    "validationMessage": "Harap masukkan pesan."
+  },
+  "meta": {
+    "siteTitle": "Pencarian Perpustakaan Itoshima",
+    "siteDesc": "Alat pencarian tidak resmi untuk koleksi Perpustakaan Kota Itoshima"
+  },
+  "error": {
+    "oops": "Ups!",
+    "unexpected": "Terjadi kesalahan yang tidak terduga.",
+    "notFound": "404",
+    "notFoundDesc": "Halaman yang diminta tidak dapat ditemukan.",
+    "error": "Kesalahan"
+  },
+  "lang": {
+    "ja": "日本語",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "ko": "한국어",
+    "vi": "Tiếng Việt",
+    "id": "Bahasa Indonesia",
+    "my": "မြန်မာဘာသာ",
+    "tl": "Filipino",
+    "en": "English",
+    "es": "Español",
+    "it": "Italiano",
+    "fr": "Français",
+    "de": "Deutsch",
+    "ne": "नेपाली"
+  }
+}

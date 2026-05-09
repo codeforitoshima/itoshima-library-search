@@ -17,6 +17,7 @@ import { HoldingsSection } from "~/components/HoldingsSection";
 import { ShareButton } from "~/components/ShareButton";
 import { LanguageSwitcher } from "~/components/LanguageSwitcher";
 import i18n from "~/i18n";
+import { formatAuthor } from "~/utils/formatAuthor";
 
 export function meta({ data: loaderData }: Route.MetaArgs) {
   const detail = loaderData as BookDetail | undefined;
@@ -71,7 +72,7 @@ export async function clientLoader({
       bookId: cached.id,
       title: cached.title,
       subtitle: cached.subtitle,
-      author: cached.author,
+      authors: cached.authors,
       authorId: cached.authorId,
       publisher: cached.publisher,
       year: cached.year,
@@ -151,8 +152,10 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
             {detail.subtitle && (
               <p className="detail-subtitle">{detail.subtitle}</p>
             )}
-            {detail.author && (
-              <p className="detail-author">{detail.author}</p>
+            {detail.authors.length > 0 && (
+              <p className="detail-author">
+                {detail.authors.map((a) => <span key={a}>{formatAuthor(a, t)}</span>)}
+              </p>
             )}
             <div className="detail-meta">
               {detail.publisher && <span>{detail.publisher}</span>}

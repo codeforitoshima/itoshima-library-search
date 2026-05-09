@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import type { Book } from "~/lib/parser.server";
 import { useBookCover } from "~/hooks/useBookCover";
 import { BookPlaceholder } from "./BookPlaceholder";
+import { formatAuthor } from "~/utils/formatAuthor";
 
 export function BookCard({ book, lang }: { book: Book; lang: string }) {
   const { t } = useTranslation();
@@ -22,7 +23,11 @@ export function BookCard({ book, lang }: { book: Book; lang: string }) {
             <span className="book-subtitle"> — {book.subtitle}</span>
           )}
         </h3>
-        {book.author && <p className="book-author">{book.author}</p>}
+        {book.authors.length > 0 && (
+          <p className="book-author">
+            {book.authors.map((a) => <span key={a}>{formatAuthor(a, t)}</span>)}
+          </p>
+        )}
         <div className="book-meta">
           {book.publisher && <span>{book.publisher}</span>}
           {book.year && <span>{book.year}</span>}

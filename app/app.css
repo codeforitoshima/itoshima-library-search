@@ -97,16 +97,23 @@ html.dark {
 }
 
 .advanced-filters {
-  @apply flex flex-col gap-3 p-4 border border-warm-200 dark:border-slate-700 rounded-lg
-         bg-warm-50 dark:bg-slate-800/50;
+  @apply p-4 border border-warm-200 dark:border-slate-700 rounded-lg bg-warm-50 dark:bg-slate-800/50;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  column-gap: 0.75rem;
+  row-gap: 0.75rem;
+  align-items: center;
+  @screen sm {
+    grid-template-columns: max-content 1fr;
+  }
 }
 
 .filter-row {
-  @apply flex items-center gap-3;
+  display: contents;
 }
 
 .filter-label {
-  @apply text-sm font-medium text-stone-600 dark:text-slate-300 w-16 shrink-0;
+  @apply text-sm font-medium text-stone-600 dark:text-slate-300 break-words sm:whitespace-nowrap;
 }
 
 .filter-input {
@@ -164,6 +171,7 @@ html.dark {
   @apply self-start text-sm text-stone-500 dark:text-slate-400
          hover:text-amber-800 dark:hover:text-sand-400
          transition-colors cursor-pointer mt-1;
+  grid-column: 1 / -1;
 }
 
 .search-input {
@@ -236,6 +244,7 @@ html.dark {
 
 .book-author {
   @apply text-sm text-stone-600 dark:text-slate-300 mb-1;
+  span { @apply block; }
 }
 
 .book-meta {
@@ -339,6 +348,7 @@ html.dark {
 
 .detail-author {
   @apply text-sm text-stone-600 dark:text-slate-300 mb-2;
+  span { @apply block; }
 }
 
 .detail-meta {
