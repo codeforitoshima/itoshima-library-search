@@ -1,0 +1,168 @@
+{
+  "header": { "title": "Tìm kiếm Thư viện Itoshima" },
+  "search": {
+    "placeholder": "Tìm sách… (ví dụ: 宮沢賢治)",
+    "label": "Từ khóa tìm kiếm",
+    "clearKeyword": "Xóa từ khóa",
+    "loading": "Đang tìm kiếm…",
+    "button": "Tìm kiếm",
+    "advancedOpen": "Tìm kiếm nâng cao ▲",
+    "advancedClose": "Tìm kiếm nâng cao ▼",
+    "author": "Tác giả",
+    "clearAuthor": "Xóa tác giả",
+    "branch": "Chi nhánh",
+    "yearRange": "Năm xuất bản",
+    "yearFrom": "Từ",
+    "yearFromLabel": "Năm xuất bản (từ)",
+    "yearTo": "Đến",
+    "yearToLabel": "Năm xuất bản (đến)",
+    "materialType": "Loại tài liệu",
+    "reset": "Đặt lại bộ lọc",
+    "hint": "Vui lòng nhập từ khóa hoặc tác giả",
+    "loadingResults": "Đang tải kết quả {{from}}–{{to}}…",
+    "resultsCount": "Hiển thị {{from}}–{{to}} trong {{total}} kết quả",
+    "noResults": "Không tìm thấy kết quả"
+  },
+  "branch": {
+    "main": "Thư viện chính (Maebaru)",
+    "nijo": "Chi nhánh Nijo",
+    "shima": "Chi nhánh Shima"
+  },
+  "materialType": {
+    "general": "Sách thường",
+    "children": "Sách thiếu nhi",
+    "magazine": "Tạp chí",
+    "av": "Âm thanh/Hình ảnh"
+  },
+  "book": {
+    "available": "Có thể mượn",
+    "checkedOut": "Đang được mượn",
+    "availableCount": "Có thể mượn: {{count}}",
+    "checkedOutCount": "Đang được mượn: {{count}}",
+    "reservations": "Đặt trước: {{count}}",
+    "loadingHoldings": "Đang tải thông tin lưu giữ…",
+    "description": "Mô tả",
+    "other": "Khác",
+    "iconAlt": "Biểu tượng sách",
+    "detail": "Chi tiết sách",
+    "authorFormat": "{{name}} ({{role}})",
+    "authorRoles": {
+      "著": "tác giả",
+      "編": "biên tập",
+      "訳": "dịch",
+      "絵": "minh họa",
+      "監修": "giám sát",
+      "編著": "tác giả/biên tập",
+      "編訳": "biên tập/dịch",
+      "述": "kể",
+      "文絵": "văn & minh họa",
+      "出演": "diễn viên",
+      "写真": "nhiếp ảnh",
+      "写真文": "nhiếp ảnh & văn",
+      "監督": "đạo diễn",
+      "原作": "tác giả gốc",
+      "編集": "biên tập",
+      "脚本": "kịch bản"
+    }
+  },
+  "holdings": {
+    "title": "Thông tin lưu giữ",
+    "branch": "Chi nhánh",
+    "type": "Loại",
+    "location": "Vị trí",
+    "status": "Trạng thái",
+    "map": "Bản đồ"
+  },
+  "pagination": {
+    "prev": "← Trước",
+    "next": "Tiếp →",
+    "ariaLabel": "Phân trang"
+  },
+  "floorMap": {
+    "loading": "Đang tải bản đồ…",
+    "alt": "Sơ đồ tầng {{floor}} {{location}}"
+  },
+  "libraryLink": {
+    "official": "Đặt trước tại trang chính thức của thư viện ↗"
+  },
+  "share": {
+    "share": "Chia sẻ",
+    "copyUrl": "Sao chép URL",
+    "copied": "Đã sao chép"
+  },
+  "theme": {
+    "toLight": "Chuyển sang chế độ sáng",
+    "toDark": "Chuyển sang chế độ tối"
+  },
+  "nav": {
+    "about": "Giới thiệu",
+    "contact": "Liên hệ"
+  },
+  "footer": {
+    "disclaimer": "Đây không phải là <lnk>trang web chính thức</lnk> của Thư viện thành phố Itoshima."
+  },
+  "about": {
+    "title": "Giới thiệu",
+    "metaDesc": "Giới thiệu công cụ tìm kiếm không chính thức của Thư viện thành phố Itoshima bởi Code for Itoshima",
+    "intro": "Trang web chính thức của Thư viện thành phố Itoshima không tiện lợi trên điện thoại thông minh, vì vậy chúng tôi đã tạo ra một công cụ tìm kiếm dễ sử dụng hơn.",
+    "features": "Ưu điểm của trang này",
+    "feature1": "Hiển thị nhanh kết quả tìm kiếm và chi tiết sách mà không cần tải lại toàn bộ trang",
+    "feature2": "Hiển thị vị trí sách trên bản đồ tầng mà không cần cửa sổ bật lên",
+    "feature3": "URL kết quả tìm kiếm và trang sách có thể chia sẻ",
+    "opensource": "Mã nguồn mở",
+    "noCookies": "Không cookie · Không theo dõi",
+    "noPersonalData": "Không thu thập dữ liệu cá nhân",
+    "noAds": "Không quảng cáo",
+    "free": "Miễn phí",
+    "nonprofit": "Phi lợi nhuận",
+    "officialDisclaimer": "Trang này không phải là trang web chính thức của Thư viện thành phố Itoshima. Dữ liệu bộ sưu tập được lấy từ <lnk>trang web chính thức của thư viện</lnk>.",
+    "cfiTitle": "Code for Itoshima",
+    "cfiDesc": "Chúng tôi là tình nguyện viên giúp cuộc sống của người dân Itoshima tiện lợi hơn một chút. Hãy tham gia cùng chúng tôi để giúp đỡ, học hỏi hoặc chia sẻ ý tưởng dự án và nhu cầu của bạn.",
+    "cfiLogoAlt": "Code for Itoshima"
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "metaDesc": "Biểu mẫu liên hệ cho Code for Itoshima",
+    "name": "Tên",
+    "email": "Địa chỉ email",
+    "message": "Tin nhắn",
+    "submit": "Gửi",
+    "submitting": "Đang gửi…",
+    "success": "Tin nhắn của bạn đã được gửi. Cảm ơn!",
+    "errorRateLimit": "Quá nhiều lần gửi. Vui lòng thử lại sau.",
+    "errorRequired": "Vui lòng điền vào tất cả các trường.",
+    "errorEmail": "Vui lòng nhập địa chỉ email hợp lệ.",
+    "errorLength": "Tin nhắn không được vượt quá 2000 ký tự.",
+    "errorServer": "Gửi thất bại. Vui lòng thử lại sau.",
+    "validationName": "Vui lòng nhập tên của bạn.",
+    "validationEmail": "Vui lòng nhập email của bạn.",
+    "validationMessage": "Vui lòng nhập tin nhắn."
+  },
+  "meta": {
+    "siteTitle": "Tìm kiếm Thư viện Itoshima",
+    "siteDesc": "Công cụ tìm kiếm không chính thức cho bộ sưu tập Thư viện thành phố Itoshima"
+  },
+  "error": {
+    "oops": "Rất tiếc!",
+    "unexpected": "Đã xảy ra lỗi không mong muốn.",
+    "notFound": "404",
+    "notFoundDesc": "Không tìm thấy trang được yêu cầu.",
+    "error": "Lỗi"
+  },
+  "lang": {
+    "ja": "日本語",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "ko": "한국어",
+    "vi": "Tiếng Việt",
+    "id": "Bahasa Indonesia",
+    "my": "မြန်မာဘာသာ",
+    "tl": "Filipino",
+    "en": "English",
+    "es": "Español",
+    "it": "Italiano",
+    "fr": "Français",
+    "de": "Deutsch",
+    "ne": "नेपाली"
+  }
+}
