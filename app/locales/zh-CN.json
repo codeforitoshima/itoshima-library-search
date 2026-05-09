@@ -1,0 +1,149 @@
+{
+  "header": { "title": "糸岛图书馆 非官方搜索" },
+  "search": {
+    "placeholder": "搜索书籍…（例：宫泽贤治）",
+    "label": "搜索关键词",
+    "clearKeyword": "清除关键词",
+    "loading": "搜索中…",
+    "button": "搜索",
+    "advancedOpen": "高级搜索 ▲",
+    "advancedClose": "高级搜索 ▼",
+    "author": "作者",
+    "clearAuthor": "清除作者",
+    "branch": "馆藏馆所",
+    "yearRange": "出版年",
+    "yearFrom": "起始年",
+    "yearFromLabel": "出版年（起始）",
+    "yearTo": "结束年",
+    "yearToLabel": "出版年（结束）",
+    "materialType": "资料类型",
+    "reset": "重置条件",
+    "hint": "请输入关键词或作者",
+    "loadingResults": "正在加载第 {{from}}～{{to}} 条…",
+    "resultsCount": "共 {{total}} 条，显示第 {{from}}～{{to}} 条",
+    "noResults": "未找到相关结果"
+  },
+  "branch": {
+    "main": "本馆",
+    "nijo": "二丈馆",
+    "shima": "志摩馆"
+  },
+  "materialType": {
+    "general": "一般图书",
+    "children": "儿童图书",
+    "magazine": "杂志",
+    "av": "影像・音乐"
+  },
+  "book": {
+    "available": "可借阅",
+    "checkedOut": "已借出",
+    "availableCount": "可借阅：{{count}}",
+    "checkedOutCount": "已借出：{{count}}",
+    "reservations": "预约：{{count}}",
+    "loadingHoldings": "正在加载馆藏信息…",
+    "description": "内容简介",
+    "other": "其他",
+    "iconAlt": "书本图标",
+    "detail": "书籍详情"
+  },
+  "holdings": {
+    "title": "馆藏信息",
+    "branch": "馆所",
+    "type": "类型",
+    "location": "位置",
+    "status": "状态",
+    "map": "地图"
+  },
+  "pagination": {
+    "prev": "← 上一页",
+    "next": "下一页 →",
+    "ariaLabel": "翻页"
+  },
+  "floorMap": {
+    "loading": "地图加载中…",
+    "alt": "{{location}} {{floor}}楼 平面图"
+  },
+  "libraryLink": {
+    "official": "预约请前往图书馆官网 ↗"
+  },
+  "share": {
+    "share": "分享",
+    "copyUrl": "复制链接",
+    "copied": "已复制"
+  },
+  "theme": {
+    "toLight": "切换为浅色模式",
+    "toDark": "切换为深色模式"
+  },
+  "nav": {
+    "about": "关于本站",
+    "contact": "联系我们"
+  },
+  "footer": {
+    "disclaimer": "本站并非<lnk>糸岛市立图书馆官方网站</lnk>。"
+  },
+  "about": {
+    "title": "关于本站",
+    "metaDesc": "Code for Itoshima 制作的糸岛市立图书馆非官方搜索工具介绍",
+    "intro": "糸岛市立图书馆的官方网站在智能手机上操作较为不便，因此我们制作了这个更易用的搜索工具。",
+    "features": "本站的优点",
+    "feature1": "无需重新加载整个页面，即可快速显示搜索结果与书籍详情",
+    "feature2": "不需弹出窗口，直接在楼层地图上显示书籍位置",
+    "feature3": "搜索结果与书籍页面的链接可直接分享",
+    "opensource": "开放源代码",
+    "noCookies": "无 Cookie・无追踪",
+    "noPersonalData": "不收集个人信息",
+    "noAds": "无广告",
+    "free": "免费",
+    "nonprofit": "非营利",
+    "officialDisclaimer": "本站并非糸岛市立图书馆官方网站。馆藏数据来自<lnk>图书馆官方网站</lnk>。",
+    "cfiTitle": "Code for Itoshima",
+    "cfiDesc": "我们是一群志愿者，致力于让糸岛居民的生活更便利。欢迎一起参与、学习，或分享您的想法与需求。",
+    "cfiLogoAlt": "Code for Itoshima"
+  },
+  "contact": {
+    "title": "联系我们",
+    "metaDesc": "Code for Itoshima 联系表单",
+    "name": "姓名",
+    "email": "电子邮件",
+    "message": "消息",
+    "submit": "提交",
+    "submitting": "提交中...",
+    "success": "已提交，谢谢您。",
+    "errorRateLimit": "提交次数过多，请稍后再试。",
+    "errorRequired": "请填写所有字段。",
+    "errorEmail": "请输入正确的电子邮件地址。",
+    "errorLength": "消息请在 2000 字以内。",
+    "errorServer": "提交失败，请稍后再试。",
+    "validationName": "请输入姓名。",
+    "validationEmail": "请输入电子邮件。",
+    "validationMessage": "请输入消息。"
+  },
+  "meta": {
+    "siteTitle": "糸岛图书馆 非官方搜索",
+    "siteDesc": "糸岛市立图书馆馆藏非官方搜索工具"
+  },
+  "error": {
+    "oops": "出错了！",
+    "unexpected": "发生了意外错误。",
+    "notFound": "404",
+    "notFoundDesc": "找不到所请求的页面。",
+    "error": "错误"
+  },
+  "lang": {
+    "ja": "日本語",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "ko": "한국어",
+    "vi": "Tiếng Việt",
+    "id": "Bahasa Indonesia",
+    "my": "မြန်မာဘာသာ",
+    "tl": "Filipino",
+    "en": "English",
+    "es": "Español",
+    "it": "Italiano",
+    "fr": "Français",
+    "de": "Deutsch",
+    "ne": "नेपाली"
+  }
+}
