@@ -1,0 +1,168 @@
+{
+  "header": { "title": "Paghahanap ng Aklatan ng Itoshima" },
+  "search": {
+    "placeholder": "Maghanap ng libro… (hal. 宮沢賢治)",
+    "label": "Mga keyword ng paghahanap",
+    "clearKeyword": "I-clear ang keyword",
+    "loading": "Naghahanap…",
+    "button": "Hanapin",
+    "advancedOpen": "Detalyadong paghahanap ▲",
+    "advancedClose": "Detalyadong paghahanap ▼",
+    "author": "May-akda",
+    "clearAuthor": "I-clear ang may-akda",
+    "branch": "Sangay",
+    "yearRange": "Taon ng publikasyon",
+    "yearFrom": "Mula",
+    "yearFromLabel": "Taon ng publikasyon (mula)",
+    "yearTo": "Hanggang",
+    "yearToLabel": "Taon ng publikasyon (hanggang)",
+    "materialType": "Uri ng materyales",
+    "reset": "I-reset ang mga filter",
+    "hint": "Mangyaring magpasok ng keyword o may-akda",
+    "loadingResults": "Naglo-load ng mga resulta {{from}}–{{to}}…",
+    "resultsCount": "Ipinapakita ang {{from}}–{{to}} mula sa {{total}} na resulta",
+    "noResults": "Walang nahanap na resulta"
+  },
+  "branch": {
+    "main": "Pangunahing Aklatan (Maebaru)",
+    "nijo": "Sangay ng Nijo",
+    "shima": "Sangay ng Shima"
+  },
+  "materialType": {
+    "general": "Pangkalahatang libro",
+    "children": "Mga librong pambata",
+    "magazine": "Mga magasin",
+    "av": "Audio/Visual"
+  },
+  "book": {
+    "available": "Available",
+    "checkedOut": "Naka-check out",
+    "availableCount": "Available: {{count}}",
+    "checkedOutCount": "Naka-check out: {{count}}",
+    "reservations": "Mga reserbasyon: {{count}}",
+    "loadingHoldings": "Naglo-load ng impormasyon ng koleksyon…",
+    "description": "Paglalarawan",
+    "other": "Iba pa",
+    "iconAlt": "Icon ng libro",
+    "detail": "Detalye ng libro",
+    "authorFormat": "{{name}} ({{role}})",
+    "authorRoles": {
+      "著": "may-akda",
+      "編": "editor",
+      "訳": "tagasalin",
+      "絵": "ilustrasyon",
+      "監修": "superbisor",
+      "編著": "may-akda/editor",
+      "編訳": "editor/tagasalin",
+      "述": "tagapagsalaysay",
+      "文絵": "teksto at ilustrasyon",
+      "出演": "artista",
+      "写真": "potograpiya",
+      "写真文": "potograpiya at teksto",
+      "監督": "direktor",
+      "原作": "orihinal na may-akda",
+      "編集": "editor",
+      "脚本": "manunulat ng screenplay"
+    }
+  },
+  "holdings": {
+    "title": "Impormasyon ng koleksyon",
+    "branch": "Sangay",
+    "type": "Uri",
+    "location": "Lokasyon",
+    "status": "Katayuan",
+    "map": "Mapa"
+  },
+  "pagination": {
+    "prev": "← Nakaraan",
+    "next": "Susunod →",
+    "ariaLabel": "Pahina"
+  },
+  "floorMap": {
+    "loading": "Naglo-load ng mapa…",
+    "alt": "Mapa ng palapag {{floor}} ng {{location}}"
+  },
+  "libraryLink": {
+    "official": "Mag-reserba sa opisyal na site ng aklatan ↗"
+  },
+  "share": {
+    "share": "Ibahagi",
+    "copyUrl": "Kopyahin ang URL",
+    "copied": "Nakopya!"
+  },
+  "theme": {
+    "toLight": "Lumipat sa light mode",
+    "toDark": "Lumipat sa dark mode"
+  },
+  "nav": {
+    "about": "Tungkol dito",
+    "contact": "Makipag-ugnayan"
+  },
+  "footer": {
+    "disclaimer": "Hindi ito ang <lnk>opisyal na website</lnk> ng Aklatan ng Lungsod ng Itoshima."
+  },
+  "about": {
+    "title": "Tungkol dito",
+    "metaDesc": "Tungkol sa impormal na tool sa paghahanap ng Aklatan ng Lungsod ng Itoshima ng Code for Itoshima",
+    "intro": "Ang opisyal na website ng Aklatan ng Lungsod ng Itoshima ay hindi masyadong maginhawa sa mga smartphone, kaya gumawa kami ng mas madaling gamitin na tool sa paghahanap.",
+    "features": "Mga tampok ng site na ito",
+    "feature1": "Mabilis na pagpapakita ng mga resulta ng paghahanap at detalye ng libro nang hindi nire-reload ang buong pahina",
+    "feature2": "Ipinapakita ang lokasyon ng libro sa floor map nang walang popup",
+    "feature3": "Maaaring ibahagi ang mga URL ng resulta ng paghahanap at mga pahina ng libro",
+    "opensource": "Open source",
+    "noCookies": "Walang cookies · Walang pagsubaybay",
+    "noPersonalData": "Walang nakolektang personal na data",
+    "noAds": "Walang mga advertisement",
+    "free": "Libre",
+    "nonprofit": "Hindi para sa kita",
+    "officialDisclaimer": "Ang site na ito ay hindi ang opisyal na website ng Aklatan ng Lungsod ng Itoshima. Ang data ng koleksyon ay kinukuha mula sa <lnk>opisyal na website ng aklatan</lnk>.",
+    "cfiTitle": "Code for Itoshima",
+    "cfiDesc": "Kami ay mga boluntaryo na gumagawa ng buhay ng mga tao sa Itoshima na medyo mas maginhawa. Sumali sa amin upang tumulong, matuto, o ibahagi ang iyong mga ideya sa proyekto at mga pangangailangan.",
+    "cfiLogoAlt": "Code for Itoshima"
+  },
+  "contact": {
+    "title": "Makipag-ugnayan",
+    "metaDesc": "Form sa pakikipag-ugnayan para sa Code for Itoshima",
+    "name": "Pangalan",
+    "email": "Email address",
+    "message": "Mensahe",
+    "submit": "Ipadala",
+    "submitting": "Nagpapadala…",
+    "success": "Naipadala na ang iyong mensahe. Salamat!",
+    "errorRateLimit": "Napakaraming pagsusumite. Subukan muli mamaya.",
+    "errorRequired": "Mangyaring punan ang lahat ng field.",
+    "errorEmail": "Mangyaring magpasok ng wastong email address.",
+    "errorLength": "Ang mensahe ay hindi dapat hihigit sa 2000 character.",
+    "errorServer": "Nabigo ang pagpapadala. Subukan muli mamaya.",
+    "validationName": "Mangyaring ipasok ang iyong pangalan.",
+    "validationEmail": "Mangyaring ipasok ang iyong email.",
+    "validationMessage": "Mangyaring ipasok ang mensahe."
+  },
+  "meta": {
+    "siteTitle": "Paghahanap ng Aklatan ng Itoshima",
+    "siteDesc": "Impormal na tool sa paghahanap para sa koleksyon ng Aklatan ng Lungsod ng Itoshima"
+  },
+  "error": {
+    "oops": "Aray!",
+    "unexpected": "Nagkaroon ng hindi inaasahang error.",
+    "notFound": "404",
+    "notFoundDesc": "Hindi mahanap ang hiniling na pahina.",
+    "error": "Error"
+  },
+  "lang": {
+    "ja": "日本語",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "ko": "한국어",
+    "vi": "Tiếng Việt",
+    "id": "Bahasa Indonesia",
+    "my": "မြန်မာဘာသာ",
+    "tl": "Filipino",
+    "en": "English",
+    "es": "Español",
+    "it": "Italiano",
+    "fr": "Français",
+    "de": "Deutsch",
+    "ne": "नेपाली"
+  }
+}

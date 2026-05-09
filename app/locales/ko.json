@@ -1,0 +1,168 @@
+{
+  "header": { "title": "이토시마 도서관 비공식 검색" },
+  "search": {
+    "placeholder": "책 검색… (예: 宮沢賢治)",
+    "label": "검색 키워드",
+    "clearKeyword": "키워드 초기화",
+    "loading": "검색 중…",
+    "button": "검색",
+    "advancedOpen": "상세 검색 ▲",
+    "advancedClose": "상세 검색 ▼",
+    "author": "저자",
+    "clearAuthor": "저자 초기화",
+    "branch": "소장관",
+    "yearRange": "출판 연도",
+    "yearFrom": "시작",
+    "yearFromLabel": "출판 연도 (시작)",
+    "yearTo": "종료",
+    "yearToLabel": "출판 연도 (종료)",
+    "materialType": "자료 종류",
+    "reset": "조건 초기화",
+    "hint": "키워드 또는 저자를 입력하세요",
+    "loadingResults": "{{from}}~{{to}}번째 결과 로드 중…",
+    "resultsCount": "총 {{total}}건 중 {{from}}~{{to}}번째",
+    "noResults": "결과를 찾을 수 없습니다"
+  },
+  "branch": {
+    "main": "본관（마에바루）",
+    "nijo": "니조관",
+    "shima": "시마관"
+  },
+  "materialType": {
+    "general": "일반 도서",
+    "children": "아동 도서",
+    "magazine": "잡지",
+    "av": "영상·음악"
+  },
+  "book": {
+    "available": "대출 가능",
+    "checkedOut": "대출 중",
+    "availableCount": "대출 가능: {{count}}",
+    "checkedOutCount": "대출 중: {{count}}",
+    "reservations": "예약: {{count}}",
+    "loadingHoldings": "소장 정보 로드 중…",
+    "description": "내용 소개",
+    "other": "기타",
+    "iconAlt": "책 아이콘",
+    "detail": "도서 상세",
+    "authorFormat": "{{name}} ({{role}})",
+    "authorRoles": {
+      "著": "저",
+      "編": "편",
+      "訳": "역",
+      "絵": "그림",
+      "監修": "감수",
+      "編著": "편저",
+      "編訳": "편역",
+      "述": "술",
+      "文絵": "글·그림",
+      "出演": "출연",
+      "写真": "사진",
+      "写真文": "사진·글",
+      "監督": "감독",
+      "原作": "원작",
+      "編集": "편집",
+      "脚本": "각본"
+    }
+  },
+  "holdings": {
+    "title": "소장 정보",
+    "branch": "관",
+    "type": "종류",
+    "location": "위치",
+    "status": "상태",
+    "map": "지도"
+  },
+  "pagination": {
+    "prev": "← 이전",
+    "next": "다음 →",
+    "ariaLabel": "페이지 이동"
+  },
+  "floorMap": {
+    "loading": "지도 로드 중…",
+    "alt": "{{location}} {{floor}}층 배치도"
+  },
+  "libraryLink": {
+    "official": "예약은 도서관 공식 사이트에서 ↗"
+  },
+  "share": {
+    "share": "공유",
+    "copyUrl": "URL 복사",
+    "copied": "복사됨"
+  },
+  "theme": {
+    "toLight": "라이트 모드로 전환",
+    "toDark": "다크 모드로 전환"
+  },
+  "nav": {
+    "about": "이 사이트에 대하여",
+    "contact": "문의"
+  },
+  "footer": {
+    "disclaimer": "여기는 이토시마시립도서관의 <lnk>공식 사이트</lnk>가 아닙니다."
+  },
+  "about": {
+    "title": "이 사이트에 대하여",
+    "metaDesc": "Code for Itoshima의 이토시마시립도서관 비공식 검색 도구에 대하여",
+    "intro": "이토시마시립도서관 공식 사이트는 스마트폰에서 사용하기 불편하여, 더 편리한 검색 도구를 만들었습니다.",
+    "features": "이 사이트의 장점",
+    "feature1": "전체 페이지를 다시 로드하지 않고 검색 결과와 도서 상세 정보를 빠르게 표시",
+    "feature2": "팝업 없이 플로어 맵에 도서 위치 표시",
+    "feature3": "검색 결과나 도서 페이지의 URL을 그대로 공유 가능",
+    "opensource": "오픈 소스",
+    "noCookies": "쿠키 없음 · 추적 없음",
+    "noPersonalData": "개인정보 수집 없음",
+    "noAds": "광고 없음",
+    "free": "무료",
+    "nonprofit": "비영리",
+    "officialDisclaimer": "이 사이트는 이토시마시립도서관의 공식 사이트가 아닙니다. 장서 데이터는 <lnk>도서관 공식 사이트</lnk>에서 가져옵니다.",
+    "cfiTitle": "Code for Itoshima",
+    "cfiDesc": "이토시마에 사는 동료들의 생활을 조금 더 편리하게 만들기 위해 자원봉사로 활동하고 있습니다. 함께 도와주거나 배우거나 하지 않으시겠습니까? 프로젝트 아이디어나 어려움이 있으시면 언제든지 연락해 주세요.",
+    "cfiLogoAlt": "Code for Itoshima"
+  },
+  "contact": {
+    "title": "문의",
+    "metaDesc": "Code for Itoshima 문의 양식",
+    "name": "이름",
+    "email": "이메일 주소",
+    "message": "메시지",
+    "submit": "보내기",
+    "submitting": "전송 중…",
+    "success": "전송했습니다. 감사합니다.",
+    "errorRateLimit": "전송이 너무 많습니다. 잠시 후 다시 시도해 주세요.",
+    "errorRequired": "모든 항목을 입력해 주세요.",
+    "errorEmail": "올바른 이메일 주소를 입력해 주세요.",
+    "errorLength": "메시지는 2000자 이내로 입력해 주세요.",
+    "errorServer": "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.",
+    "validationName": "이름을 입력해 주세요.",
+    "validationEmail": "이메일 주소를 입력해 주세요.",
+    "validationMessage": "메시지를 입력해 주세요."
+  },
+  "meta": {
+    "siteTitle": "이토시마 도서관 비공식 검색",
+    "siteDesc": "이토시마시립도서관 장서를 검색할 수 있는 비공식 도구"
+  },
+  "error": {
+    "oops": "이런!",
+    "unexpected": "예상치 못한 오류가 발생했습니다.",
+    "notFound": "404",
+    "notFoundDesc": "요청한 페이지를 찾을 수 없습니다.",
+    "error": "오류"
+  },
+  "lang": {
+    "ja": "日本語",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "ko": "한국어",
+    "vi": "Tiếng Việt",
+    "id": "Bahasa Indonesia",
+    "my": "မြန်မာဘာသာ",
+    "tl": "Filipino",
+    "en": "English",
+    "es": "Español",
+    "it": "Italiano",
+    "fr": "Français",
+    "de": "Deutsch",
+    "ne": "नेपाली"
+  }
+}
