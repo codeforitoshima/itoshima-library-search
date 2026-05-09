@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 const LIBRARY_DETAIL_URL =
   "https://www.lib-itoshima.jp/WebOpac/webopac/searchdetail.do";
 
@@ -8,6 +10,8 @@ export function LibraryLink({
   bookId: string;
   className?: string;
 }) {
+  const { t } = useTranslation();
+
   if (!bookId) return null;
 
   return (
@@ -24,7 +28,7 @@ export function LibraryLink({
       <input type="hidden" name="histnum" value="2" />
       <input type="hidden" name="listtype" value="0" />
       <button type="submit" className="library-link">
-        予約などは図書館公式サイトで ↗
+        {t("libraryLink.official")}
       </button>
     </form>
   );

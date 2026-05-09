@@ -48,6 +48,28 @@ html.dark {
   @apply h-7 w-auto inline-block;
 }
 
+/* Header controls */
+.header-controls {
+  @apply flex items-center gap-2;
+}
+
+/* Language Switcher */
+.lang-switcher-wrapper {
+  @apply relative flex items-center gap-1.5 px-2 py-2 rounded-lg
+         bg-warm-100 dark:bg-slate-800
+         text-stone-600 dark:text-slate-400
+         hover:bg-warm-200 dark:hover:bg-slate-700
+         transition-colors cursor-pointer whitespace-nowrap;
+}
+
+.lang-switcher-label {
+  @apply text-sm leading-none pointer-events-none;
+}
+
+.lang-switcher {
+  @apply absolute inset-0 w-full h-full opacity-0 cursor-pointer;
+}
+
 /* Theme Toggle */
 .theme-toggle {
   @apply p-2 rounded-lg bg-warm-100 dark:bg-slate-800

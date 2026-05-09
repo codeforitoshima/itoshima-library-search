@@ -1,29 +1,34 @@
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 import { type SearchFilters, filtersToSearchParams } from "~/lib/constants";
 
 export function Pagination({
   filters,
   page,
   totalPages,
+  lang,
 }: {
   filters: SearchFilters;
   page: number;
   totalPages: number;
+  lang: string;
 }) {
+  const { t } = useTranslation();
+
   if (totalPages <= 1) return null;
 
   const pages = buildPageNumbers(page, totalPages);
 
   function pageUrl(p: number): string {
     const base = filtersToSearchParams(filters);
-    return base ? `/?${base}&page=${p}` : `/?page=${p}`;
+    return base ? `/${lang}?${base}&page=${p}` : `/${lang}?page=${p}`;
   }
 
   return (
-    <nav className="pagination" aria-label="ページ移動">
+    <nav className="pagination" aria-label={t("pagination.ariaLabel")}>
       {page > 1 && (
         <Link to={pageUrl(page - 1)} className="page-link">
-          ← 前
+          {t("pagination.prev")}
         </Link>
       )}
       {pages.map((p, i) =>
@@ -44,7 +49,7 @@ export function Pagination({
       )}
       {page < totalPages && (
         <Link to={pageUrl(page + 1)} className="page-link">
-          次 →
+          {t("pagination.next")}
         </Link>
       )}
     </nav>

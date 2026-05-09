@@ -1,0 +1,149 @@
+{
+  "header": { "title": "糸島図書館 非公式検索" },
+  "search": {
+    "placeholder": "本を検索… (例: 宮沢賢治)",
+    "label": "検索キーワード",
+    "clearKeyword": "キーワードをクリア",
+    "loading": "検索中…",
+    "button": "検索",
+    "advancedOpen": "詳細検索 ▲",
+    "advancedClose": "詳細検索 ▼",
+    "author": "著者",
+    "clearAuthor": "著者をクリア",
+    "branch": "所蔵館",
+    "yearRange": "出版年",
+    "yearFrom": "開始年",
+    "yearFromLabel": "出版年（開始）",
+    "yearTo": "終了年",
+    "yearToLabel": "出版年（終了）",
+    "materialType": "資料種別",
+    "reset": "条件をリセット",
+    "hint": "キーワードまたは著者を入力してください",
+    "loadingResults": "{{from}}〜{{to}}件目を読み込み中…",
+    "resultsCount": "{{total}}件中 {{from}}〜{{to}}件目",
+    "noResults": "結果が見つかりませんでした"
+  },
+  "branch": {
+    "main": "本館",
+    "nijo": "二丈館",
+    "shima": "志摩館"
+  },
+  "materialType": {
+    "general": "一般図書",
+    "children": "児童図書",
+    "magazine": "雑誌",
+    "av": "映像・音楽"
+  },
+  "book": {
+    "available": "利用可能",
+    "checkedOut": "貸出中",
+    "availableCount": "貸出可能: {{count}}",
+    "checkedOutCount": "貸出中: {{count}}",
+    "reservations": "予約: {{count}}",
+    "loadingHoldings": "所蔵情報を読み込み中…",
+    "description": "内容紹介",
+    "other": "その他",
+    "iconAlt": "本のアイコン",
+    "detail": "書籍詳細"
+  },
+  "holdings": {
+    "title": "所蔵情報",
+    "branch": "館",
+    "type": "種別",
+    "location": "場所",
+    "status": "状態",
+    "map": "地図"
+  },
+  "pagination": {
+    "prev": "← 前",
+    "next": "次 →",
+    "ariaLabel": "ページ移動"
+  },
+  "floorMap": {
+    "loading": "地図を読み込み中…",
+    "alt": "{{location}} {{floor}}階 配置図"
+  },
+  "libraryLink": {
+    "official": "予約などは図書館公式サイトで ↗"
+  },
+  "share": {
+    "share": "シェアする",
+    "copyUrl": "URLをコピー",
+    "copied": "コピーしました"
+  },
+  "theme": {
+    "toLight": "ライトモードに切替",
+    "toDark": "ダークモードに切替"
+  },
+  "nav": {
+    "about": "このサイトについて",
+    "contact": "お問い合わせ"
+  },
+  "footer": {
+    "disclaimer": "ここは<lnk>糸島市立図書館の公式サイト</lnk>ではありません。"
+  },
+  "about": {
+    "title": "このサイトについて",
+    "metaDesc": "Code for Itoshimaによる糸島市立図書館の非公式検索ツールについて",
+    "intro": "糸島市立図書館の公式サイトはスマートフォンでの操作がやや不便なため、もっと使いやすい検索ツールを作りました。",
+    "features": "このサイトのいいところ",
+    "feature1": "画面全体を読み込み直さず、検索結果や書籍の詳細をすばやく表示",
+    "feature2": "書籍の配架場所をポップアップなしでフロアマップ上に表示",
+    "feature3": "検索結果や書籍ページのURLをそのまま共有できる",
+    "opensource": "オープンソース",
+    "noCookies": "Cookieなし・トラッキングなし",
+    "noPersonalData": "個人情報の収集なし",
+    "noAds": "広告なし",
+    "free": "無料",
+    "nonprofit": "お金にならない",
+    "officialDisclaimer": "このサイトは糸島市立図書館の公式サイトではありません。蔵書データは<lnk>図書館の公式サイト</lnk>から取得しています。",
+    "cfiTitle": "Code for Itoshima",
+    "cfiDesc": "糸島に住む仲間の暮らしをちょっと便利にするために、ボランティアで活動しています。一緒に手伝ったり、学んだりしませんか？プロジェクトのアイデアや困りごとがあれば、ぜひ声をかけてください。",
+    "cfiLogoAlt": "Code for Itoshima"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "metaDesc": "Code for Itoshimaへのお問い合わせフォーム",
+    "name": "名前",
+    "email": "メールアドレス",
+    "message": "メッセージ",
+    "submit": "送信",
+    "submitting": "送信中...",
+    "success": "送信しました。ありがとうございます。",
+    "errorRateLimit": "送信が多すぎます。しばらくしてからお試しください。",
+    "errorRequired": "すべての項目を入力してください。",
+    "errorEmail": "正しいメールアドレスを入力してください。",
+    "errorLength": "メッセージは2000文字以内で入力してください。",
+    "errorServer": "送信に失敗しました。しばらくしてからお試しください。",
+    "validationName": "名前を入力してください。",
+    "validationEmail": "メールアドレスを入力してください。",
+    "validationMessage": "メッセージを入力してください。"
+  },
+  "meta": {
+    "siteTitle": "糸島図書館 非公式検索",
+    "siteDesc": "糸島市立図書館の蔵書を検索できる非公式ツール"
+  },
+  "error": {
+    "oops": "Oops!",
+    "unexpected": "An unexpected error occurred.",
+    "notFound": "404",
+    "notFoundDesc": "The requested page could not be found.",
+    "error": "Error"
+  },
+  "lang": {
+    "ja": "日本語",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "ko": "한국어",
+    "vi": "Tiếng Việt",
+    "id": "Bahasa Indonesia",
+    "my": "မြန်မာဘာသာ",
+    "tl": "Filipino",
+    "en": "English",
+    "es": "Español",
+    "it": "Italiano",
+    "fr": "Français",
+    "de": "Deutsch",
+    "ne": "नेपाली"
+  }
+}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function getInitialTheme(): "light" | "dark" {
   if (typeof document === "undefined") return "light";
@@ -6,6 +7,7 @@ function getInitialTheme(): "light" | "dark" {
 }
 
 export function ThemeToggle() {
+  const { t } = useTranslation();
   const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export function ThemeToggle() {
       type="button"
       className="theme-toggle"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      aria-label={theme === "dark" ? "ライトモードに切替" : "ダークモードに切替"}
+      aria-label={theme === "dark" ? t("theme.toLight") : t("theme.toDark")}
     >
       <svg
         width="18"

@@ -2,7 +2,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
-import { action } from "../../app/routes/contact";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../../app/i18n";
+import Contact, { action } from "../../app/routes/contact";
 
 vi.mock("nodemailer", () => ({
   default: {
@@ -172,13 +174,20 @@ describe("contact action — email sending", () => {
 });
 
 describe("Contact page", () => {
-  it("renders form fields and disabled submit button", async () => {
-    const { default: Contact } = await import("../../app/routes/contact");
+  function renderContact() {
     const router = createMemoryRouter(
-      [{ path: "/contact", Component: Contact }],
-      { initialEntries: ["/contact"] }
+      [{ path: "/:lang/contact", Component: Contact }],
+      { initialEntries: ["/ja/contact"] }
     );
-    render(<RouterProvider router={router} />);
+    return render(
+      <I18nextProvider i18n={i18n}>
+        <RouterProvider router={router} />
+      </I18nextProvider>
+    );
+  }
+
+  it("renders form fields and disabled submit button", async () => {
+    renderContact();
     expect(screen.getByLabelText("名前")).toBeInTheDocument();
     expect(screen.getByLabelText("メールアドレス")).toBeInTheDocument();
     expect(screen.getByLabelText("メッセージ")).toBeInTheDocument();
@@ -186,33 +195,18 @@ describe("Contact page", () => {
   });
 
   it("shows character counter for message field", async () => {
-    const { default: Contact } = await import("../../app/routes/contact");
-    const router = createMemoryRouter(
-      [{ path: "/contact", Component: Contact }],
-      { initialEntries: ["/contact"] }
-    );
-    render(<RouterProvider router={router} />);
+    renderContact();
     expect(document.body.textContent).toContain("0 / 2000");
   });
 
   it("shows field error after blur on empty name", async () => {
-    const { default: Contact } = await import("../../app/routes/contact");
-    const router = createMemoryRouter(
-      [{ path: "/contact", Component: Contact }],
-      { initialEntries: ["/contact"] }
-    );
-    render(<RouterProvider router={router} />);
+    renderContact();
     fireEvent.blur(screen.getByLabelText("名前"));
     expect(screen.getByText("名前を入力してください。")).toBeInTheDocument();
   });
 
   it("enables submit button when all fields are valid", async () => {
-    const { default: Contact } = await import("../../app/routes/contact");
-    const router = createMemoryRouter(
-      [{ path: "/contact", Component: Contact }],
-      { initialEntries: ["/contact"] }
-    );
-    render(<RouterProvider router={router} />);
+    renderContact();
     fireEvent.change(screen.getByLabelText("名前"), {
       target: { value: "Ale" },
     });

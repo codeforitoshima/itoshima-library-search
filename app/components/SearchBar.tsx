@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Form, useNavigation } from "react-router";
+import { useTranslation } from "react-i18next";
 import { PAGE_SIZE, BRANCHES, MATERIAL_TYPES, type SearchFilters } from "~/lib/constants";
 
 export function SearchBar({
@@ -7,12 +8,15 @@ export function SearchBar({
   total,
   page,
   loading,
+  lang,
 }: {
   filters: SearchFilters;
   total: number | null;
   page: number;
   loading?: boolean;
+  lang: string;
 }) {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const isSearching = navigation.state === "loading";
   const hasSearch = !!(filters.keyword || filters.author || filters.yearFrom || filters.yearTo || filters.branches.length || filters.materialTypes.length);
@@ -63,8 +67,21 @@ export function SearchBar({
       const str = value.toString().trim();
       if (str) params.set(key, str);
     }
-    window.location.href = `/?${params.toString()}`;
+    window.location.href = `/${lang}?${params.toString()}`;
   }
+
+  const branchLabel: Record<string, string> = {
+    "10": t("branch.main"),
+    "30": t("branch.nijo"),
+    "40": t("branch.shima"),
+  };
+
+  const typeLabel: Record<string, string> = {
+    "11:": t("materialType.general"),
+    "12:": t("materialType.children"),
+    "23:": t("materialType.magazine"),
+    "34:": t("materialType.av"),
+  };
 
   return (
     <div className="search-bar">
@@ -76,18 +93,18 @@ export function SearchBar({
               name="q"
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
-              placeholder="本を検索… (例: 宮沢賢治)"
-              aria-label="検索キーワード"
+              placeholder={t("search.placeholder")}
+              aria-label={t("search.label")}
               enterKeyHint="search"
               className="search-input"
               autoFocus={!filters.keyword}
             />
             {keyword && (
-              <button type="button" className="clear-button" onClick={() => setKeyword("")} aria-label="キーワードをクリア">×</button>
+              <button type="button" className="clear-button" onClick={() => setKeyword("")} aria-label={t("search.clearKeyword")}>×</button>
             )}
           </div>
           <button type="submit" className="search-button" disabled={isSearching || cannotSearch}>
-            {isSearching ? "検索中…" : "検索"}
+            {isSearching ? t("search.loading") : t("search.button")}
           </button>
         </div>
 
@@ -97,13 +114,13 @@ export function SearchBar({
           onClick={() => setOpen(!open)}
           aria-expanded={open}
         >
-          詳細検索 {open ? "▲" : "▼"}
+          {open ? t("search.advancedOpen") : t("search.advancedClose")}
         </button>
 
         {open && (
           <div className="advanced-filters">
             <div className="filter-row">
-              <label htmlFor="author-input" className="filter-label">著者</label>
+              <label htmlFor="author-input" className="filter-label">{t("search.author")}</label>
               <div className="clearable-input">
                 <input
                   id="author-input"
@@ -114,13 +131,13 @@ export function SearchBar({
                   className="filter-input"
                 />
                 {author && (
-                  <button type="button" className="clear-button" onClick={() => setAuthor("")} aria-label="著者をクリア">×</button>
+                  <button type="button" className="clear-button" onClick={() => setAuthor("")} aria-label={t("search.clearAuthor")}>×</button>
                 )}
               </div>
             </div>
 
             <div className="filter-row">
-              <span className="filter-label">所蔵館</span>
+              <span className="filter-label">{t("search.branch")}</span>
               <div className="checkbox-group">
                 {BRANCHES.map((b) => (
                   <label key={b.value} className="checkbox-label">
@@ -129,7 +146,7 @@ export function SearchBar({
                       checked={checkedBranches.includes(b.value)}
                       onChange={() => toggleBranch(b.value)}
                     />
-                    {b.label}
+                    {branchLabel[b.value] ?? b.label}
                   </label>
                 ))}
               </div>
@@ -139,7 +156,7 @@ export function SearchBar({
             </div>
 
             <div className="filter-row">
-              <span className="filter-label">出版年</span>
+              <span className="filter-label">{t("search.yearRange")}</span>
               <div className="year-range">
                 <input
                   ref={yearFromRef}
@@ -147,11 +164,11 @@ export function SearchBar({
                   name="yearFrom"
                   value={yearFrom}
                   onChange={(e) => setYearFrom(e.target.value)}
-                  placeholder="開始年"
+                  placeholder={t("search.yearFrom")}
                   inputMode="numeric"
                   enterKeyHint="done"
                   className="filter-input year-input"
-                  aria-label="出版年（開始）"
+                  aria-label={t("search.yearFromLabel")}
                 />
                 <span className="year-separator">〜</span>
                 <input
@@ -160,26 +177,26 @@ export function SearchBar({
                   name="yearTo"
                   value={yearTo}
                   onChange={(e) => setYearTo(e.target.value)}
-                  placeholder="終了年"
+                  placeholder={t("search.yearTo")}
                   inputMode="numeric"
                   enterKeyHint="done"
                   className="filter-input year-input"
-                  aria-label="出版年（終了）"
+                  aria-label={t("search.yearToLabel")}
                 />
               </div>
             </div>
 
             <div className="filter-row">
-              <span className="filter-label">資料種別</span>
+              <span className="filter-label">{t("search.materialType")}</span>
               <div className="checkbox-group">
-                {MATERIAL_TYPES.map((t) => (
-                  <label key={t.value} className="checkbox-label">
+                {MATERIAL_TYPES.map((mt) => (
+                  <label key={mt.value} className="checkbox-label">
                     <input
                       type="checkbox"
-                      checked={checkedTypes.includes(t.value)}
-                      onChange={() => toggleType(t.value)}
+                      checked={checkedTypes.includes(mt.value)}
+                      onChange={() => toggleType(mt.value)}
                     />
-                    {t.label}
+                    {typeLabel[mt.value] ?? mt.label}
                   </label>
                 ))}
               </div>
@@ -189,25 +206,33 @@ export function SearchBar({
             </div>
 
             <button type="button" className="reset-button" onClick={resetAll}>
-              条件をリセット
+              {t("search.reset")}
             </button>
           </div>
         )}
       </Form>
       <div aria-live="polite" aria-atomic="true">
         {cannotSearch && total === null && (
-          <p className="search-hint">キーワードまたは著者を入力してください</p>
+          <p className="search-hint">{t("search.hint")}</p>
         )}
         {loading && filters.keyword && (
           <p className="search-meta loading-meta">
-            <span className="spinner" /> {`${(page - 1) * PAGE_SIZE + 1}〜${page * PAGE_SIZE}件目を読み込み中…`}
+            <span className="spinner" />{" "}
+            {t("search.loadingResults", {
+              from: (page - 1) * PAGE_SIZE + 1,
+              to: page * PAGE_SIZE,
+            })}
           </p>
         )}
         {!loading && total !== null && (
           <p className="search-meta">
             {total > 0
-              ? `${total}件中 ${(page - 1) * PAGE_SIZE + 1}〜${Math.min(page * PAGE_SIZE, total)}件目`
-              : "結果が見つかりませんでした"}
+              ? t("search.resultsCount", {
+                  total,
+                  from: (page - 1) * PAGE_SIZE + 1,
+                  to: Math.min(page * PAGE_SIZE, total),
+                })
+              : t("search.noResults")}
           </p>
         )}
       </div>

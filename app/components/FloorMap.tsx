@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { FloorMapData } from "~/lib/floormap-parser.server";
 
 const floorMapCache = new Map<string, FloorMapData>();
@@ -11,6 +12,7 @@ type FloorMapProps = {
 };
 
 export function FloorMap({ biblioid, lcdcd, doclno, displcs }: FloorMapProps) {
+  const { t } = useTranslation();
   const cacheKey = `${biblioid}:${lcdcd}:${doclno}`;
   const [data, setData] = useState<FloorMapData | null>(
     () => floorMapCache.get(cacheKey) ?? null
@@ -37,7 +39,7 @@ export function FloorMap({ biblioid, lcdcd, doclno, displcs }: FloorMapProps) {
   }, [biblioid, lcdcd, doclno, displcs, cacheKey]);
 
   if (loading) {
-    return <div className="floor-map-loading"><span className="spinner" /> 地図を読み込み中…</div>;
+    return <div className="floor-map-loading"><span className="spinner" /> {t("floorMap.loading")}</div>;
   }
 
   if (!data || data.floors.length === 0) {
@@ -51,7 +53,7 @@ export function FloorMap({ biblioid, lcdcd, doclno, displcs }: FloorMapProps) {
           <div className="floor-map-container">
             <img
               src={floor.imageUrl}
-              alt={`${displcs} ${floor.floor}階 配置図`}
+              alt={t("floorMap.alt", { location: displcs, floor: floor.floor })}
               className="floor-map-image"
             />
             <div

@@ -1,72 +1,76 @@
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
+import { Trans, useTranslation } from "react-i18next";
 import { Footer } from "~/components/Footer";
 import { ThemeToggle } from "~/components/ThemeToggle";
 import { BookIcon } from "~/components/BookIcon";
+import { LanguageSwitcher } from "~/components/LanguageSwitcher";
+import i18n from "~/i18n";
 
 export function meta() {
   return [
-    { title: "このサイトについて | 糸島図書館 非公式検索" },
-    { name: "description", content: "Code for Itoshimaによる糸島市立図書館の非公式検索ツールについて" },
+    { title: `${i18n.t("about.title")} | ${i18n.t("meta.siteTitle")}` },
+    { name: "description", content: i18n.t("about.metaDesc") },
   ];
 }
 
 export default function About() {
+  const { lang = "ja" } = useParams();
+  const { t } = useTranslation();
+
   return (
     <main className="app-container">
       <header className="app-header">
         <h1>
-          <Link to="/"><BookIcon className="header-icon" />糸島図書館 非公式検索</Link>
+          <Link to={`/${lang}`}><BookIcon className="header-icon" />{t("header.title")}</Link>
         </h1>
-        <ThemeToggle />
+        <div className="header-controls">
+          <LanguageSwitcher />
+          <ThemeToggle />
+        </div>
       </header>
 
       <article className="about-page">
-        <h2>このサイトについて</h2>
+        <h2>{t("about.title")}</h2>
 
         <section className="about-section">
-          <p>
-            糸島市立図書館の公式サイトはスマートフォンでの操作がやや不便なため、
-            もっと使いやすい検索ツールを作りました。
-          </p>
+          <p>{t("about.intro")}</p>
           <ul className="about-features">
-            <li>画面全体を読み込み直さず、検索結果や書籍の詳細をすばやく表示</li>
-            <li>書籍の配架場所をポップアップなしでフロアマップ上に表示</li>
-            <li>検索結果や書籍ページのURLをそのまま共有できる</li>
+            <li>{t("about.feature1")}</li>
+            <li>{t("about.feature2")}</li>
+            <li>{t("about.feature3")}</li>
           </ul>
           <p>
-            このサイトは糸島市立図書館の公式サイトではありません。
-            蔵書データは
-            <a
-              href="https://itoshima.libweb.jp/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              図書館の公式サイト
-            </a>
-            から取得しています。
+            <Trans
+              i18nKey="about.officialDisclaimer"
+              components={{
+                lnk: (
+                  <a
+                    href="https://itoshima.libweb.jp/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >図書館の公式サイト</a>
+                ),
+              }}
+            />
           </p>
         </section>
 
         <section className="about-section">
-          <h3>このサイトのいいところ</h3>
+          <h3>{t("about.features")}</h3>
           <ul className="about-checklist">
-            <li>オープンソース</li>
-            <li>Cookieなし・トラッキングなし</li>
-            <li>個人情報の収集なし</li>
-            <li>広告なし</li>
-            <li>無料</li>
-            <li>お金にならない</li>
+            <li>{t("about.opensource")}</li>
+            <li>{t("about.noCookies")}</li>
+            <li>{t("about.noPersonalData")}</li>
+            <li>{t("about.noAds")}</li>
+            <li>{t("about.free")}</li>
+            <li>{t("about.nonprofit")}</li>
           </ul>
         </section>
 
         <section className="about-section about-cfi">
           <div>
-            <h3>Code for Itoshima</h3>
-            <p>
-              糸島に住む仲間の暮らしをちょっと便利にするために、ボランティアで活動しています。
-              一緒に手伝ったり、学んだりしませんか？
-              プロジェクトのアイデアや困りごとがあれば、ぜひ声をかけてください。
-            </p>
+            <h3>{t("about.cfiTitle")}</h3>
+            <p>{t("about.cfiDesc")}</p>
             <p>
               <a
                 href="https://github.com/codeforitoshima/itoshima-library-search"
@@ -81,18 +85,18 @@ export default function About() {
               </a>
             </p>
             <p>
-              <Link to="/contact" className="github-link">
+              <Link to={`/${lang}/contact`} className="github-link">
                 <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
                   <path d="M1.5 2h13A1.5 1.5 0 0 1 16 3.5v9A1.5 1.5 0 0 1 14.5 14h-13A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2zm0 1a.5.5 0 0 0-.5.5v.77l7 4.2 7-4.2V3.5a.5.5 0 0 0-.5-.5h-13zM15 5.64l-6.54 3.93a.75.75 0 0 1-.92 0L1 5.64V12.5a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5V5.64z" />
                 </svg>
-                お問い合わせ
+                {t("nav.contact")}
               </Link>
             </p>
           </div>
-          <img src="/code-for-itoshima.png" alt="Code for Itoshima" className="about-cfi-logo" />
+          <img src="/code-for-itoshima.png" alt={t("about.cfiLogoAlt")} className="about-cfi-logo" />
         </section>
       </article>
-      <Footer />
+      <Footer lang={lang} />
     </main>
   );
 }

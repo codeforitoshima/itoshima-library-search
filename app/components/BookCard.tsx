@@ -1,19 +1,21 @@
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 import type { Book } from "~/lib/parser.server";
 import { useBookCover } from "~/hooks/useBookCover";
 import { BookPlaceholder } from "./BookPlaceholder";
 
-export function BookCard({ book }: { book: Book }) {
+export function BookCard({ book, lang }: { book: Book; lang: string }) {
+  const { t } = useTranslation();
   const coverUrl = useBookCover(book.isbn);
 
   return (
     <article className="book-card">
-      <Link to={`/book/${book.id}`} prefetch="intent" className="book-cover">
+      <Link to={`/${lang}/book/${book.id}`} prefetch="intent" className="book-cover">
         {coverUrl ? <img src={coverUrl} alt="" loading="lazy" /> : <BookPlaceholder />}
       </Link>
       <div className="book-info">
         <h3 className="book-title">
-          <Link to={`/book/${book.id}`} prefetch="intent">
+          <Link to={`/${lang}/book/${book.id}`} prefetch="intent">
             {book.title}
           </Link>
           {book.subtitle && (
@@ -30,7 +32,7 @@ export function BookCard({ book }: { book: Book }) {
           <span
             className={`book-availability ${book.available ? "available" : "lent"}`}
           >
-            {book.available ? "利用可能" : "貸出中"}
+            {book.available ? t("book.available") : t("book.checkedOut")}
           </span>
         </div>
       </div>

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   title: string;
 };
 
 export function ShareButton({ title }: Props) {
+  const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -20,7 +22,7 @@ export function ShareButton({ title }: Props) {
   function handleShare() {
     navigator
       .share({
-        title: `${title} | 糸島図書館 非公式検索`,
+        title: `${title} | ${t("meta.siteTitle")}`,
         url: window.location.href,
       })
       .catch(() => {});
@@ -60,9 +62,9 @@ export function ShareButton({ title }: Props) {
         type="button"
         className="share-button"
         onClick={handleShare}
-        aria-label="シェアする"
+        aria-label={t("share.share")}
       >
-        シェア
+        {t("share.share")}
         <svg
           width="14"
           height="14"
@@ -87,9 +89,9 @@ export function ShareButton({ title }: Props) {
       type="button"
       className="share-button"
       onClick={handleCopy}
-      aria-label={copied ? "コピーしました" : "URLをコピー"}
+      aria-label={copied ? t("share.copied") : t("share.copyUrl")}
     >
-      {copied ? "コピーしました ✓" : "URLをコピー"}
+      {copied ? `${t("share.copied")} ✓` : t("share.copyUrl")}
       <svg
         width="14"
         height="14"
