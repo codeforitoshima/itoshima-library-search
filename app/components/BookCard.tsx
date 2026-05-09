@@ -23,7 +23,11 @@ export function BookCard({ book, lang }: { book: Book; lang: string }) {
             <span className="book-subtitle"> — {book.subtitle}</span>
           )}
         </h3>
-        {book.author && <p className="book-author">{formatAuthor(book.author, t)}</p>}
+        {book.authors.length > 0 && (
+          <p className="book-author">
+            {book.authors.map((a) => <span key={a}>{formatAuthor(a, t)}</span>)}
+          </p>
+        )}
         <div className="book-meta">
           {book.publisher && <span>{book.publisher}</span>}
           {book.year && <span>{book.year}</span>}

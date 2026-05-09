@@ -41,7 +41,7 @@ describe("parseSearchResults", () => {
   });
 
   it("extracts author and authorId", () => {
-    expect(results.books[0].author).toBe("斎藤　文一／著");
+    expect(results.books[0].authors[0]).toBe("斎藤　文一／著");
     expect(results.books[0].authorId).toBe("70259");
   });
 
@@ -69,6 +69,25 @@ describe("parseSearchResults", () => {
     const lentBook = results.books.find((b) => !b.available);
     expect(lentBook).toBeDefined();
     expect(lentBook?.title).toBe("あたまの底のさびしい歌");
+  });
+
+  it("extracts multiple authors when present", () => {
+    const html = `<html><body><div id="sheet">
+      <div class="bookcard_temp">
+        <div id="bookcard_item_99999"></div>
+        <h3>テスト本</h3><h4></h4>
+        <ul>
+          <li>著者：<a href="javascript:list_author('111')">山田　太郎／著</a>
+                   <a href="javascript:list_author('222')">鈴木　花子／著</a></li>
+          <li>出版者：テスト社</li><li>出版年：2024.01</li><li>資料種別：一般図書</li>
+        </ul>
+        <img id="img_" />
+      </div>
+    </div></body></html>`;
+    const r = parseSearchResults(html);
+    expect(r.books[0].authors).toHaveLength(2);
+    expect(r.books[0].authors[0]).toBe("山田　太郎／著");
+    expect(r.books[0].authors[1]).toBe("鈴木　花子／著");
   });
 
   it("returns empty results for html with no books", () => {

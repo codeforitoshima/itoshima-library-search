@@ -8,7 +8,7 @@ function makeBook(i: number): Book {
     id: `id-${i}`,
     title: `Book ${i}`,
     subtitle: "",
-    author: `Author ${i}`,
+    authors: [`Author ${i}`],
     authorId: "",
     publisher: "",
     year: "2024",

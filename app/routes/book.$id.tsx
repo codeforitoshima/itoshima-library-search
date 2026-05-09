@@ -72,7 +72,7 @@ export async function clientLoader({
       bookId: cached.id,
       title: cached.title,
       subtitle: cached.subtitle,
-      author: cached.author,
+      authors: cached.authors,
       authorId: cached.authorId,
       publisher: cached.publisher,
       year: cached.year,
@@ -152,8 +152,10 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
             {detail.subtitle && (
               <p className="detail-subtitle">{detail.subtitle}</p>
             )}
-            {detail.author && (
-              <p className="detail-author">{formatAuthor(detail.author, t)}</p>
+            {detail.authors.length > 0 && (
+              <p className="detail-author">
+                {detail.authors.map((a) => <span key={a}>{formatAuthor(a, t)}</span>)}
+              </p>
             )}
             <div className="detail-meta">
               {detail.publisher && <span>{detail.publisher}</span>}
