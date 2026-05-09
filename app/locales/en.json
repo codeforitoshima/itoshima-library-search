@@ -44,7 +44,26 @@
     "description": "Description",
     "other": "Other",
     "iconAlt": "Book icon",
-    "detail": "Book detail"
+    "detail": "Book detail",
+    "authorFormat": "{{name}} ({{role}})",
+    "authorRoles": {
+      "著": "author",
+      "編": "editor",
+      "訳": "translator",
+      "絵": "illustrations",
+      "監修": "supervisor",
+      "編著": "author/editor",
+      "編訳": "editor/translator",
+      "述": "narrator",
+      "文絵": "text & illustrations",
+      "出演": "performer",
+      "写真": "photography",
+      "写真文": "photography & text",
+      "監督": "director",
+      "原作": "original author",
+      "編集": "editor",
+      "脚本": "screenplay"
+    }
   },
   "holdings": {
     "title": "Holdings",

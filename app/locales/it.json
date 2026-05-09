@@ -44,7 +44,26 @@
     "description": "Descrizione",
     "other": "Altro",
     "iconAlt": "Icona libro",
-    "detail": "Dettaglio libro"
+    "detail": "Dettaglio libro",
+    "authorFormat": "{{name}} ({{role}})",
+    "authorRoles": {
+      "著": "testo",
+      "編": "cura",
+      "訳": "traduzione",
+      "絵": "illustrazioni",
+      "監修": "supervisione",
+      "編著": "testo e cura",
+      "編訳": "cura e traduzione",
+      "述": "narrazione",
+      "文絵": "testo e illustrazioni",
+      "出演": "interpretazione",
+      "写真": "fotografia",
+      "写真文": "fotografia e testo",
+      "監督": "regia",
+      "原作": "opera originale",
+      "編集": "redazione",
+      "脚本": "sceneggiatura"
+    }
   },
   "holdings": {
     "title": "Copie",
