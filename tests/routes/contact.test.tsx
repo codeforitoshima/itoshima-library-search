@@ -14,7 +14,7 @@ vi.mock("nodemailer", () => ({
   },
 }));
 
-const actionArgs = { params: {}, context: {}, unstable_pattern: "" };
+const actionArgs = { params: {}, context: {}, pattern: "", url: new URL("http://localhost/contact") };
 
 function makeRequest(
   fields: Record<string, string>,
