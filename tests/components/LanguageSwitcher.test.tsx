@@ -21,8 +21,10 @@ describe("LanguageSwitcher", () => {
   it("only renders options for languages with loaded resources", () => {
     renderSwitcher("ja");
     const options = screen.getAllByRole("option");
-    expect(options).toHaveLength(3);
-    expect(options.map((o) => (o as HTMLOptionElement).value)).toEqual(["ja", "zh-TW", "zh-CN"]);
+    expect(options).toHaveLength(8);
+    expect(options.map((o) => (o as HTMLOptionElement).value)).toEqual([
+      "ja", "zh-TW", "zh-CN", "en", "es", "it", "fr", "de",
+    ]);
   });
 
   it("shows the current language as selected", () => {

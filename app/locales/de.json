@@ -1,0 +1,149 @@
+{
+  "header": { "title": "Itoshima Bibliothek Suche" },
+  "search": {
+    "placeholder": "Bücher suchen… (z. B. 宮沢賢治)",
+    "label": "Suchbegriffe",
+    "clearKeyword": "Suchbegriff löschen",
+    "loading": "Suche läuft…",
+    "button": "Suchen",
+    "advancedOpen": "Erweiterte Suche ▲",
+    "advancedClose": "Erweiterte Suche ▼",
+    "author": "Autor",
+    "clearAuthor": "Autor löschen",
+    "branch": "Zweigstelle",
+    "yearRange": "Erscheinungsjahr",
+    "yearFrom": "Von",
+    "yearFromLabel": "Erscheinungsjahr (von)",
+    "yearTo": "Bis",
+    "yearToLabel": "Erscheinungsjahr (bis)",
+    "materialType": "Medientyp",
+    "reset": "Filter zurücksetzen",
+    "hint": "Bitte Suchbegriff oder Autor eingeben",
+    "loadingResults": "Ergebnisse {{from}}–{{to}} werden geladen…",
+    "resultsCount": "{{from}}–{{to}} von {{total}} Ergebnissen",
+    "noResults": "Keine Ergebnisse gefunden"
+  },
+  "branch": {
+    "main": "Hauptbibliothek (Maebaru)",
+    "nijo": "Zweigstelle Nijo",
+    "shima": "Zweigstelle Shima"
+  },
+  "materialType": {
+    "general": "Allgemeine Bücher",
+    "children": "Kinderbücher",
+    "magazine": "Zeitschriften",
+    "av": "Audio/Video"
+  },
+  "book": {
+    "available": "Verfügbar",
+    "checkedOut": "Ausgeliehen",
+    "availableCount": "Verfügbar: {{count}}",
+    "checkedOutCount": "Ausgeliehen: {{count}}",
+    "reservations": "Vormerkungen: {{count}}",
+    "loadingHoldings": "Exemplare werden geladen…",
+    "description": "Beschreibung",
+    "other": "Sonstiges",
+    "iconAlt": "Buchsymbol",
+    "detail": "Buchdetails"
+  },
+  "holdings": {
+    "title": "Exemplare",
+    "branch": "Zweigstelle",
+    "type": "Typ",
+    "location": "Standort",
+    "status": "Status",
+    "map": "Karte"
+  },
+  "pagination": {
+    "prev": "← Zurück",
+    "next": "Weiter →",
+    "ariaLabel": "Seitennavigation"
+  },
+  "floorMap": {
+    "loading": "Karte wird geladen…",
+    "alt": "Grundriss Etage {{floor}} von {{location}}"
+  },
+  "libraryLink": {
+    "official": "Auf der offiziellen Bibliothekswebsite vormerken ↗"
+  },
+  "share": {
+    "share": "Teilen",
+    "copyUrl": "URL kopieren",
+    "copied": "Kopiert!"
+  },
+  "theme": {
+    "toLight": "Zum hellen Modus wechseln",
+    "toDark": "Zum dunklen Modus wechseln"
+  },
+  "nav": {
+    "about": "Über uns",
+    "contact": "Kontakt"
+  },
+  "footer": {
+    "disclaimer": "Diese Website ist nicht die <lnk>offizielle Website der Stadtbibliothek Itoshima</lnk>."
+  },
+  "about": {
+    "title": "Über uns",
+    "metaDesc": "Über das inoffizielle Suchwerkzeug der Bibliothek Itoshima von Code for Itoshima",
+    "intro": "Die offizielle Website der Stadtbibliothek Itoshima ist auf Smartphones nicht sehr komfortabel, daher haben wir dieses benutzerfreundlichere Suchwerkzeug entwickelt.",
+    "features": "Die Vorteile dieser Website",
+    "feature1": "Schnelle Suchergebnisse und Buchdetails ohne vollständiges Neuladen der Seite",
+    "feature2": "Grundrissplan mit Buchstandort ohne Pop-up-Fenster",
+    "feature3": "Teilbare URLs für Suchergebnisse und Buchseiten",
+    "opensource": "Open Source",
+    "noCookies": "Keine Cookies · Kein Tracking",
+    "noPersonalData": "Keine Erhebung personenbezogener Daten",
+    "noAds": "Keine Werbung",
+    "free": "Kostenlos",
+    "nonprofit": "Gemeinnützig",
+    "officialDisclaimer": "Diese Website ist nicht die offizielle Website der Stadtbibliothek Itoshima. Die Bestandsdaten stammen von der <lnk>offiziellen Bibliothekswebsite</lnk>.",
+    "cfiTitle": "Code for Itoshima",
+    "cfiDesc": "Wir sind Ehrenamtliche, die das Leben der Bewohner von Itoshima ein bisschen angenehmer machen. Mach mit – hilf, lern oder teile deine Ideen und Anliegen.",
+    "cfiLogoAlt": "Code for Itoshima"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "metaDesc": "Kontaktformular für Code for Itoshima",
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "submit": "Senden",
+    "submitting": "Wird gesendet…",
+    "success": "Ihre Nachricht wurde gesendet. Vielen Dank!",
+    "errorRateLimit": "Zu viele Einsendungen. Bitte versuchen Sie es später erneut.",
+    "errorRequired": "Bitte füllen Sie alle Felder aus.",
+    "errorEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "errorLength": "Die Nachricht darf maximal 2000 Zeichen lang sein.",
+    "errorServer": "Senden fehlgeschlagen. Bitte versuchen Sie es später erneut.",
+    "validationName": "Bitte geben Sie Ihren Namen ein.",
+    "validationEmail": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
+    "validationMessage": "Bitte geben Sie eine Nachricht ein."
+  },
+  "meta": {
+    "siteTitle": "Itoshima Bibliothek Suche",
+    "siteDesc": "Inoffizielles Suchwerkzeug für den Bestand der Stadtbibliothek Itoshima"
+  },
+  "error": {
+    "oops": "Hoppla!",
+    "unexpected": "Ein unerwarteter Fehler ist aufgetreten.",
+    "notFound": "404",
+    "notFoundDesc": "Die angeforderte Seite wurde nicht gefunden.",
+    "error": "Fehler"
+  },
+  "lang": {
+    "ja": "日本語",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "ko": "한국어",
+    "vi": "Tiếng Việt",
+    "id": "Bahasa Indonesia",
+    "my": "မြန်မာဘာသာ",
+    "tl": "Filipino",
+    "en": "English",
+    "es": "Español",
+    "it": "Italiano",
+    "fr": "Français",
+    "de": "Deutsch",
+    "ne": "नेपाली"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "header": { "title": "Itoshima Library Search" },
+  "search": {
+    "placeholder": "Search books… (e.g. 宮沢賢治)",
+    "label": "Search keywords",
+    "clearKeyword": "Clear keyword",
+    "loading": "Searching…",
+    "button": "Search",
+    "advancedOpen": "Advanced search ▲",
+    "advancedClose": "Advanced search ▼",
+    "author": "Author",
+    "clearAuthor": "Clear author",
+    "branch": "Branch",
+    "yearRange": "Publication year",
+    "yearFrom": "From",
+    "yearFromLabel": "Publication year (from)",
+    "yearTo": "To",
+    "yearToLabel": "Publication year (to)",
+    "materialType": "Material type",
+    "reset": "Reset filters",
+    "hint": "Please enter a keyword or author",
+    "loadingResults": "Loading results {{from}}–{{to}}…",
+    "resultsCount": "Showing {{from}}–{{to}} of {{total}} results",
+    "noResults": "No results found"
+  },
+  "branch": {
+    "main": "Main library (Maebaru)",
+    "nijo": "Nijo branch",
+    "shima": "Shima branch"
+  },
+  "materialType": {
+    "general": "General books",
+    "children": "Children's books",
+    "magazine": "Magazines",
+    "av": "Audio/Visual"
+  },
+  "book": {
+    "available": "Available",
+    "checkedOut": "Checked out",
+    "availableCount": "Available: {{count}}",
+    "checkedOutCount": "Checked out: {{count}}",
+    "reservations": "Reservations: {{count}}",
+    "loadingHoldings": "Loading holdings…",
+    "description": "Description",
+    "other": "Other",
+    "iconAlt": "Book icon",
+    "detail": "Book detail"
+  },
+  "holdings": {
+    "title": "Holdings",
+    "branch": "Branch",
+    "type": "Type",
+    "location": "Location",
+    "status": "Status",
+    "map": "Map"
+  },
+  "pagination": {
+    "prev": "← Previous",
+    "next": "Next →",
+    "ariaLabel": "Pagination"
+  },
+  "floorMap": {
+    "loading": "Loading map…",
+    "alt": "{{location}} floor {{floor}} map"
+  },
+  "libraryLink": {
+    "official": "Reserve at the official library site ↗"
+  },
+  "share": {
+    "share": "Share",
+    "copyUrl": "Copy URL",
+    "copied": "Copied!"
+  },
+  "theme": {
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode"
+  },
+  "nav": {
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "disclaimer": "This is not the <lnk>official Itoshima City Library website</lnk>."
+  },
+  "about": {
+    "title": "About",
+    "metaDesc": "About the unofficial Itoshima City Library search tool by Code for Itoshima",
+    "intro": "The official Itoshima City Library website is not very convenient on smartphones, so we built a more usable search tool.",
+    "features": "What makes this site great",
+    "feature1": "Fast search results and book details without reloading the entire page",
+    "feature2": "Floor map showing book locations without popups",
+    "feature3": "Shareable URLs for search results and book pages",
+    "opensource": "Open source",
+    "noCookies": "No cookies · No tracking",
+    "noPersonalData": "No personal data collected",
+    "noAds": "No ads",
+    "free": "Free",
+    "nonprofit": "Non-profit",
+    "officialDisclaimer": "This site is not the official Itoshima City Library website. Collection data is retrieved from the <lnk>official library website</lnk>.",
+    "cfiTitle": "Code for Itoshima",
+    "cfiDesc": "We are volunteers making life a little more convenient for people living in Itoshima. Join us to help, learn, or share your project ideas and needs.",
+    "cfiLogoAlt": "Code for Itoshima"
+  },
+  "contact": {
+    "title": "Contact",
+    "metaDesc": "Contact form for Code for Itoshima",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send",
+    "submitting": "Sending…",
+    "success": "Your message has been sent. Thank you!",
+    "errorRateLimit": "Too many submissions. Please try again later.",
+    "errorRequired": "Please fill in all fields.",
+    "errorEmail": "Please enter a valid email address.",
+    "errorLength": "Message must be 2000 characters or fewer.",
+    "errorServer": "Failed to send. Please try again later.",
+    "validationName": "Please enter your name.",
+    "validationEmail": "Please enter your email.",
+    "validationMessage": "Please enter a message."
+  },
+  "meta": {
+    "siteTitle": "Itoshima Library Search",
+    "siteDesc": "Unofficial search tool for the Itoshima City Library collection"
+  },
+  "error": {
+    "oops": "Oops!",
+    "unexpected": "An unexpected error occurred.",
+    "notFound": "404",
+    "notFoundDesc": "The requested page could not be found.",
+    "error": "Error"
+  },
+  "lang": {
+    "ja": "日本語",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "ko": "한국어",
+    "vi": "Tiếng Việt",
+    "id": "Bahasa Indonesia",
+    "my": "မြန်မာဘာသာ",
+    "tl": "Filipino",
+    "en": "English",
+    "es": "Español",
+    "it": "Italiano",
+    "fr": "Français",
+    "de": "Deutsch",
+    "ne": "नेपाली"
+  }
+}
