@@ -24,9 +24,9 @@
     "noResults": "Nessun risultato trovato"
   },
   "branch": {
-    "main": "Biblioteca principale",
-    "nijo": "Sede Nijo",
-    "shima": "Sede Shima"
+    "main": "Biblioteca principale (Maebaru)",
+    "nijo": "Biblioteca Nijo",
+    "shima": "Biblioteca Shima"
   },
   "materialType": {
     "general": "Libri generali",
