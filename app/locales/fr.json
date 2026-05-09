@@ -1,0 +1,149 @@
+{
+  "header": { "title": "Recherche Bibliothèque Itoshima" },
+  "search": {
+    "placeholder": "Rechercher des livres… (ex : 宮沢賢治)",
+    "label": "Mots-clés",
+    "clearKeyword": "Effacer la recherche",
+    "loading": "Recherche en cours…",
+    "button": "Rechercher",
+    "advancedOpen": "Recherche avancée ▲",
+    "advancedClose": "Recherche avancée ▼",
+    "author": "Auteur",
+    "clearAuthor": "Effacer l'auteur",
+    "branch": "Succursale",
+    "yearRange": "Année de publication",
+    "yearFrom": "De",
+    "yearFromLabel": "Année de publication (de)",
+    "yearTo": "À",
+    "yearToLabel": "Année de publication (à)",
+    "materialType": "Type de document",
+    "reset": "Réinitialiser les filtres",
+    "hint": "Entrez un mot-clé ou un auteur",
+    "loadingResults": "Chargement des résultats {{from}}–{{to}}…",
+    "resultsCount": "{{from}}–{{to}} sur {{total}} résultats",
+    "noResults": "Aucun résultat trouvé"
+  },
+  "branch": {
+    "main": "Bibliothèque principale",
+    "nijo": "Annexe Nijo",
+    "shima": "Annexe Shima"
+  },
+  "materialType": {
+    "general": "Livres généraux",
+    "children": "Livres pour enfants",
+    "magazine": "Magazines",
+    "av": "Audio/Vidéo"
+  },
+  "book": {
+    "available": "Disponible",
+    "checkedOut": "Emprunté",
+    "availableCount": "Disponibles : {{count}}",
+    "checkedOutCount": "Empruntés : {{count}}",
+    "reservations": "Réservations : {{count}}",
+    "loadingHoldings": "Chargement des exemplaires…",
+    "description": "Description",
+    "other": "Autre",
+    "iconAlt": "Icône livre",
+    "detail": "Détail du livre"
+  },
+  "holdings": {
+    "title": "Exemplaires",
+    "branch": "Succursale",
+    "type": "Type",
+    "location": "Emplacement",
+    "status": "Statut",
+    "map": "Plan"
+  },
+  "pagination": {
+    "prev": "← Précédent",
+    "next": "Suivant →",
+    "ariaLabel": "Pagination"
+  },
+  "floorMap": {
+    "loading": "Chargement du plan…",
+    "alt": "Plan niveau {{floor}} de {{location}}"
+  },
+  "libraryLink": {
+    "official": "Réserver sur le site officiel de la bibliothèque ↗"
+  },
+  "share": {
+    "share": "Partager",
+    "copyUrl": "Copier l'URL",
+    "copied": "Copié !"
+  },
+  "theme": {
+    "toLight": "Passer en mode clair",
+    "toDark": "Passer en mode sombre"
+  },
+  "nav": {
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "footer": {
+    "disclaimer": "Ce site n'est pas le <lnk>site officiel de la Bibliothèque municipale d'Itoshima</lnk>."
+  },
+  "about": {
+    "title": "À propos",
+    "metaDesc": "À propos de l'outil de recherche non officiel de la Bibliothèque d'Itoshima par Code for Itoshima",
+    "intro": "Le site officiel de la Bibliothèque municipale d'Itoshima n'est pas très pratique sur smartphone, nous avons donc créé cet outil de recherche plus ergonomique.",
+    "features": "Les points forts de ce site",
+    "feature1": "Résultats de recherche et détails des livres sans recharger la page entière",
+    "feature2": "Plan d'étage indiquant la position du livre sans fenêtres pop-up",
+    "feature3": "URL partageables pour les résultats de recherche et les pages de livres",
+    "opensource": "Open source",
+    "noCookies": "Sans cookies · Sans suivi",
+    "noPersonalData": "Aucune collecte de données personnelles",
+    "noAds": "Sans publicité",
+    "free": "Gratuit",
+    "nonprofit": "Sans but lucratif",
+    "officialDisclaimer": "Ce site n'est pas le site officiel de la Bibliothèque municipale d'Itoshima. Les données du catalogue proviennent du <lnk>site officiel de la bibliothèque</lnk>.",
+    "cfiTitle": "Code for Itoshima",
+    "cfiDesc": "Nous sommes des bénévoles qui rendent la vie un peu plus pratique pour les habitants d'Itoshima. Rejoignez-nous pour aider, apprendre ou partager vos idées et besoins.",
+    "cfiLogoAlt": "Code for Itoshima"
+  },
+  "contact": {
+    "title": "Contact",
+    "metaDesc": "Formulaire de contact pour Code for Itoshima",
+    "name": "Nom",
+    "email": "E-mail",
+    "message": "Message",
+    "submit": "Envoyer",
+    "submitting": "Envoi en cours…",
+    "success": "Votre message a été envoyé. Merci !",
+    "errorRateLimit": "Trop d'envois. Veuillez réessayer plus tard.",
+    "errorRequired": "Veuillez remplir tous les champs.",
+    "errorEmail": "Veuillez entrer une adresse e-mail valide.",
+    "errorLength": "Le message doit contenir au maximum 2000 caractères.",
+    "errorServer": "Échec de l'envoi. Veuillez réessayer plus tard.",
+    "validationName": "Veuillez entrer votre nom.",
+    "validationEmail": "Veuillez entrer votre e-mail.",
+    "validationMessage": "Veuillez entrer un message."
+  },
+  "meta": {
+    "siteTitle": "Recherche Bibliothèque Itoshima",
+    "siteDesc": "Outil de recherche non officiel du catalogue de la Bibliothèque municipale d'Itoshima"
+  },
+  "error": {
+    "oops": "Oups !",
+    "unexpected": "Une erreur inattendue s'est produite.",
+    "notFound": "404",
+    "notFoundDesc": "La page demandée est introuvable.",
+    "error": "Erreur"
+  },
+  "lang": {
+    "ja": "日本語",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "ko": "한국어",
+    "vi": "Tiếng Việt",
+    "id": "Bahasa Indonesia",
+    "my": "မြန်မာဘာသာ",
+    "tl": "Filipino",
+    "en": "English",
+    "es": "Español",
+    "it": "Italiano",
+    "fr": "Français",
+    "de": "Deutsch",
+    "ne": "नेपाली"
+  }
+}

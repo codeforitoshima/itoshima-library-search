@@ -1,7 +1,7 @@
 {
   "header": { "title": "糸島圖書館 非官方搜尋" },
   "search": {
-    "placeholder": "搜尋書籍…（例：宮澤賢治）",
+    "placeholder": "搜尋書籍…（例：宮沢賢治）",
     "label": "搜尋關鍵字",
     "clearKeyword": "清除關鍵字",
     "loading": "搜尋中…",
