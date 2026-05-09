@@ -64,6 +64,7 @@ export default function About() {
             <li>{t("about.noAds")}</li>
             <li>{t("about.free")}</li>
             <li>{t("about.nonprofit")}</li>
+            <li>{t("about.multiLanguage")}</li>
           </ul>
         </section>
 
