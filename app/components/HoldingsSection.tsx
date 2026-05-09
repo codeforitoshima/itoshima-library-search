@@ -37,7 +37,11 @@ export function HoldingsSection({ holdings, bookId }: { holdings: Holding[]; boo
                         : "status-lent"
                     }
                   >
-                    {h.status}
+                    {h.status.includes("貸出できます")
+                      ? t("book.available")
+                      : h.status.includes("貸出中") || h.status.includes("借出中")
+                      ? t("book.checkedOut")
+                      : h.status}
                   </td>
                   <td>
                     {h.floorMapParams && (

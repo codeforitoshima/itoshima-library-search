@@ -36,8 +36,8 @@ describe("HoldingsSection", () => {
 
     expect(screen.getByText("本館")).toBeInTheDocument();
     expect(screen.getByText("二丈館")).toBeInTheDocument();
-    expect(screen.getByText("貸出中です")).toBeInTheDocument();
-    expect(screen.getByText("貸出できます")).toBeInTheDocument();
+    expect(screen.getByText("貸出中")).toBeInTheDocument();
+    expect(screen.getByText("利用可能")).toBeInTheDocument();
   });
 
   it("shows 地図 button only for holdings with floorMapParams", () => {
@@ -50,14 +50,14 @@ describe("HoldingsSection", () => {
   it("applies status-available class for available books", () => {
     render(withI18n(<HoldingsSection holdings={holdings} bookId="16" />));
 
-    const available = screen.getByText("貸出できます");
+    const available = screen.getByText("利用可能");
     expect(available).toHaveClass("status-available");
   });
 
   it("applies status-lent class for lent books", () => {
     render(withI18n(<HoldingsSection holdings={holdings} bookId="16" />));
 
-    const lent = screen.getByText("貸出中です");
+    const lent = screen.getByText("貸出中");
     expect(lent).toHaveClass("status-lent");
   });
 
