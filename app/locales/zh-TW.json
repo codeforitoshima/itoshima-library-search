@@ -1,0 +1,149 @@
+{
+  "header": { "title": "糸島圖書館 非官方搜尋" },
+  "search": {
+    "placeholder": "搜尋書籍…（例：宮澤賢治）",
+    "label": "搜尋關鍵字",
+    "clearKeyword": "清除關鍵字",
+    "loading": "搜尋中…",
+    "button": "搜尋",
+    "advancedOpen": "進階搜尋 ▲",
+    "advancedClose": "進階搜尋 ▼",
+    "author": "作者",
+    "clearAuthor": "清除作者",
+    "branch": "館藏館所",
+    "yearRange": "出版年",
+    "yearFrom": "起始年",
+    "yearFromLabel": "出版年（起始）",
+    "yearTo": "結束年",
+    "yearToLabel": "出版年（結束）",
+    "materialType": "資料類型",
+    "reset": "重設條件",
+    "hint": "請輸入關鍵字或作者",
+    "loadingResults": "正在載入第 {{from}}～{{to}} 筆…",
+    "resultsCount": "共 {{total}} 筆，顯示第 {{from}}～{{to}} 筆",
+    "noResults": "找不到相關結果"
+  },
+  "branch": {
+    "main": "本館",
+    "nijo": "二丈館",
+    "shima": "志摩館"
+  },
+  "materialType": {
+    "general": "一般圖書",
+    "children": "兒童圖書",
+    "magazine": "雜誌",
+    "av": "影像・音樂"
+  },
+  "book": {
+    "available": "可借閱",
+    "checkedOut": "借出中",
+    "availableCount": "可借閱：{{count}}",
+    "checkedOutCount": "借出中：{{count}}",
+    "reservations": "預約：{{count}}",
+    "loadingHoldings": "正在載入館藏資訊…",
+    "description": "內容簡介",
+    "other": "其他",
+    "iconAlt": "書本圖示",
+    "detail": "書籍詳情"
+  },
+  "holdings": {
+    "title": "館藏資訊",
+    "branch": "館所",
+    "type": "類型",
+    "location": "位置",
+    "status": "狀態",
+    "map": "地圖"
+  },
+  "pagination": {
+    "prev": "← 上一頁",
+    "next": "下一頁 →",
+    "ariaLabel": "頁面切換"
+  },
+  "floorMap": {
+    "loading": "地圖載入中…",
+    "alt": "{{location}} {{floor}}樓 配置圖"
+  },
+  "libraryLink": {
+    "official": "預約請至圖書館官網 ↗"
+  },
+  "share": {
+    "share": "分享",
+    "copyUrl": "複製網址",
+    "copied": "已複製"
+  },
+  "theme": {
+    "toLight": "切換為淺色模式",
+    "toDark": "切換為深色模式"
+  },
+  "nav": {
+    "about": "關於本站",
+    "contact": "聯絡我們"
+  },
+  "footer": {
+    "disclaimer": "本站並非<lnk>糸島市立圖書館官方網站</lnk>。"
+  },
+  "about": {
+    "title": "關於本站",
+    "metaDesc": "Code for Itoshima 製作的糸島市立圖書館非官方搜尋工具介紹",
+    "intro": "糸島市立圖書館的官方網站在智慧型手機上操作較為不便，因此我們製作了這個更易用的搜尋工具。",
+    "features": "本站的優點",
+    "feature1": "無需重新載入整個頁面，即可快速顯示搜尋結果與書籍詳情",
+    "feature2": "不需彈出視窗，直接在樓層地圖上顯示書籍位置",
+    "feature3": "搜尋結果與書籍頁面的網址可直接分享",
+    "opensource": "開放原始碼",
+    "noCookies": "無 Cookie・無追蹤",
+    "noPersonalData": "不收集個人資訊",
+    "noAds": "無廣告",
+    "free": "免費",
+    "nonprofit": "非營利",
+    "officialDisclaimer": "本站並非糸島市立圖書館官方網站。館藏資料來自<lnk>圖書館官方網站</lnk>。",
+    "cfiTitle": "Code for Itoshima",
+    "cfiDesc": "我們是一群志願者，致力於讓糸島居民的生活更便利。歡迎一起參與、學習，或分享您的想法與需求。",
+    "cfiLogoAlt": "Code for Itoshima"
+  },
+  "contact": {
+    "title": "聯絡我們",
+    "metaDesc": "Code for Itoshima 聯絡表單",
+    "name": "姓名",
+    "email": "電子郵件",
+    "message": "訊息",
+    "submit": "送出",
+    "submitting": "送出中...",
+    "success": "已送出，謝謝您。",
+    "errorRateLimit": "送出次數過多，請稍後再試。",
+    "errorRequired": "請填寫所有欄位。",
+    "errorEmail": "請輸入正確的電子郵件地址。",
+    "errorLength": "訊息請在 2000 字以內。",
+    "errorServer": "送出失敗，請稍後再試。",
+    "validationName": "請輸入姓名。",
+    "validationEmail": "請輸入電子郵件。",
+    "validationMessage": "請輸入訊息。"
+  },
+  "meta": {
+    "siteTitle": "糸島圖書館 非官方搜尋",
+    "siteDesc": "糸島市立圖書館館藏非官方搜尋工具"
+  },
+  "error": {
+    "oops": "糟糕！",
+    "unexpected": "發生了意外錯誤。",
+    "notFound": "404",
+    "notFoundDesc": "找不到所要求的頁面。",
+    "error": "錯誤"
+  },
+  "lang": {
+    "ja": "日本語",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "ko": "한국어",
+    "vi": "Tiếng Việt",
+    "id": "Bahasa Indonesia",
+    "my": "မြန်မာဘာသာ",
+    "tl": "Filipino",
+    "en": "English",
+    "es": "Español",
+    "it": "Italiano",
+    "fr": "Français",
+    "de": "Deutsch",
+    "ne": "नेपाली"
+  }
+}
