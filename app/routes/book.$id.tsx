@@ -17,6 +17,7 @@ import { HoldingsSection } from "~/components/HoldingsSection";
 import { ShareButton } from "~/components/ShareButton";
 import { LanguageSwitcher } from "~/components/LanguageSwitcher";
 import i18n from "~/i18n";
+import { formatAuthor } from "~/utils/formatAuthor";
 
 export function meta({ data: loaderData }: Route.MetaArgs) {
   const detail = loaderData as BookDetail | undefined;
@@ -152,7 +153,7 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
               <p className="detail-subtitle">{detail.subtitle}</p>
             )}
             {detail.author && (
-              <p className="detail-author">{detail.author}</p>
+              <p className="detail-author">{formatAuthor(detail.author, t)}</p>
             )}
             <div className="detail-meta">
               {detail.publisher && <span>{detail.publisher}</span>}
