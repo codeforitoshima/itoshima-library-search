@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { Form, Link, useActionData, useNavigation } from "react-router";
+import { Form, Link, useActionData, useNavigation, useParams } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
+import { useTranslation } from "react-i18next";
 import nodemailer from "nodemailer";
 import { Footer } from "~/components/Footer";
 import { ThemeToggle } from "~/components/ThemeToggle";
 import { BookIcon } from "~/components/BookIcon";
+import { LanguageSwitcher } from "~/components/LanguageSwitcher";
+import i18n from "~/i18n";
 
 const MESSAGE_MAX_LENGTH = 2000;
 const RATE_LIMIT_MS = 5 * 60 * 1000;
@@ -20,10 +23,10 @@ function getClientIp(request: Request): string {
 
 export function meta() {
   return [
-    { title: "お問い合わせ | 糸島図書館 非公式検索" },
+    { title: `${i18n.t("contact.title")} | ${i18n.t("meta.siteTitle")}` },
     {
       name: "description",
-      content: "Code for Itoshimaへのお問い合わせフォーム",
+      content: i18n.t("contact.metaDesc"),
     },
   ];
 }
@@ -34,7 +37,7 @@ export async function action({ request }: ActionFunctionArgs) {
   if (Date.now() - lastSent < RATE_LIMIT_MS) {
     return {
       success: false,
-      error: "送信が多すぎます。しばらくしてからお試しください。",
+      error: i18n.t("contact.errorRateLimit"),
     };
   }
 
@@ -49,18 +52,18 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   if (!name || !email || !message) {
-    return { success: false, error: "すべての項目を入力してください。" };
+    return { success: false, error: i18n.t("contact.errorRequired") };
   }
   if (!EMAIL_REGEX.test(email)) {
     return {
       success: false,
-      error: "正しいメールアドレスを入力してください。",
+      error: i18n.t("contact.errorEmail"),
     };
   }
   if (message.length > MESSAGE_MAX_LENGTH) {
     return {
       success: false,
-      error: `メッセージは${MESSAGE_MAX_LENGTH}文字以内で入力してください。`,
+      error: i18n.t("contact.errorLength"),
     };
   }
 
@@ -89,7 +92,7 @@ export async function action({ request }: ActionFunctionArgs) {
     console.error("Email send error:", error);
     return {
       success: false,
-      error: "送信に失敗しました。しばらくしてからお試しください。",
+      error: i18n.t("contact.errorServer"),
     };
   }
 }
@@ -97,25 +100,27 @@ export async function action({ request }: ActionFunctionArgs) {
 type FieldValues = { name: string; email: string; message: string };
 type FieldErrors = { name: string; email: string; message: string };
 
-function validate(values: FieldValues): FieldErrors {
+function validate(values: FieldValues, t: (key: string) => string): FieldErrors {
   const errors: FieldErrors = { name: "", email: "", message: "" };
   if (!values.name.trim()) {
-    errors.name = "名前を入力してください。";
+    errors.name = t("contact.validationName");
   }
   if (!values.email.trim()) {
-    errors.email = "メールアドレスを入力してください。";
+    errors.email = t("contact.validationEmail");
   } else if (!EMAIL_REGEX.test(values.email)) {
-    errors.email = "正しいメールアドレスを入力してください。";
+    errors.email = t("contact.errorEmail");
   }
   if (!values.message.trim()) {
-    errors.message = "メッセージを入力してください。";
+    errors.message = t("contact.validationMessage");
   } else if (values.message.length > MESSAGE_MAX_LENGTH) {
-    errors.message = `メッセージは${MESSAGE_MAX_LENGTH}文字以内で入力してください。`;
+    errors.message = t("contact.errorLength");
   }
   return errors;
 }
 
 export default function Contact() {
+  const { lang = "ja" } = useParams();
+  const { t } = useTranslation();
   const actionData = useActionData<typeof action>();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
@@ -131,7 +136,7 @@ export default function Contact() {
     message: false,
   });
 
-  const errors = validate(values);
+  const errors = validate(values, t);
   const isValid = !errors.name && !errors.email && !errors.message;
 
   function handleChange(
@@ -150,20 +155,23 @@ export default function Contact() {
     <main className="app-container">
       <header className="app-header">
         <h1>
-          <Link to="/">
+          <Link to={`/${lang}`}>
             <BookIcon className="header-icon" />
-            糸島図書館 非公式検索
+            {t("header.title")}
           </Link>
         </h1>
-        <ThemeToggle />
+        <div className="header-controls">
+          <LanguageSwitcher />
+          <ThemeToggle />
+        </div>
       </header>
 
       <article className="contact-page">
-        <h2>お問い合わせ</h2>
+        <h2>{t("contact.title")}</h2>
 
         {actionData?.success ? (
           <div className="contact-success">
-            <p>送信しました。ありがとうございます。</p>
+            <p>{t("contact.success")}</p>
           </div>
         ) : (
           <Form method="post" className="contact-form">
@@ -182,7 +190,7 @@ export default function Contact() {
             />
             <div className="contact-field">
               <label htmlFor="name" className="contact-label">
-                名前
+                {t("contact.name")}
               </label>
               <input
                 type="text"
@@ -200,7 +208,7 @@ export default function Contact() {
             </div>
             <div className="contact-field">
               <label htmlFor="email" className="contact-label">
-                メールアドレス
+                {t("contact.email")}
               </label>
               <input
                 type="email"
@@ -218,7 +226,7 @@ export default function Contact() {
             </div>
             <div className="contact-field">
               <label htmlFor="message" className="contact-label">
-                メッセージ
+                {t("contact.message")}
               </label>
               <textarea
                 id="message"
@@ -251,12 +259,12 @@ export default function Contact() {
               className="search-button contact-submit"
               disabled={!isValid || isSubmitting}
             >
-              {isSubmitting ? "送信中..." : "送信"}
+              {isSubmitting ? t("contact.submitting") : t("contact.submit")}
             </button>
           </Form>
         )}
       </article>
-      <Footer />
+      <Footer lang={lang} />
     </main>
   );
 }

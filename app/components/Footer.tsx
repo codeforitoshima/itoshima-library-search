@@ -1,21 +1,27 @@
 import { Link } from "react-router";
+import { Trans, useTranslation } from "react-i18next";
 
-export function Footer() {
+export function Footer({ lang }: { lang: string }) {
+  const { t } = useTranslation();
+
   return (
     <footer className="app-footer">
       <p>
-        ここは
-        <a
-          href="https://itoshima.libweb.jp/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          糸島市立図書館の公式サイト
-        </a>
-        ではありません。
+        <Trans
+          i18nKey="footer.disclaimer"
+          components={{
+            lnk: (
+              <a
+                href="https://itoshima.libweb.jp/"
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+            ),
+          }}
+        />
       </p>
       <div className="footer-links">
-        <Link to="/about">このサイトについて</Link>
+        <Link to={`/${lang}/about`}>{t("nav.about")}</Link>
         <span className="footer-separator">·</span>
         <a
           href="https://github.com/codeforitoshima/itoshima-library-search"

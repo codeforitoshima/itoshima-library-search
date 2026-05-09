@@ -1,20 +1,22 @@
 import { Fragment, useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { Holding } from "~/lib/parser.server";
 import { FloorMap } from "./FloorMap";
 
 export function HoldingsSection({ holdings, bookId }: { holdings: Holding[]; bookId: string }) {
+  const { t } = useTranslation();
   const [openMap, setOpenMap] = useState<string | null>(null);
 
   return (
     <section className="detail-section">
-      <h3>所蔵情報</h3>
+      <h3>{t("holdings.title")}</h3>
       <table className="holdings-table">
         <thead>
           <tr>
-            <th>館</th>
-            <th>種別</th>
-            <th>場所</th>
-            <th>状態</th>
+            <th>{t("holdings.branch")}</th>
+            <th>{t("holdings.type")}</th>
+            <th>{t("holdings.location")}</th>
+            <th>{t("holdings.status")}</th>
             <th />
           </tr>
         </thead>
@@ -45,7 +47,7 @@ export function HoldingsSection({ holdings, bookId }: { holdings: Holding[]; boo
                         onClick={() => setOpenMap(isOpen ? null : key)}
                         aria-expanded={isOpen}
                       >
-                        地図
+                        {t("holdings.map")}
                       </button>
                     )}
                   </td>

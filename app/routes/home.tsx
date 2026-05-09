@@ -1,5 +1,6 @@
 import { data } from "react-router";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import type { Route } from "./+types/home";
 import { fetchSearchResults } from "~/lib/library.server";
 import { parseSearchResults, type Book } from "~/lib/parser.server";
@@ -13,15 +14,17 @@ import { Footer } from "~/components/Footer";
 import { ThemeToggle } from "~/components/ThemeToggle";
 import { BookIcon } from "~/components/BookIcon";
 import { ShareButton } from "~/components/ShareButton";
+import { LanguageSwitcher } from "~/components/LanguageSwitcher";
+import i18n from "~/i18n";
 
 export function meta() {
   return [
-    { title: "糸島図書館 非公式検索" },
-    { name: "description", content: "糸島市立図書館の蔵書を検索できる非公式ツール" },
-    { property: "og:title", content: "糸島図書館 非公式検索" },
-    { property: "og:description", content: "糸島市立図書館の蔵書を検索できる非公式ツール" },
+    { title: i18n.t("meta.siteTitle") },
+    { name: "description", content: i18n.t("meta.siteDesc") },
+    { property: "og:title", content: i18n.t("meta.siteTitle") },
+    { property: "og:description", content: i18n.t("meta.siteDesc") },
     { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "糸島図書館 非公式検索" },
+    { property: "og:site_name", content: i18n.t("meta.siteTitle") },
   ];
 }
 
@@ -221,6 +224,7 @@ function usePrefetchAdjacentBlocks(filters: SearchFilters, page: number, totalPa
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
+  const { lang = "ja" } = useParams();
   const results = useFullResults(loaderData as HomeData);
   const { filters, page, total, totalPages, books, loading } = results;
 
@@ -230,14 +234,17 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     <main className="app-container">
       <header className="app-header">
         <h1>
-          <a href="/">
+          <a href={`/${lang}`}>
             <BookIcon className="header-icon" />
-            糸島図書館 非公式検索
+            {i18n.t("header.title")}
           </a>
         </h1>
-        <ThemeToggle />
+        <div className="header-controls">
+          <LanguageSwitcher />
+          <ThemeToggle />
+        </div>
       </header>
-      <SearchBar filters={filters} total={total} page={page} loading={loading} />
+      <SearchBar filters={filters} total={total} page={page} loading={loading} lang={lang} />
       {!loading && (
         <>
           {books.length > 0 && (filters.keyword || filters.author) && (
@@ -245,13 +252,13 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               <ShareButton title={filters.keyword || filters.author} />
             </div>
           )}
-          <ResultsGrid books={books} />
+          <ResultsGrid books={books} lang={lang} />
           {books.length > 0 && (
-            <Pagination filters={filters} page={page} totalPages={totalPages} />
+            <Pagination filters={filters} page={page} totalPages={totalPages} lang={lang} />
           )}
         </>
       )}
-      <Footer />
+      <Footer lang={lang} />
     </main>
   );
 }

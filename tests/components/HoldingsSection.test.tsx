@@ -4,6 +4,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { HoldingsSection } from "../../app/components/HoldingsSection";
 import type { Holding } from "../../app/lib/parser.server";
+import { withI18n } from "../test-utils";
 
 const holdings: Holding[] = [
   {
@@ -31,7 +32,7 @@ beforeEach(() => {
 
 describe("HoldingsSection", () => {
   it("renders all holdings", () => {
-    render(<HoldingsSection holdings={holdings} bookId="16" />);
+    render(withI18n(<HoldingsSection holdings={holdings} bookId="16" />));
 
     expect(screen.getByText("本館")).toBeInTheDocument();
     expect(screen.getByText("二丈館")).toBeInTheDocument();
@@ -40,21 +41,21 @@ describe("HoldingsSection", () => {
   });
 
   it("shows 地図 button only for holdings with floorMapParams", () => {
-    render(<HoldingsSection holdings={holdings} bookId="16" />);
+    render(withI18n(<HoldingsSection holdings={holdings} bookId="16" />));
 
     const buttons = screen.getAllByRole("button", { name: "地図" });
     expect(buttons).toHaveLength(1);
   });
 
   it("applies status-available class for available books", () => {
-    render(<HoldingsSection holdings={holdings} bookId="16" />);
+    render(withI18n(<HoldingsSection holdings={holdings} bookId="16" />));
 
     const available = screen.getByText("貸出できます");
     expect(available).toHaveClass("status-available");
   });
 
   it("applies status-lent class for lent books", () => {
-    render(<HoldingsSection holdings={holdings} bookId="16" />);
+    render(withI18n(<HoldingsSection holdings={holdings} bookId="16" />));
 
     const lent = screen.getByText("貸出中です");
     expect(lent).toHaveClass("status-lent");
@@ -62,7 +63,7 @@ describe("HoldingsSection", () => {
 
   it("toggles floor map on button click", async () => {
     const user = userEvent.setup();
-    render(<HoldingsSection holdings={holdings} bookId="16" />);
+    render(withI18n(<HoldingsSection holdings={holdings} bookId="16" />));
 
     const button = screen.getByRole("button", { name: "地図" });
     expect(button).toHaveAttribute("aria-expanded", "false");

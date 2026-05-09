@@ -1,6 +1,7 @@
 import { data } from "react-router";
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { Route } from "./+types/book.$id";
 import { fetchBookDetail } from "~/lib/library.server";
 import { parseBookDetail } from "~/lib/parser.server";
@@ -14,17 +15,19 @@ import { ThemeToggle } from "~/components/ThemeToggle";
 import { BookIcon } from "~/components/BookIcon";
 import { HoldingsSection } from "~/components/HoldingsSection";
 import { ShareButton } from "~/components/ShareButton";
+import { LanguageSwitcher } from "~/components/LanguageSwitcher";
+import i18n from "~/i18n";
 
 export function meta({ data: loaderData }: Route.MetaArgs) {
   const detail = loaderData as BookDetail | undefined;
-  const title = detail?.title ?? "書籍詳細";
+  const title = detail?.title ?? i18n.t("book.detail");
   return [
-    { title: `${title} | 糸島図書館 非公式検索` },
+    { title: `${title} | ${i18n.t("meta.siteTitle")}` },
     { name: "description", content: detail?.description?.slice(0, 160) ?? "" },
     { property: "og:title", content: title },
     { property: "og:description", content: detail?.description?.slice(0, 160) ?? "" },
     { property: "og:type", content: "website" },
-    { property: "og:site_name", content: "糸島図書館 非公式検索" },
+    { property: "og:site_name", content: i18n.t("meta.siteTitle") },
     { name: "robots", content: "noindex" },
   ];
 }
@@ -115,6 +118,8 @@ function useFullDetail(loaderData: DetailData) {
 }
 
 export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
+  const { lang = "ja" } = useParams();
+  const { t } = useTranslation();
   const detail = useFullDetail(loaderData as unknown as DetailData);
   const coverUrl = useBookCover(detail.isbn);
 
@@ -128,9 +133,12 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
     <main className="app-container">
       <header className="app-header">
         <h1>
-          <Link to="/"><BookIcon className="header-icon" />糸島図書館 非公式検索</Link>
+          <Link to={`/${lang}`}><BookIcon className="header-icon" />{t("header.title")}</Link>
         </h1>
-        <ThemeToggle />
+        <div className="header-controls">
+          <LanguageSwitcher />
+          <ThemeToggle />
+        </div>
       </header>
 
       <article className="detail-page">
@@ -155,15 +163,17 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
               {!detail.partial ? (
                 <div className="detail-availability">
                   <span className="avail-badge available">
-                    貸出可能: {detail.availableCopies}
+                    {t("book.availableCount", { count: detail.availableCopies })}
                   </span>
                   <span className="avail-badge lent">
-                    貸出中: {detail.lentCopies}
+                    {t("book.checkedOutCount", { count: detail.lentCopies })}
                   </span>
-                  <span className="avail-badge">予約: {detail.reservations}</span>
+                  <span className="avail-badge">
+                    {t("book.reservations", { count: detail.reservations })}
+                  </span>
                 </div>
               ) : (
-                <p className="detail-loading"><span className="spinner" /> 所蔵情報を読み込み中…</p>
+                <p className="detail-loading"><span className="spinner" /> {t("book.loadingHoldings")}</p>
               )}
             </div>
             <div className="detail-actions">
@@ -181,14 +191,14 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
 
         {detail.description && (
           <section className="detail-section">
-            <h3>内容紹介</h3>
+            <h3>{t("book.description")}</h3>
             <p>{detail.description}</p>
           </section>
         )}
 
         {detail.otherInfo && (
           <section className="detail-section">
-            <h3>その他</h3>
+            <h3>{t("book.other")}</h3>
             <p className="detail-other-info">{detail.otherInfo}</p>
           </section>
         )}
@@ -197,7 +207,7 @@ export default function BookDetailPage({ loaderData }: Route.ComponentProps) {
           <HoldingsSection holdings={detail.holdings} bookId={detail.bookId} />
         )}
       </article>
-      <Footer />
+      <Footer lang={lang} />
     </main>
   );
 }

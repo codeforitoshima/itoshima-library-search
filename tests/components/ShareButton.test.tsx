@@ -2,6 +2,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
 import { ShareButton } from "../../app/components/ShareButton";
+import { withI18n } from "../test-utils";
 
 describe("ShareButton — navigator.share available", () => {
   beforeEach(() => {
@@ -18,14 +19,14 @@ describe("ShareButton — navigator.share available", () => {
   });
 
   it("renders a share button after mount", async () => {
-    render(<ShareButton title="テスト書籍" />);
+    render(withI18n(<ShareButton title="テスト書籍" />));
     await waitFor(() =>
       expect(screen.getByRole("button", { name: "シェアする" })).toBeInTheDocument()
     );
   });
 
   it("calls navigator.share with formatted title and current URL on click", async () => {
-    render(<ShareButton title="テスト書籍" />);
+    render(withI18n(<ShareButton title="テスト書籍" />));
     const button = await screen.findByRole("button", { name: "シェアする" });
     fireEvent.click(button);
     expect(navigator.share).toHaveBeenCalledWith({
@@ -45,14 +46,14 @@ describe("ShareButton — navigator.share not available", () => {
   });
 
   it("renders a copy button when navigator.share is unavailable", async () => {
-    render(<ShareButton title="テスト書籍" />);
+    render(withI18n(<ShareButton title="テスト書籍" />));
     await waitFor(() =>
       expect(screen.getByRole("button", { name: "URLをコピー" })).toBeInTheDocument()
     );
   });
 
   it("calls navigator.clipboard.writeText with current URL on click", async () => {
-    render(<ShareButton title="テスト書籍" />);
+    render(withI18n(<ShareButton title="テスト書籍" />));
     const button = await screen.findByRole("button", { name: "URLをコピー" });
     await act(async () => {
       fireEvent.click(button);
@@ -61,7 +62,7 @@ describe("ShareButton — navigator.share not available", () => {
   });
 
   it("shows copied feedback after clicking", async () => {
-    render(<ShareButton title="テスト書籍" />);
+    render(withI18n(<ShareButton title="テスト書籍" />));
     const button = await screen.findByRole("button", { name: "URLをコピー" });
     fireEvent.click(button);
     await waitFor(() =>

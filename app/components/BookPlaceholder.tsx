@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 export function BookPlaceholder({ className }: { className?: string }) {
+  const { t } = useTranslation();
+
   return (
     <div className={`book-placeholder ${className ?? ""}`}>
       <svg
@@ -9,7 +13,7 @@ export function BookPlaceholder({ className }: { className?: string }) {
         strokeLinecap="round"
         strokeLinejoin="round"
         role="img"
-        aria-label="本のアイコン"
+        aria-label={t("book.iconAlt")}
       >
         <rect x="2" y="1" width="20" height="22" rx="2" />
         <line x1="7" y1="1" x2="7" y2="23" />

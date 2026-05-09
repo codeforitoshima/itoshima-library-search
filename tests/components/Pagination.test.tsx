@@ -3,6 +3,7 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { Pagination } from "../../app/components/Pagination";
+import { withI18n } from "../test-utils";
 
 const defaultFilters = {
   keyword: "猫", author: "", yearFrom: "", yearTo: "", branches: [], materialTypes: [],
@@ -10,9 +11,11 @@ const defaultFilters = {
 
 function renderPagination(page: number, totalPages: number) {
   return render(
-    <MemoryRouter>
-      <Pagination filters={defaultFilters} page={page} totalPages={totalPages} />
-    </MemoryRouter>
+    withI18n(
+      <MemoryRouter>
+        <Pagination filters={defaultFilters} page={page} totalPages={totalPages} lang="ja" />
+      </MemoryRouter>
+    )
   );
 }
 
@@ -72,6 +75,6 @@ describe("Pagination", () => {
     renderPagination(2, 5);
 
     const link = screen.getByText("3").closest("a");
-    expect(link).toHaveAttribute("href", "/?q=%E7%8C%AB&page=3");
+    expect(link).toHaveAttribute("href", "/ja?q=%E7%8C%AB&page=3");
   });
 });
